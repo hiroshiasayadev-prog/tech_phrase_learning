@@ -38,9 +38,9 @@ The session progressively replaces each active quiz card with an answered summar
 | Active quiz card | The only interaction that currently accepts a learner answer. |
 | Question interaction | An active quiz linked to the source discussion opening post. |
 | Reply interaction | An active quiz linked to one later source reply. |
-| Continue action | Replaces the completed step with the next active quiz card. |
+| Continue action | Replaces a non-final completed step with the next active quiz card. |
 | Skip action | Leaves the current discussion without completing its remaining quizzes. |
-| Terminal state | End of the selected learning unit with attribution and a next-discussion action. |
+| Next discussion action | Leaves the final answered card and starts another discussion through the UI flow. |
 
 ### Card transition
 
@@ -50,7 +50,7 @@ The session progressively replaces each active quiz card with an answered summar
 | Active quiz card | Select one answer option. | Open answered card. |
 | Open newest answered card | Continue. | The card becomes collapsible and the next interaction becomes active. |
 | Earlier answered card | Open or close its answer detail. | Answered card with unchanged summary. |
-| Final open answered card | Continue. | Terminal state. |
+| Final open answered card | Next discussion. | The current unit ends without a separate terminal screen. |
 
 ## Rules
 
@@ -90,13 +90,14 @@ The session progressively replaces each active quiz card with an answered summar
 - The open answer detail must show whether the learner was correct.
 - The open answer detail must show the original quiz prompt.
 - The open answer detail must show the target quiz phrase as the correct phrase.
-- Only the newest answered card may show the continue action.
-- The continue action must lead to the next post or the terminal state.
+- Only a non-final newest answered card may show the continue action.
+- The continue action must lead to the next interaction.
 
-### Terminal state
+### Final answered card
 
-- The terminal state must provide source attribution.
-- The terminal state must provide an action to start another discussion.
+- The final answered card must provide source attribution.
+- The final answered card must provide a `Next discussion` action.
+- The session must not require a separate terminal screen.
 - Skipping must leave the current discussion without exposing unanswered summaries or correct phrases.
 
 ### Language boundary
@@ -111,7 +112,8 @@ The session progressively replaces each active quiz card with an answered summar
 | Meaning of quiz prompts, options, phrases, and summaries | `spec:product.learning.learning_unit` |
 | Card order and learner-visible transitions | `spec:product.learning.quiz_session` |
 | Session-time learning-unit selection | Future application contract. |
-| Session-state persistence | Implementation. |
+| PWA runtime state, loading, retry, and navigation | `spec:product.ui.learning_flow` |
+| Session-state persistence | Out of scope for the first MVP. |
 | Package generation and validation | `spec:product.pipeline` |
 | Visual styling and responsive layout | Implementation. |
 
@@ -123,5 +125,6 @@ The session progressively replaces each active quiz card with an answered summar
 | `spec:product.learning.learning_path` | Defines the source-post path presented by the session. |
 | `spec:product.learning.learning_unit` | Defines content shown within each card. |
 | `spec:product.pipeline` | Produces the ordered content consumed by the session. |
+| `spec:product.ui.learning_flow` | Implements the transient PWA flow for this session contract. |
 | PRODUCT-ADR-LEARNING-005 | Establishes the current summarized learning-unit model. |
 | PRODUCT-ADR-LEARNING-006 | Establishes progressive quiz-to-summary card behavior. |

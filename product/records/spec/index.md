@@ -2,20 +2,21 @@
 
 - **id**: `spec:product`
 - **status**: draft
-- **date**: 2026-06-24
+- **date**: 2026-06-25
 - **parent**: `root`
 
 ## What this is
 
 Placement router for Tech Phrase Learning PRODUCT specifications.
-It separates learner-facing product semantics from content-production implementation contracts.
+It separates learning semantics, content production, and learner-facing runtime behavior.
 
 ## Current contract
 
 | area | owns | must route elsewhere |
 |---|---|---|
-| `learning/` | Target learner, learning outcome, source-context model, phrase-exposure model, and learner-facing content semantics. | Source ingestion mechanics, processing stages, model selection, provider adapters, and runtime integration. |
-| `pipeline/` | Source ingestion, conversation-tree normalization, filtering, candidate extraction, LLM augmentation, output validation, and provider integration. | Learning goals, target audience, pedagogical meaning, and learner-facing interaction semantics. |
+| `learning/` | Target learner, learning outcome, source-context model, phrase-exposure model, and learner-facing content semantics. | Source ingestion mechanics, processing stages, provider adapters, PWA state ownership, and operation feedback. |
+| `pipeline/` | Source ingestion, conversation-tree normalization, filtering, candidate extraction, LLM augmentation, output validation, and provider integration. | Learning goals, pedagogical meaning, PWA state, and session-time selection. |
+| `ui/` | PWA screen flow, transient learner-flow state, navigation, loading, and operation feedback. | Learning-content meaning, content generation, backend selection policy, persistence, and provider integration. |
 
 ## Topics
 
@@ -23,6 +24,7 @@ It separates learner-facing product semantics from content-production implementa
 |---|---|---|---|
 | Learning | Overview | `spec:product.learning` | Product concept and learner-facing phrase-exposure contract. |
 | Content pipeline | Overview | `spec:product.pipeline` | Implementation contract for producing validated learning content. |
+| Learner UI | Overview | `spec:product.ui` | PWA screen flow and transient learner-flow state. |
 
 ## Placement rules
 
@@ -32,7 +34,8 @@ It separates learner-facing product semantics from content-production implementa
 | Does the content define the shape or meaning of a learner-visible learning item? | Place it under `learning/`. |
 | Does the content define ingestion, parsing, normalization, filtering, extraction, generation, or validation? | Place it under `pipeline/`. |
 | Does the content define an LLM request boundary, model role, or provider adapter? | Place it under `pipeline/`. |
-| Does the content define concrete UI, deployment, persistence, or runtime behavior outside these boundaries? | Create a new area only after its semantic owner is explicit. |
+| Does the content define PWA screen flow, transient state, navigation, loading, or operation feedback? | Place it under `ui/`. |
+| Does the content define deployment, persistence, or backend runtime behavior outside these boundaries? | Create a new area only after its semantic owner is explicit. |
 
 Physical location is not ownership evidence.
 Classify content by the contract it defines before choosing a path.
@@ -45,6 +48,9 @@ Classify content by the contract it defines before choosing a path.
 | Learning to pipeline | No normative dependency. Learning semantics must remain valid when processing technology changes. |
 | Learning to concrete LLM providers | Prohibited. Provider choice is a pipeline concern. |
 | Pipeline to concrete providers | Allowed only through provider-specific adapters. |
+| UI to learning | Allowed. The UI implements learner-visible semantics. |
+| Learning to UI | No normative dependency. Learning semantics must remain valid when UI technology changes. |
+| UI to pipeline internals | Prohibited. The UI consumes published content or future application interfaces. |
 
 ## Authoring boundary
 
@@ -59,6 +65,8 @@ Classify content by the contract it defines before choosing a path.
 |---|---|
 | `spec:product.learning` | Learner-facing product contract. |
 | `spec:product.pipeline` | Content-production implementation contract. |
+| `spec:product.ui` | Learner-facing runtime and transient-state contract. |
 | PRODUCT-ADR-LEARNING-001 | Establishes technical conversation trees as the primary learning source. |
 | PRODUCT-ADR-PIPELINE-001 | Establishes deterministic processing before LLM augmentation. |
 | PRODUCT-ADR-PIPELINE-002 | Establishes the OpenAI-compatible provider boundary. |
+| PRODUCT-ADR-UI-001 | Establishes PWA ownership of transient learner-flow state. |

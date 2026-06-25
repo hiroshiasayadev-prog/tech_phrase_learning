@@ -37,6 +37,7 @@ The area remains valid when content-processing technology changes.
 - Path enumeration and filtering mechanics.
 - LLM model selection or provider integration.
 - Session-time selection algorithms.
+- PWA runtime state, navigation, loading, and retry behavior.
 - Deployment, persistence, and concrete UI architecture.
 
 ## Boundary
@@ -47,6 +48,7 @@ The area remains valid when content-processing technology changes.
 | Meaning and suitability of a learning path | `spec:product.learning.learning_path`. |
 | Learner-visible learning-unit semantics | `spec:product.learning.learning_unit`. |
 | Session card progression and reveal behavior | `spec:product.learning.quiz_session`. |
+| PWA runtime state, navigation, loading, and retry behavior | `spec:product.ui`. |
 | Ingestion, path enumeration, filtering, generation, and validation | `spec:product.pipeline`. |
 | LLM provider and model integration | `spec:product.pipeline`. |
 | Session-time learning-unit selection | Future application contract. |
@@ -66,6 +68,7 @@ The area remains valid when content-processing technology changes.
 |---|---|
 | `spec:product` | PRODUCT placement router and dependency direction. |
 | `spec:product.pipeline` | Implements content production for this learning contract. |
+| `spec:product.ui` | Implements the transient PWA flow for this learning contract. |
 | PRODUCT-ADR-LEARNING-001 | Establishes technical conversation trees as the primary learning source. |
 | PRODUCT-ADR-LEARNING-005 | Establishes summarized source-post paths, learning-unit generation, and publication gating. |
 | PRODUCT-ADR-LEARNING-006 | Establishes progressive quiz-to-summary cards. |
