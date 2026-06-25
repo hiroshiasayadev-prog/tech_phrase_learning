@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T10:52:02.728955321Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\n  \"case_id\": \"T009\",\n  \"valid_for_quiz\": false,\n  \"decision\": \"reject\",\n  \"confidence\": \"low\",\n  \"learning_focus\": [],\n  \"reading_burden\": \"medium\",\n  \"technical_burden\": \"medium\",\n  \"reusable_phrase_evidence\": [],\n  \"exclusion_reasons\": [\n    \"no_reusable_phrase\"\n  ],\n  \"explanation\": \"All phrase candidates in the supplied posts are technical terms only and none represent reusable conversational wording. Therefore the path fails the requirement for at least one reusable phrase candidate.\"\n}",
+    "thinking": "We need to judge if path is valid for quiz. Conditions: mechanical valid true, post_count 4 between 2-6. Summaries are technical. Need at least one reusable conversational phrase candidate. All phrase candidates are technical terms only. So no reusable phrase. So invalid. Exclusion reason: no_reusable_phrase. Also maybe insufficient_context? But main is no reusable phrase. So decision reject. Provide learning_focus maybe empty? But must provide array. Could provide empty? Schema requires array but can be empty? It doesn't say minItems. So empty array allowed. But we need at least one learning focus? The instruction: For a valid path, return at least one learning focus and at least one exact phrase candidate as evidence. For invalid, we can still provide empty arrays? The schema requires \"learning_focus\" array but not minItems. So we can provide empty array. Similarly reusable_phrase_evidence empty. Exclusion reasons array with \"no_reusable_phrase\". Explanation: mention no reusable phrase. Confidence: low. Reading burden: medium? technical burden: medium? But since invalid, maybe set to \"excessive\"? But we can set to \"medium\". Provide values. Let's produce JSON."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 3143654631,
+  "load_duration": 139049166,
+  "prompt_eval_count": 2079,
+  "prompt_eval_duration": 6993348,
+  "eval_count": 125,
+  "eval_duration": 804570284
+}

@@ -1,0 +1,42 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 3,
+    "username": "steve.dower",
+    "explicit_reply_to": null,
+    "quote_targets": [],
+    "projected_parent": 1,
+    "projection_reason": "topic_level_projection",
+    "source_text": "FWIW, I have a couple of these options for `pymsbuild`, but I have no desire to see them formalised into a standard interface or exposed through a frontend.\n\nIf you want to e.g. build an MSIX instead of a wheel, you can use the CLI directly.",
+    "source_text_truncated": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 1,
+      "summary": "Matt proposes standardizing custom build targets in Python packaging, noting that only hatchling and setuptools currently support them. He outlines a potential interface, discusses pros and cons of adding a `targets` table to pyproject.toml, and seeks feedback on design choices, expressing uncertainty about the best approach.",
+      "conversational_intent": "proposing a standardization and seeking feedback",
+      "stance": "proposing, uncertain, seeking feedback",
+      "technical_burden": "high",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about whether to include targets in pyproject.toml and how to name custom functions.",
+      "phrase_candidates": [
+        {
+          "text": "I feel like this overcomplicates the pyproject.toml",
+          "function": "expressing uncertainty about the complexity of adding a targets table"
+        },
+        {
+          "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+          "function": "expressing uncertainty about feature support for unlisted targets"
+        },
+        {
+          "text": "I just wanted to get the ball rolling on something that I've wanted out of python packaging.",
+          "function": "expressing desire to initiate discussion and gather feedback"
+        }
+      ]
+    },
+    "quote_target_summaries": []
+  }
+}

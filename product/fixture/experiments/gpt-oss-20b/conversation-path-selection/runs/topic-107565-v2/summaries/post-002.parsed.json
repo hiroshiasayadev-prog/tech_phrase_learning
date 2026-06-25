@@ -1,0 +1,23 @@
+{
+  "post_number": 2,
+  "summary": "He questions whether any frontend, like pip, will adopt the new interface and notes a lack of demand for non‑standard targets, so he doubts the need to standardise. He also admits uncertainty about whether the examples are truly needed.",
+  "conversational_intent": "evaluating, qualifying",
+  "stance": "uncertain, evaluating, challenging",
+  "technical_burden": "medium",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": "Uncertainty about whether the examples are truly needed and about demand for non‑standard targets.",
+  "phrase_candidates": [
+    {
+      "text": "I don't expect pip to",
+      "function": "expressing uncertainty about pip support for the new interface"
+    },
+    {
+      "text": "I don't see a good reason for standardising anything",
+      "function": "expressing doubt about the necessity of standardisation"
+    },
+    {
+      "text": "I don't *know* if that's the case, though",
+      "function": "expressing uncertainty about the demand for the examples"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "case_id": "T002",
+  "valid_for_quiz": true,
+  "decision": "accept",
+  "confidence": "high",
+  "learning_focus": [
+    "expressing uncertainty",
+    "seeking feedback"
+  ],
+  "reading_burden": "medium",
+  "technical_burden": "medium",
+  "reusable_phrase_evidence": [
+    "I can't definitively say this one way of the other",
+    "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized."
+  ],
+  "exclusion_reasons": [],
+  "explanation": "The path contains three posts, each with source‑verified phrase candidates. At least one candidate, \"I can't definitively say this one way of the other\", is a reusable conversational phrase that is not purely technical. The conversation remains coherent, stays within the 2–6 post limit, and the technical detail is moderate, allowing learners to focus on conversational patterns such as expressing uncertainty and seeking feedback."
+}

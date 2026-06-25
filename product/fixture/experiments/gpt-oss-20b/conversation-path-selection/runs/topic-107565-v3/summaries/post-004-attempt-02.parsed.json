@@ -1,0 +1,19 @@
+{
+  "post_number": 4,
+  "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+  "conversational_intent": "seeking feedback",
+  "stance": "questioning",
+  "technical_burden": "low",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": "I can't definitively say this one way of the other",
+  "phrase_candidates": [
+    {
+      "text": "I can't definitively say this one way of the other",
+      "function": "expressing uncertainty"
+    },
+    {
+      "text": "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+      "function": "seeking feedback"
+    }
+  ]
+}

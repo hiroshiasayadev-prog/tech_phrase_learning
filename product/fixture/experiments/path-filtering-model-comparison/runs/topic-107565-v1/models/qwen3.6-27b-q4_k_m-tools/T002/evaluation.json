@@ -1,0 +1,36 @@
+{
+  "case_id": "T002",
+  "control_class": "real_valid_path",
+  "expected_valid": true,
+  "actual_valid": true,
+  "correct": true,
+  "accepted_attempt": 1,
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "available_phrase_count": 8,
+    "reasoning_effort": "high",
+    "timed_out": false
+  },
+  "result": {
+    "case_id": "T002",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing proposals and concerns",
+      "seeking feedback and clarification",
+      "expressing uncertainty and doubt"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "low",
+    "reusable_phrase_evidence": [
+      "I feel like this overcomplicates the pyproject.toml",
+      "I don't expect pip to",
+      "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+      "I can't definitively say this one way of the other"
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path meets all validity criteria: it is mechanically valid, contains exactly 3 posts (within the 2-6 limit), and forms a coherent conversational sequence about standardizing build targets. It supplies multiple source-verified, reusable conversational phrases focused on proposing ideas, expressing concern/uncertainty, and requesting feedback. The technical context is present but does not overwhelm the conversational learning value, making it fully suitable for a lightweight English phrase-learning quiz."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "post_number": 5,
+  "summary": "He explains that most legacy tools use setuptools.Command because they were built when setuptools handled the whole workflow, and notes that the shift to pyproject.toml has made those patterns obsolete.",
+  "conversational_intent": "evaluating, clarifying, qualifying",
+  "stance": "certain, evaluating, clarifying",
+  "technical_burden": "medium",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": null,
+  "phrase_candidates": [
+    {
+      "text": "pretty certain",
+      "function": "expressing confidence"
+    },
+    {
+      "text": "only do so because",
+      "function": "explaining reason"
+    },
+    {
+      "text": "fully decoupled itself from setuptools",
+      "function": "describing separation"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "experiment_metadata": {
+    "topic_id": 107844,
+    "model": "gpt-oss-20b",
+    "reasoning": "high",
+    "observed_latency": "about 3 minutes",
+    "capture_status": "copied from recorded model output"
+  },
+  "output": {
+    "title": "Clear Question Formulation for Context Managers",
+    "context": "You're looking for a more Pythonic way to manage multiple nested context managers.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Is there a newer pattern than ExitStack for handling multiple nested context managers in Python?",
+        "preferred": true,
+        "explanation": "Clearly states the intent to find newer patterns beyond ExitStack."
+      },
+      {
+        "id": "B",
+        "text": "Are there better ways to handle this?",
+        "preferred": false,
+        "explanation": "Lacks specificity, making it unclear what improvement or aspect is being asked."
+      },
+      {
+        "id": "C",
+        "text": "Should I use ExitStack instead of the with a, b, c syntax for nested context managers?",
+        "preferred": false,
+        "explanation": "Focuses on a particular implementation choice rather than the broader question of newer patterns."
+      }
+    ],
+    "source_phrase": {
+      "text": "What do you all use in production?",
+      "function": "reusable conversational function"
+    }
+  }
+}

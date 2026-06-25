@@ -1,0 +1,40 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 5,
+    "username": "bwoodsend",
+    "explicit_reply_to": 4,
+    "quote_targets": [
+      4
+    ],
+    "projected_parent": 4,
+    "projection_reason": "explicit_reply",
+    "source_text": "[quote=\"Matthew Pleskow, post:4, topic:107565, username:MattP\"]\nI went to go look for projects using distutils/[`setuptools.Command`](https://setuptools.pypa.io/en/latest/userguide/extension.html#setuptools.Command) to create these custom targets and found these.\n[/quote]\n\nI'm pretty certain most, if not all, of those only do so because they date back to when setuptools tried to be the whole workflow instead of just a wheel builder and `python setup.py test` and the like were the norm.\n\nDesigning these tools to latch onto setuptools allowed them to *borrow* configuration like project name and version but the move to putting core metadata in the backend agnostic pyproject.toml's `[project]` section ([pep 621](https://peps.python.org/pep-0621/)) superseded that. If you look at [cxfreeze's usage guide](https://cx-freeze.readthedocs.io/en/stable/setup_script.html) you can see that, whilst the old `setup.py` based way is still there, the default has completely moved on; it's fully decoupled itself from setuptools using the shared `[project]` configuration for common metadata, its own configuration for the rest and its own standalone `cxfreeze build` command.",
+    "source_text_truncated": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 4,
+      "summary": "MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.",
+      "conversational_intent": "seeking feedback and discussion",
+      "stance": "expressing uncertainty",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets."
+    },
+    "quote_target_summaries": [
+      {
+        "post_number": 4,
+        "summary": "MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.",
+        "conversational_intent": "seeking feedback and discussion",
+        "stance": "expressing uncertainty",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets."
+      }
+    ]
+  }
+}

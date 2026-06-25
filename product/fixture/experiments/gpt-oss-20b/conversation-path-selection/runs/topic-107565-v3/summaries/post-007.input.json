@@ -1,0 +1,61 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 7,
+    "username": "cjames23",
+    "explicit_reply_to": 4,
+    "quote_targets": [
+      4
+    ],
+    "projected_parent": 4,
+    "projection_reason": "explicit_reply",
+    "authored_text": "As a general rule for me, I want to see more than one tool implementing something with significant adoption before trying to standardize it. We provide this functionality in hatch via our plugin mechanism but many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases. The one exception might be the zipped directory plugin and hatch-aws which are really different flavors of the same thing.",
+    "authored_text_truncated": false,
+    "quoted_blocks_removed": true
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 4,
+      "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+      "conversational_intent": "seeking feedback",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "I can't definitively say this one way of the other",
+      "phrase_candidates": [
+        {
+          "text": "I can't definitively say this one way of the other",
+          "function": "expressing uncertainty"
+        },
+        {
+          "text": "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+          "function": "seeking feedback"
+        }
+      ]
+    },
+    "quote_target_summaries": [
+      {
+        "post_number": 4,
+        "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+        "conversational_intent": "seeking feedback",
+        "stance": "questioning",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "I can't definitively say this one way of the other",
+        "phrase_candidates": [
+          {
+            "text": "I can't definitively say this one way of the other",
+            "function": "expressing uncertainty"
+          },
+          {
+            "text": "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+            "function": "seeking feedback"
+          }
+        ]
+      }
+    ]
+  }
+}

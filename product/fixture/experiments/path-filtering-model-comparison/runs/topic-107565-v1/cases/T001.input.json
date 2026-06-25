@@ -1,0 +1,61 @@
+{
+  "case_id": "T001",
+  "path": [
+    1,
+    2
+  ],
+  "post_count": 2,
+  "mechanically_valid": true,
+  "posts": [
+    {
+      "post_number": 1,
+      "username": "MattP",
+      "summary": "Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.",
+      "conversational_intent": "seeking feedback and clarification",
+      "stance": "proposing and questioning",
+      "technical_burden": "medium",
+      "phrase_candidates": [
+        {
+          "text": "I want to standardize hatchling targets.",
+          "function": "expressing a proposal",
+          "source_verified": true
+        },
+        {
+          "text": "I feel like this overcomplicates the pyproject.toml",
+          "function": "expressing concern about complexity",
+          "source_verified": true
+        },
+        {
+          "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+          "function": "expressing uncertainty about scope",
+          "source_verified": true
+        }
+      ]
+    },
+    {
+      "post_number": 2,
+      "username": "pf_moore",
+      "summary": "I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.",
+      "conversational_intent": "questioning and evaluating",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_candidates": [
+        {
+          "text": "I don't expect pip to",
+          "function": "expressing doubt about adoption",
+          "source_verified": true
+        },
+        {
+          "text": "Without a frontend using these new APIs",
+          "function": "highlighting prerequisite for standardization",
+          "source_verified": true
+        },
+        {
+          "text": "I don't *know* if that's the case",
+          "function": "indicating uncertainty about the claim",
+          "source_verified": true
+        }
+      ]
+    }
+  ]
+}

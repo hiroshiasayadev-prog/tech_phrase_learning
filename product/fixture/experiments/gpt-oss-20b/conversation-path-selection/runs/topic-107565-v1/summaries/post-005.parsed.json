@@ -1,0 +1,9 @@
+{
+  "post_number": 5,
+  "summary": "bwoodsend explains that most projects using setuptools.Command for custom build targets were created when setuptools handled the whole workflow, but now metadata lives in pyproject.toml and tools like cxfreeze have decoupled from setuptools. He notes this historical shift and its impact on current tooling.",
+  "conversational_intent": "explaining",
+  "stance": "assertive",
+  "technical_burden": "low",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": null
+}

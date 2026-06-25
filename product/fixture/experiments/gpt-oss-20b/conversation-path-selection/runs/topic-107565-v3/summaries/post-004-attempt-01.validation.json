@@ -1,0 +1,6 @@
+{
+  "passed": false,
+  "errors": [
+    "phrase candidate 1 is not an exact authored-text substring: \"I can't definitively say this one way or the other\""
+  ]
+}

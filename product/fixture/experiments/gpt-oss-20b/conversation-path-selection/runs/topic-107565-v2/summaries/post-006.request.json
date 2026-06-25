@@ -1,0 +1,90 @@
+{
+  "model": "gpt-oss:20b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Preserve source stance and uncertainty. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Post summary prompt v1\n\n- **prompt_id**: `conversation-post-summary-v1`\n- **status**: investigation\n- **model_role**: post summarizer\n\n## User prompt template\n\nSummarize one authentic technical-discussion post for an English phrase-learning pipeline.\n\nThe learner already understands software engineering.\nThe summary should make the conversational movement easy to follow without requiring the learner to read long code blocks, link lists, or implementation details.\n\nRequirements:\n\n- Write one or two short natural-English sentences.\n- Keep the summary at 55 words or fewer.\n- Preserve the author's stance, uncertainty, qualification, and conversational intent.\n- Do not invent technical facts, motives, adoption claims, or conclusions.\n- Omit code and detailed examples unless they are essential to the author's main point.\n- Describe what the author is doing conversationally, not every technical detail they mention.\n- Distinguish challenging, evaluating, clarifying, proposing, qualifying, and seeking feedback. Do not label a challenge as merely seeking feedback.\n- Treat the summary as generated text, not as a quotation.\n- Use the supplied parent and quote summaries only as context. The authentic current post is the authority.\n- Extract one to three short reusable phrase candidates copied exactly from the authentic current post.\n- Each phrase candidate must contain reusable conversational wording, not only technical terms.\n- Preserve every source character in each phrase candidate.\n- Explain the conversational function of each phrase candidate without answering the technical issue.\n\nReturn one JSON object matching the supplied JSON schema.\n\n## Input\n\n{\n  \"topic\": {\n    \"id\": 107565,\n    \"title\": \"Thoughts on standardizing build backend support for non-standard targets\"\n  },\n  \"post\": {\n    \"post_number\": 6,\n    \"username\": \"steve.dower\",\n    \"explicit_reply_to\": 4,\n    \"quote_targets\": [\n      4\n    ],\n    \"projected_parent\": 4,\n    \"projection_reason\": \"explicit_reply\",\n    \"source_text\": \"[quote=\\\"Matthew Pleskow, post:4, topic:107565, username:MattP\\\"]\\nSince I only provided examples for hatch targets in the original post, I went to go look for projects using distutils/[`setuptools.Command`](https://setuptools.pypa.io/en/latest/userguide/extension.html#setuptools.Command) to create these custom targets and found these.\\n[/quote]\\n\\nWhat you've listed here are actually _frontend_ tools, in PEP 517 land. They aren't implemented like that, of course, but in the modern world all of these tools would look at a directory of code, infer what tool is needed to compile/layout the files, and then take the compiled files and do their own arrangements. If they used a wheel as an intermediate step and then unpacked it to e.g. turn the files into a `.app` or `.pex`, they start to look a lot more like `pip` (which unpacks a wheel to integrate it into a Python environment) than `setuptools` (which takes sources and produces a wheel-shaped Python library).\",\n    \"source_text_truncated\": false\n  },\n  \"context\": {\n    \"projected_parent_summary\": {\n      \"post_number\": 4,\n      \"summary\": \"He explains that non‑standard targets are for distribution, not pip installs, and notes that many developers still use legacy build systems; he wonders if standardizing this interface is worthwhile and asks frontends for feedback.\",\n      \"conversational_intent\": \"evaluating, qualifying, proposing, seeking feedback\",\n      \"stance\": \"uncertain, evaluating, challenging\",\n      \"technical_burden\": \"medium\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.\",\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I can't definitively say this one way of the other\",\n          \"function\": \"expressing uncertainty about the direction of standardization\"\n        },\n        {\n          \"text\": \"Maybe I'm demanding too much within the constraints of the build ecosystem\",\n          \"function\": \"self‑critical assessment of the proposal’s ambition\"\n        },\n        {\n          \"text\": \"I would love to get some feedback from any of these frontend developers\",\n          \"function\": \"soliciting input from frontend developers\"\n        }\n      ]\n    },\n    \"quote_target_summaries\": [\n      {\n        \"post_number\": 4,\n        \"summary\": \"He explains that non‑standard targets are for distribution, not pip installs, and notes that many developers still use legacy build systems; he wonders if standardizing this interface is worthwhile and asks frontends for feedback.\",\n        \"conversational_intent\": \"evaluating, qualifying, proposing, seeking feedback\",\n        \"stance\": \"uncertain, evaluating, challenging\",\n        \"technical_burden\": \"medium\",\n        \"phrase_learning_potential\": \"high\",\n        \"important_uncertainty\": \"Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.\",\n        \"phrase_candidates\": [\n          {\n            \"text\": \"I can't definitively say this one way of the other\",\n            \"function\": \"expressing uncertainty about the direction of standardization\"\n          },\n          {\n            \"text\": \"Maybe I'm demanding too much within the constraints of the build ecosystem\",\n            \"function\": \"self‑critical assessment of the proposal’s ambition\"\n          },\n          {\n            \"text\": \"I would love to get some feedback from any of these frontend developers\",\n            \"function\": \"soliciting input from frontend developers\"\n          }\n        ]\n      }\n    ]\n  }\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"post_number\": {\n      \"type\": \"integer\"\n    },\n    \"summary\": {\n      \"type\": \"string\"\n    },\n    \"conversational_intent\": {\n      \"type\": \"string\"\n    },\n    \"stance\": {\n      \"type\": \"string\"\n    },\n    \"technical_burden\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"phrase_learning_potential\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"important_uncertainty\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ]\n    },\n    \"phrase_candidates\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"maxItems\": 3,\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"text\": {\n            \"type\": \"string\"\n          },\n          \"function\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"text\",\n          \"function\"\n        ],\n        \"additionalProperties\": false\n      }\n    }\n  },\n  \"required\": [\n    \"post_number\",\n    \"summary\",\n    \"conversational_intent\",\n    \"stance\",\n    \"technical_burden\",\n    \"phrase_learning_potential\",\n    \"important_uncertainty\",\n    \"phrase_candidates\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "post_number": {
+        "type": "integer"
+      },
+      "summary": {
+        "type": "string"
+      },
+      "conversational_intent": {
+        "type": "string"
+      },
+      "stance": {
+        "type": "string"
+      },
+      "technical_burden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "phrase_learning_potential": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "important_uncertainty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "phrase_candidates": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "function": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text",
+            "function"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "post_number",
+      "summary",
+      "conversational_intent",
+      "stance",
+      "technical_burden",
+      "phrase_learning_potential",
+      "important_uncertainty",
+      "phrase_candidates"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0
+  },
+  "keep_alive": "30m",
+  "think": "medium"
+}

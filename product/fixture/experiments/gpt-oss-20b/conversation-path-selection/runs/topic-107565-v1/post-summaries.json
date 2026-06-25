@@ -1,0 +1,69 @@
+{
+  "model": "gpt-oss:20b",
+  "summaries": [
+    {
+      "post_number": 1,
+      "summary": "MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.",
+      "conversational_intent": "seeking feedback and discussion",
+      "stance": "proposing a new idea, open to critique",
+      "technical_burden": "high",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "uncertain about best approach, whether to include targets in pyproject.toml, how to handle custom function names"
+    },
+    {
+      "post_number": 2,
+      "summary": "pf_moore questions which frontends would adopt the new interface, noting pip likely won’t, and says without such usage there’s little reason to standardise. He also observes little demand for non‑standard targets, though he admits he may not be aware of all needs.",
+      "conversational_intent": "seeking feedback and discussion",
+      "stance": "expressing uncertainty",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets."
+    },
+    {
+      "post_number": 3,
+      "summary": "He notes he has options for pymsbuild but doesn't want to formalize them into a standard interface or expose them via a frontend; instead, users can build an MSIX directly with the CLI.",
+      "conversational_intent": "informing",
+      "stance": "informative",
+      "technical_burden": "low",
+      "phrase_learning_potential": "low",
+      "important_uncertainty": null
+    },
+    {
+      "post_number": 4,
+      "summary": "MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.",
+      "conversational_intent": "seeking feedback and discussion",
+      "stance": "expressing uncertainty",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets."
+    },
+    {
+      "post_number": 5,
+      "summary": "bwoodsend explains that most projects using setuptools.Command for custom build targets were created when setuptools handled the whole workflow, but now metadata lives in pyproject.toml and tools like cxfreeze have decoupled from setuptools. He notes this historical shift and its impact on current tooling.",
+      "conversational_intent": "explaining",
+      "stance": "assertive",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null
+    },
+    {
+      "post_number": 6,
+      "summary": "Steve explains that the tools MattP listed are actually frontend build tools under PEP 517, not implemented as setuptools commands. He notes they would infer the needed compiler, build, and arrange files, and if they used a wheel as an intermediate they'd resemble pip more than setuptools.",
+      "conversational_intent": "clarifying",
+      "stance": "neutral",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null
+    },
+    {
+      "post_number": 7,
+      "summary": "cjames23 says he would only standardize the interface if multiple widely adopted tools support it, noting hatch’s plugin system already covers most cases and that only a few plugins like zipped directory and hatch‑aws are truly distinct. He remains uncertain whether the feature will be widely used.",
+      "conversational_intent": "responding to feedback and discussing standardization",
+      "stance": "expressing uncertainty",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about whether the interface will be widely adopted and if non‑standard targets have sufficient demand."
+    }
+  ],
+  "warnings": []
+}

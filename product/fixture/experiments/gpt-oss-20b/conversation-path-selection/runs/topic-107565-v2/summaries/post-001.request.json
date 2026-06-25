@@ -1,0 +1,90 @@
+{
+  "model": "gpt-oss:20b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Preserve source stance and uncertainty. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Post summary prompt v1\n\n- **prompt_id**: `conversation-post-summary-v1`\n- **status**: investigation\n- **model_role**: post summarizer\n\n## User prompt template\n\nSummarize one authentic technical-discussion post for an English phrase-learning pipeline.\n\nThe learner already understands software engineering.\nThe summary should make the conversational movement easy to follow without requiring the learner to read long code blocks, link lists, or implementation details.\n\nRequirements:\n\n- Write one or two short natural-English sentences.\n- Keep the summary at 55 words or fewer.\n- Preserve the author's stance, uncertainty, qualification, and conversational intent.\n- Do not invent technical facts, motives, adoption claims, or conclusions.\n- Omit code and detailed examples unless they are essential to the author's main point.\n- Describe what the author is doing conversationally, not every technical detail they mention.\n- Distinguish challenging, evaluating, clarifying, proposing, qualifying, and seeking feedback. Do not label a challenge as merely seeking feedback.\n- Treat the summary as generated text, not as a quotation.\n- Use the supplied parent and quote summaries only as context. The authentic current post is the authority.\n- Extract one to three short reusable phrase candidates copied exactly from the authentic current post.\n- Each phrase candidate must contain reusable conversational wording, not only technical terms.\n- Preserve every source character in each phrase candidate.\n- Explain the conversational function of each phrase candidate without answering the technical issue.\n\nReturn one JSON object matching the supplied JSON schema.\n\n## Input\n\n{\n  \"topic\": {\n    \"id\": 107565,\n    \"title\": \"Thoughts on standardizing build backend support for non-standard targets\"\n  },\n  \"post\": {\n    \"post_number\": 1,\n    \"username\": \"MattP\",\n    \"explicit_reply_to\": null,\n    \"quote_targets\": [],\n    \"projected_parent\": null,\n    \"projection_reason\": \"opening_post\",\n    \"source_text\": \"I'm new to the python packaging realm, but wanted to propose something that I've been wanting for a while.\\n\\nI want to standardize hatchling targets.\\n\\nFrom what I can tell hatchling and setuptools (which treats them as custom \\\"commands\\\") are the only popular backends that support custom targets.\\n\\nBuild frontends have no reason to support custom backend targets, so if you want to use custom targets you have to use hatch.\\n\\n## What do I mean by target?\\n\\nI wasn't actually sure the correct terminology here, but I went with target since hatchling uses it.\\n\\nA target can be any artifact that is created by applying some transformation to the source.\\n\\nObviously, wheels and sdists are targets.\\n\\nI will refer to them as \\\"standard targets\\\" going forward.\\n\\n## Motivation\\n\\nI personally believe that providing extensibility to the interface is a good thing.\\n\\nThe current system forces people who want to create a custom target to either use hatch specifically or create their own build frontend and backend.\\n\\n### Zipapps\\n\\nThe primary purpose custom targets will serve me is the ability to create targets like [shiv](https://shiv.readthedocs.io/en/latest/) which vendor their dependencies.\\n\\n### Other Examples\\n\\nThese examples are linked in the hatch documentation\\n\\n- [hatch-zipped-directory](https://github.com/dairiki/hatch-zipped-directory)\\n\\n- [hatch-aws](https://github.com/trash-panda-v91-beta/hatch-aws)\\n\\nI also found this\\n\\n- [hatch-babel](https://github.com/NiklasRosenstein/hatch-babel)\\n\\nOther ideas\\n\\n- If you had a python program that accepts python plugins, an alternative packaging scheme can be desirable for the plugins.\\n\\n- Other forms of packaged python meant as a standalone application.\\n\\n### What This is Not\\n\\nThis is not intended to provide a means to provide different _flavors_ of targets.\\n\\nWhat I mean by _flavors_ is performing some sort of transformation prior to creating a standard target.\\n\\nI.e. if you wanted to perform some form of obfuscation or minification prior to building a wheel, this is not a separate target.\\n\\nThis is intended to be done through the `config_settings` passed to the backend.\\n\\n## Interface\\n\\nHere's my idea for what an interface like this would look like.\\n\\nThis is a rough outline and I welcome any ideas on the best way to do this.\\n\\nTo keep in line with PEP 517 every target will have at least one required hook for building and one optional hook for getting build dependencies.\\n\\n### Build Hook\\n\\n```py\\nbuild_XXX(output_directory, config_settings=None):\\n  ...\\n```\\n\\nLike the PEP 517 hooks, the first argument is the output directory of the build process. The same requirements hold for `build_wheel` and `build_sdist` as in PEP 517, but for targets outside of wheels and sdists, the hook must place the artifact(s) in the `output_directory`. If the hook creates a single file or directory, it must return the basename of that file or directory. Otherwise, it must return a list of the basenames of each file or directory it created.\\n\\nOther than the special case of `build_wheel`, no additional arguments are allowed.\\n\\nEvery build configuration option should be set through `config_settings`.\\n\\n### Requirements Hook\\n\\n```py\\nget_requires_for_build_XXX(config_settings=None):\\n   ...\\n```\\n\\nThis follows the same specifications as in PEP 517. The returned dependencies will be installed when calling the associated `build_XXX` hook.\\n\\n### Target Naming\\n\\nIt might be convenient for the frontend or other tools to know what targets can be built.\\n\\nAdditionally, certain targets might not want to use the `build_XXX` or `get_requires_for_XXX` naming scheme.\\n\\nMy _initial_ solution to this is putting something in the pyproject.toml.\\n\\nTargets are listed in the `build-system` table.\\n\\nThe `targets` key is a table containing the target name associated with another table containing an optional `build_function` and an optional `requires_function`.\\n\\nBy default, the build_function is `build_TARGETNAME` and the requires_function is `get_requires_for_BUILD_FUNCTION`.\\n\\nAssume that the wheel target and sdist target are included by default, but they can be overritten by the targets key.\\n\\n```toml\\n[build-system]\\n\\n# Defined by PEP 518:\\n\\nrequires = [\\\"my_custom_build_library\\\"]\\n\\n# Defined by PEP 517:\\n\\nbuild-backend = \\\"local_backend\\\"\\n\\nbackend-path = [\\\"backend\\\"]\\n\\n# Defined here\\n\\ntargets = {\\n\\n  shiv = {},\\n\\n  custom_target = {\\n\\n    build_function = \\\"build_my_target\\\",\\n\\n    requires_function = \\\"get_my_requires\\\"\\n\\n  },\\n\\n  other_target = {\\n\\n    build_function = \\\"do_other\\\"\\n\\n  }\\n\\n}\\n\\n```\\n\\nAlternatively, they can be defined like:\\n\\n```toml\\n[build-system.targets.shiv]\\n\\n#build_function = \\\"build_shiv\\\"\\n\\n#requires_function = \\\"get_requires_for_build_shiv\\\"\\n\\n[build-system.targets.custom_target]\\n\\nbuild_function = \\\"build_my_target\\\"\\n\\nrequires_function = \\\"get_my_requires\\\"\\n\\n[build-system.targets.other_target]\\n\\nbuild_function = \\\"do_other\\\"\\n\\n#requires_function = \\\"get_requires_for_do_other\\\"\\n\\n```\\n\\nIn this example, the backend may provide the `build_wheel`, `build_sdist`, `build_shiv`, `build_my_target`, and `do_other` functions.\\n\\nIf a build function is not provided by the backend it should raise an `AttributeError` when the frontend calls it.\\n\\nThe backend may optionally provide the `get_requires_for_build_wheel`, `get_requires_for_build_sdist`, `get_requires_for_build_shiv`, `get_my_requires`, and `get_requires_for_do_other` functions.\\n\\nIf a requires function is not provided by the backend, the frontend should assume an implementation equivalent to `return []` as described in PEP 517.\\n\\n#### Notes\\n\\n__I am looking for feedback here. I feel like this overcomplicates the pyproject.toml__\\n\\nThe primary intention with including the targets key is to provide static information to the build frontend and other tools that might use the `pyproject.toml`.\\n\\nI don't know if this is a desirable feature.\\n\\nI'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\\n\\nI'm not sure if the `pyproject.toml` should include this information, or if this is something that should be handled solely by the build frontend.\\n\\nFor projects with many targets, it seems like using this might bloat the pyproject.toml.\\n\\nI don't want build backends to have to support multiple targets outside of wheels and sdist.\\n\\nDoes including the `targets` as a key confuse users that lack a thorough understanding of their backend?\\n\\nShould custom function names be allowed or should the format be restricted to `build_TARGETNAME`?\\n\\nThis would allow the `targets` key to just be a list of names instead of a table.\\n\\nThe requires_function is optional.\\n\\nIf the `pyproject.toml` specifies a specific `requires_function` and it doesn't exist, should this be silently ignored?\\n\\nShould the frontend warn the user?\\n\\nIt might also make sense to support using different backends for different targets, but thought that would complicate this even further.\\n\\nSomething along the lines of this could make it easier to distribute custom backends meant for different targets.\\n\\n```toml\\n[build-system]\\n\\nrequires = [\\\"hatchling\\\", \\\"shiv_builder\\\"]\\n\\nbuild-backend = \\\"hatchling.build\\\"\\n\\ntargets = {\\n  shiv = { \\n    backend = \\\"shiv_builder.build\\\",\\n    build_function = \\\"build_shiv\\\" \\n  }\\n}\\n\\n```\\n\\n### Minimal Alternative\\n\\nTo avoid the complications described above, it might be easier to just set up a basic interface that involves the build frontend dynamically looking up functions from the backend.\\n\\nThis might make implementation a lot simpler and get something like this pushed through the PEP pipeline much faster.\\n\\nSimply, the build frontend exposes the ability to the user to set a target name, and then attempts to call `build_TARGETNAME`/`get_requires_for_build_TARGETNAME` from the backend.\\n\\nThis solution would be backwards compatible and would not require `pyproject.toml` updates.\\n\\nA backend is free to use any implementation they like, but I imagine a module level `__getattr__` might make a lot of sense here:\\n\\n```py\\n# backend/build.py\\n\\ndef build_sdist(...):\\n\\n  ...\\n\\ndef build_wheel(...):\\n\\n  ...\\n\\n...\\n\\ndef __getattr__(name):\\n\\n  return do_dynamic_lookup(name)\\n\\n```\\n\\n#### Another Alternative\\n\\nOne other possible option to putting targets in the `pyproject.toml` would be to have a function like `get_targets` which the backend should define which lists the available targets (and possibly their custom function names). If undefined, the frontend should only assume the functions from PEP 517 are defined.\\n\\n## Conclusion\\n\\nTo recap, I just wanted to get the ball rolling on something that I've wanted out of python packaging. I'm not super familiar with how this process should go.\\n\\nI'd be happy to flush this out further since clearly there's a lot of specifics that still have to be determined, but I wanted to get the general reception of this idea before spending more time working on this.\",\n    \"source_text_truncated\": false\n  },\n  \"context\": {\n    \"projected_parent_summary\": null,\n    \"quote_target_summaries\": []\n  }\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"post_number\": {\n      \"type\": \"integer\"\n    },\n    \"summary\": {\n      \"type\": \"string\"\n    },\n    \"conversational_intent\": {\n      \"type\": \"string\"\n    },\n    \"stance\": {\n      \"type\": \"string\"\n    },\n    \"technical_burden\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"phrase_learning_potential\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"important_uncertainty\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ]\n    },\n    \"phrase_candidates\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"maxItems\": 3,\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"text\": {\n            \"type\": \"string\"\n          },\n          \"function\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"text\",\n          \"function\"\n        ],\n        \"additionalProperties\": false\n      }\n    }\n  },\n  \"required\": [\n    \"post_number\",\n    \"summary\",\n    \"conversational_intent\",\n    \"stance\",\n    \"technical_burden\",\n    \"phrase_learning_potential\",\n    \"important_uncertainty\",\n    \"phrase_candidates\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "post_number": {
+        "type": "integer"
+      },
+      "summary": {
+        "type": "string"
+      },
+      "conversational_intent": {
+        "type": "string"
+      },
+      "stance": {
+        "type": "string"
+      },
+      "technical_burden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "phrase_learning_potential": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "important_uncertainty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "phrase_candidates": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "function": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text",
+            "function"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "post_number",
+      "summary",
+      "conversational_intent",
+      "stance",
+      "technical_burden",
+      "phrase_learning_potential",
+      "important_uncertainty",
+      "phrase_candidates"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0
+  },
+  "keep_alive": "30m",
+  "think": "medium"
+}

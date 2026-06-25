@@ -1,0 +1,23 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "case_id": "T006",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing proposals and concerns",
+      "expressing reluctance and preferences",
+      "suggesting alternatives"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I feel like this overcomplicates the pyproject.toml",
+      "I have no desire to see them formalised",
+      "you can use the CLI directly"
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path satisfies all validity criteria: it is mechanically valid with exactly two posts, forms a coherent proposal-response sequence, provides multiple source-verified reusable conversational phrases, and maintains a medium technical burden that does not overwhelm the conversational learning value."
+  }
+}

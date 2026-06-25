@@ -1,0 +1,26 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "post_number": 3,
+    "summary": "I have options for pymsbuild but don't want to formalise them into a standard interface or expose them via a frontend; you can just use the CLI to build an MSIX instead of a wheel.",
+    "conversational_intent": "informing",
+    "stance": "informing",
+    "technical_burden": "low",
+    "phrase_learning_potential": "high",
+    "important_uncertainty": null,
+    "phrase_candidates": [
+      {
+        "text": "I have a couple of these options",
+        "function": "expressing availability of options"
+      },
+      {
+        "text": "I have no desire to see them formalised",
+        "function": "expressing reluctance to formalize"
+      },
+      {
+        "text": "you can use the CLI directly",
+        "function": "providing alternative approach"
+      }
+    ]
+  }
+}

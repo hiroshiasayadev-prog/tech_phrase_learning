@@ -1,0 +1,43 @@
+{
+  "started_at": "2026-06-25T09:15:10.163967+00:00",
+  "topic_id": 107565,
+  "source": "C:\\Users\\imved\\projects\\tech_phrase_learning\\product\\fixture\\golden\\topic-107565\\source-topic.raw.json",
+  "source_sha256": "ecb8e803ee5e2e4f335dd7f8836f8356a658fae1f5eb91ed0e981898112b8d20",
+  "expected_path": [
+    1,
+    2,
+    4,
+    7
+  ],
+  "ollama": {
+    "base_url": "http://192.168.11.22:11434",
+    "requested_model": "gpt-oss:20b",
+    "resolved_model": "gpt-oss:20b",
+    "installed_models": [
+      "gpt-oss:20b",
+      "qwen3.6-27b:q4_k_m-tools",
+      "qwen3.6-27b:q4_k_m"
+    ],
+    "think": "medium",
+    "temperature": 0.0,
+    "keep_alive": "30m"
+  },
+  "prompt_sha256": {
+    "post-summary-prompt-v1.md": "43e1acc4cb5eb1647cb2d1c6c3015868ae9793a48105e6ef9ad06cf58cf3271f",
+    "path-selection-prompt-v1.md": "4014c1f504b08086a5b81e3e20b683c650fb502efa41fbff7730be8ae235f25d",
+    "automated-evaluation-prompt-v1.md": "572b42b1e51d3b0684ccbb6e764c00ece2d57b0d129f4160bcfb9f1189bef7d0",
+    "post-summary.schema.json": "c42fae0f4e0a457c3e1c9bf7c76927a54ec6f07b8c4415b8a39f6bc668f5b43a",
+    "path-selection.schema.json": "677997a20ee784c329dc20950d7ad70e03be567ed878c849e4f53cce6b1d133b",
+    "automated-evaluation.schema.json": "595261936ca2854fece5f751e4c5af67a900f1d3363c26b304732813cbf5ae18"
+  },
+  "prepare_only": false,
+  "completed_at": "2026-06-25T09:16:46.729289+00:00",
+  "selected_path": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "path_validation_passed": true,
+  "reference_path_exact_match": false
+}

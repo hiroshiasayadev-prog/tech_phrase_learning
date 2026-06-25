@@ -1,0 +1,23 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "case_id": "T006",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing proposals and concerns",
+      "communicating availability of options"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I want to standardize hatchling targets.",
+      "I feel like this overcomplicates the pyproject.toml",
+      "I have a couple of these options",
+      "you can use the CLI directly"
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path contains two posts, each with clear conversational intent and at least one source‑verified phrase that is reusable conversational wording. The technical detail is moderate and does not overwhelm the conversational learning value. The conversation is coherent and within the allowed length, satisfying all validity criteria."
+  }
+}

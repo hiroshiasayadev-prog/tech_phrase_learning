@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T10:51:59.578056898Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\n  \"case_id\": \"T008\",\n  \"valid_for_quiz\": false,\n  \"decision\": \"reject\",\n  \"confidence\": \"low\",\n  \"learning_focus\": [],\n  \"reading_burden\": \"medium\",\n  \"technical_burden\": \"medium\",\n  \"reusable_phrase_evidence\": [],\n  \"exclusion_reasons\": [\n    \"no_reusable_phrase\"\n  ],\n  \"explanation\": \"The supplied path contains no phrase candidates, so it fails the requirement that at least one reusable conversational wording be present. Without such evidence, the path cannot be considered valid for a quiz session.\"\n}",
+    "thinking": "We need to judge validity. Path has 3 posts, mechanically valid, but phrase_candidates are empty. Condition 3: at least one supplied source-verified phrase candidate is reusable conversational wording rather than only a technical term. There are no phrase_candidates. So fails. Also no reusable phrase evidence. So reject. Exclusion reason: no_reusable_phrase. Also maybe insufficient_context? But main is no reusable phrase. So decision reject. Provide learning_focus empty? Must provide array. But if reject, still need fields. Provide empty array? But schema requires array. Provide empty array. Provide confidence low. Reading burden medium? technical burden medium? But since reject, maybe set to medium. Provide explanation. Let's craft JSON."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 2398302206,
+  "load_duration": 137965108,
+  "prompt_eval_count": 1515,
+  "prompt_eval_duration": 6756237,
+  "eval_count": 131,
+  "eval_duration": 834244612
+}

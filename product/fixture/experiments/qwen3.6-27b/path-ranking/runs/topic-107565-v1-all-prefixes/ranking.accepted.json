@@ -1,0 +1,136 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "ranked_candidates": [
+      {
+        "candidate_id": "P002",
+        "rank": 1,
+        "scores": {
+          "conversation_coherence": 5,
+          "reusable_phrase_value": 5,
+          "cognitive_lightness": 4,
+          "technical_detail_control": 5,
+          "conversational_function_variety": 5
+        },
+        "strengths": [
+          "Excellent flow from proposal to questioning to seeking feedback",
+          "Highly reusable phrases for uncertainty and soliciting opinions",
+          "Maintains low technical burden while expanding conversational functions"
+        ],
+        "weaknesses": [
+          "Slightly longer than the shortest paths, marginally increasing cognitive load"
+        ],
+        "reason": "P002 offers the best balance of conversational variety and reusable phrasing. It naturally extends the initial exchange with clear functions for seeking feedback and expressing nuanced uncertainty, all while keeping technical details minimal and the flow highly coherent."
+      },
+      {
+        "candidate_id": "P001",
+        "rank": 2,
+        "scores": {
+          "conversation_coherence": 5,
+          "reusable_phrase_value": 5,
+          "cognitive_lightness": 5,
+          "technical_detail_control": 4,
+          "conversational_function_variety": 4
+        },
+        "strengths": [
+          "Extremely concise and direct exchange",
+          "Strong foundational phrases for proposing and expressing doubt",
+          "Very low cognitive burden"
+        ],
+        "weaknesses": [
+          "Fewer conversational functions compared to extended paths",
+          "Lacks explicit feedback-seeking or stance-taking phrases"
+        ],
+        "reason": "P001 is a tight, highly coherent two-post exchange with excellent reusable phrases for proposals and doubt. It ranks second due to slightly lower functional variety compared to P002, though it excels in cognitive lightness."
+      },
+      {
+        "candidate_id": "P006",
+        "rank": 3,
+        "scores": {
+          "conversation_coherence": 5,
+          "reusable_phrase_value": 4,
+          "cognitive_lightness": 5,
+          "technical_detail_control": 5,
+          "conversational_function_variety": 3
+        },
+        "strengths": [
+          "Very short and easy to follow",
+          "Useful phrases for expressing reluctance and offering alternatives",
+          "Minimal technical distraction"
+        ],
+        "weaknesses": [
+          "Limited variety of conversational functions",
+          "Less interactive back-and-forth compared to other paths"
+        ],
+        "reason": "P006 is exceptionally light and coherent, featuring clear phrases for reluctance and alternatives. It ranks third because its conversational function variety is narrower than the top contenders, making it less comprehensive for phrase learning."
+      },
+      {
+        "candidate_id": "P003",
+        "rank": 4,
+        "scores": {
+          "conversation_coherence": 4,
+          "reusable_phrase_value": 4,
+          "cognitive_lightness": 3,
+          "technical_detail_control": 4,
+          "conversational_function_variety": 5
+        },
+        "strengths": [
+          "Adds valuable functions for expressing certainty and explaining historical context",
+          "Rich variety of conversational moves",
+          "Maintains reasonable technical control"
+        ],
+        "weaknesses": [
+          "Increased length and historical context raise cognitive burden",
+          "Slightly more complex flow due to multiple speakers and topics"
+        ],
+        "reason": "P003 introduces excellent phrases for certainty and historical explanation, boosting functional variety. It ranks fourth because the added context and length increase cognitive load, slightly detracting from the lightweight learning goal."
+      },
+      {
+        "candidate_id": "P005",
+        "rank": 5,
+        "scores": {
+          "conversation_coherence": 4,
+          "reusable_phrase_value": 4,
+          "cognitive_lightness": 3,
+          "technical_detail_control": 4,
+          "conversational_function_variety": 5
+        },
+        "strengths": [
+          "Strong phrases for asserting stance and setting conditions",
+          "Good variety of conversational functions",
+          "Clear argumentative flow"
+        ],
+        "weaknesses": [
+          "Higher cognitive burden due to conditional reasoning and stance-taking",
+          "Slightly more abstract phrasing may require more parsing"
+        ],
+        "reason": "P005 provides robust phrases for debate and conditional stances, offering high variety. It ranks fifth because the assertive and conditional language increases cognitive effort compared to the more straightforward exchanges in higher-ranked paths."
+      },
+      {
+        "candidate_id": "P004",
+        "rank": 6,
+        "scores": {
+          "conversation_coherence": 4,
+          "reusable_phrase_value": 3,
+          "cognitive_lightness": 3,
+          "technical_detail_control": 3,
+          "conversational_function_variety": 4
+        },
+        "strengths": [
+          "Useful clarification phrases",
+          "Clear informative stance",
+          "Maintains logical flow"
+        ],
+        "weaknesses": [
+          "Leans heavily into technical implementation details",
+          "Phrases are less broadly reusable outside technical contexts",
+          "Higher technical detail burden"
+        ],
+        "reason": "P004 focuses on technical clarification and implementation details, which reduces the broad conversational reusability of its phrases. It ranks last because the technical focus conflicts with the priority of lightweight, broadly applicable English learning."
+      }
+    ],
+    "top_candidate_id": "P002",
+    "top_choice_reason": "P002 maximizes reusable conversational phrase value and functional variety while maintaining a highly coherent flow and minimal technical distraction. It strikes the optimal balance for lightweight English learning by extending the core exchange with practical functions like seeking feedback and expressing nuanced uncertainty.",
+    "confidence": "high"
+  }
+}

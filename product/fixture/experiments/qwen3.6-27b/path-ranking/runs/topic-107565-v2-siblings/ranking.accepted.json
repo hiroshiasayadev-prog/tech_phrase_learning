@@ -1,0 +1,71 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "ranked_candidates": [
+      {
+        "candidate_id": "P001",
+        "rank": 1,
+        "scores": {
+          "conversation_coherence": 5,
+          "reusable_phrase_value": 5,
+          "cognitive_lightness": 5,
+          "technical_detail_control": 4,
+          "conversational_function_variety": 5
+        },
+        "strengths": [
+          "Highest variety of everyday conversational functions (certainty, historical reasoning, seeking feedback)",
+          "Phrases are short, natural, and highly transferable to non-technical contexts",
+          "Technical context is present but does not obscure the language learning value"
+        ],
+        "weaknesses": [
+          "Slight repetition of uncertainty expressions across posts 1 and 4"
+        ],
+        "reason": "P001 best balances reusable phrase value with low cognitive load. The final post adds clear expressions of certainty and historical context without heavy jargon, making it ideal for lightweight phrase acquisition."
+      },
+      {
+        "candidate_id": "P003",
+        "rank": 2,
+        "scores": {
+          "conversation_coherence": 4,
+          "reusable_phrase_value": 4,
+          "cognitive_lightness": 4,
+          "technical_detail_control": 4,
+          "conversational_function_variety": 4
+        },
+        "strengths": [
+          "Introduces a clear stance expression useful for debates and evaluations",
+          "Maintains a logical discussion flow with familiar technical terms",
+          "Good mix of proposing, questioning, and evaluating functions"
+        ],
+        "weaknesses": [
+          "The stance phrase is quite long and somewhat context-bound to software standardization",
+          "Fewer distinct conversational functions compared to P001"
+        ],
+        "reason": "P003 is a solid second choice due to its clear argumentative structure and useful stance expression, though the phrasing is slightly less versatile and more verbose than P001."
+      },
+      {
+        "candidate_id": "P002",
+        "rank": 3,
+        "scores": {
+          "conversation_coherence": 4,
+          "reusable_phrase_value": 4,
+          "cognitive_lightness": 3,
+          "technical_detail_control": 3,
+          "conversational_function_variety": 4
+        },
+        "strengths": [
+          "Excellent phrases for correcting misconceptions and clarifying definitions",
+          "Natural conversational pivot that models how to politely correct a premise"
+        ],
+        "weaknesses": [
+          "Higher technical burden (PEP 517, wheel intermediates, implementation details) increases cognitive load",
+          "Clarification is tightly coupled to specific technical explanations, reducing phrase reusability"
+        ],
+        "reason": "P002 ranks last because the technical explanation distracts from the conversational phrases, reducing cognitive lightness and technical detail control despite having good clarification wording."
+      }
+    ],
+    "top_candidate_id": "P001",
+    "top_choice_reason": "P001 offers the highest density of broadly reusable conversational phrases (expressing certainty, explaining historical reasons, seeking feedback) while maintaining the lowest cognitive and technical burden. Its flow naturally models a collaborative discussion without getting bogged down in implementation specifics.",
+    "confidence": "high"
+  }
+}

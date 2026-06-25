@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T10:51:45.735687775Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\n  \"case_id\": \"T004\",\n  \"valid_for_quiz\": true,\n  \"decision\": \"accept\",\n  \"confidence\": \"high\",\n  \"learning_focus\": [\n    \"expressing uncertainty about adoption\",\n    \"seeking feedback\"\n  ],\n  \"reading_burden\": \"medium\",\n  \"technical_burden\": \"medium\",\n  \"reusable_phrase_evidence\": [\n    \"I want to standardize hatchling targets.\",\n    \"I feel like this overcomplicates the pyproject.toml\",\n    \"I don't expect pip to\",\n    \"I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.\"\n  ],\n  \"exclusion_reasons\": [],\n  \"explanation\": \"The path contains four posts, each with at least one source‑verified conversational phrase. The technical content is moderate and does not overwhelm the conversational learning value. The conversation is coherent, the structure is mechanically valid, and the post count falls within the allowed range. Therefore the path is valid for a lightweight English phrase‑learning quiz session.\"\n}",
+    "thinking": "We need to judge validity. Path has 4 posts, mechanically valid, post_count 4. Need at least one reusable phrase candidate. We have phrase candidates that are conversational: e.g., \"I want to standardize hatchling targets.\" That's a proposal. \"I feel like this overcomplicates the pyproject.toml\" expresses concern. \"I don't expect pip to\" etc. These are conversational. So no no_reusable_phrase. Technical burden: posts have medium or low. The overall technical burden maybe medium. Reading burden: medium. Session length: 4 posts, within 2-6. So valid. So decision accept. Provide learning focus: maybe \"expressing uncertainty about adoption\" or \"seeking feedback\". Provide reusable phrase evidence: list some phrase candidates. Confidence high. Provide explanation. No exclusion reasons. Ensure array of exclusion_reasons empty? It must be array, but can be empty. Provide empty array. Ensure all required fields present. Let's craft JSON."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 3555863755,
+  "load_duration": 139735538,
+  "prompt_eval_count": 2085,
+  "prompt_eval_duration": 6966588,
+  "eval_count": 229,
+  "eval_duration": 1471153057
+}

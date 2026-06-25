@@ -1,0 +1,26 @@
+{
+  "qwen_top_candidate_id": "P002",
+  "qwen_top_path": [
+    1,
+    2,
+    4
+  ],
+  "expected_path": [
+    1,
+    2,
+    4,
+    7
+  ],
+  "expected_candidate_id": "P005",
+  "expected_rank": 5,
+  "qwen_top_matches_expected": false,
+  "gpt_oss_path": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "gpt_oss_candidate_id": "P003",
+  "gpt_oss_rank": 4,
+  "qwen_top_matches_gpt_oss": false
+}

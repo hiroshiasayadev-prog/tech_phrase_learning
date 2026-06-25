@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T10:51:57.171162167Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\n  \"case_id\": \"T007\",\n  \"valid_for_quiz\": false,\n  \"decision\": \"reject\",\n  \"confidence\": \"low\",\n  \"learning_focus\": [],\n  \"reading_burden\": \"low\",\n  \"technical_burden\": \"medium\",\n  \"reusable_phrase_evidence\": [\n    \"I'm pretty certain\"\n  ],\n  \"exclusion_reasons\": [\n    \"invalid_structure\"\n  ],\n  \"explanation\": \"The supplied path is marked as mechanically invalid, which disqualifies it from being a valid quiz path regardless of other criteria.\"\n}",
+    "thinking": "We need to judge validity. Path has mechanically_valid: false. That triggers invalid_structure. Also path length 2 posts, within 2-6. But mechanical validity false. So reject. Also maybe no reusable phrase? Let's check phrase candidates: They are technical? \"I want to standardize hatchling targets.\" That's a proposal but still technical. \"I feel like this overcomplicates the pyproject.toml\" technical. \"I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\" technical. Second post: \"I'm pretty certain\" generic. \"only do so because they date back to when\" generic. \"fully decoupled itself from setuptools\" technical. So at least one reusable phrase: \"I'm pretty certain\" is generic. So no no_reusable_phrase. So only invalid_structure. Also maybe insufficient_context? But mechanical invalid. So decision reject, valid_for_quiz false. Confidence low? Probably low. Reading burden low? The content is short. Technical burden medium? The first post medium, second low. So overall medium. Provide evidence: \"I'm pretty certain\". Exclusion reasons: [\"invalid_structure\"]. Explanation: mention mechanical invalid."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 3060539739,
+  "load_duration": 141403450,
+  "prompt_eval_count": 1711,
+  "prompt_eval_duration": 6768886,
+  "eval_count": 124,
+  "eval_duration": 791811305
+}

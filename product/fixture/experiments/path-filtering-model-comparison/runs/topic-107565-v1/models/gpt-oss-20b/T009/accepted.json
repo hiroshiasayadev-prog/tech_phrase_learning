@@ -1,0 +1,17 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "case_id": "T009",
+    "valid_for_quiz": false,
+    "decision": "reject",
+    "confidence": "low",
+    "learning_focus": [],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [],
+    "exclusion_reasons": [
+      "no_reusable_phrase"
+    ],
+    "explanation": "All phrase candidates in the supplied posts are technical terms only and none represent reusable conversational wording. Therefore the path fails the requirement for at least one reusable phrase candidate."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "case_id": "T005",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "seeking feedback on standardization",
+      "expressing uncertainty about adoption"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized."
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path contains four posts, which is within the allowed range of 2–6. The structure is mechanically valid and the conversation flows coherently. At least one phrase candidate is a reusable conversational expression: \"I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.\" Technical detail is present but not overwhelming, and the overall reading and technical burdens are moderate. Therefore the path satisfies all validity criteria."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "case_id": "T008",
+  "control_class": "invalid_no_phrase_evidence",
+  "expected_valid": false,
+  "actual_valid": false,
+  "correct": true,
+  "accepted_attempt": 1,
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "available_phrase_count": 0,
+    "reasoning_effort": "high",
+    "timed_out": false
+  },
+  "result": {
+    "case_id": "T008",
+    "valid_for_quiz": false,
+    "decision": "reject",
+    "confidence": "high",
+    "learning_focus": [],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [],
+    "exclusion_reasons": [
+      "no_reusable_phrase"
+    ],
+    "explanation": "The path satisfies structural, length, and coherence requirements, and the technical burden is manageable. However, every post contains an empty 'phrase_candidates' array. The validity criteria explicitly require at least one supplied source-verified phrase candidate that functions as reusable conversational wording. Since no candidates were provided, the path cannot support phrase-learning and is rejected."
+  }
+}

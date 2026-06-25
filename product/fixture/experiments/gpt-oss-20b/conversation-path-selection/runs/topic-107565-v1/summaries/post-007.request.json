@@ -1,0 +1,68 @@
+{
+  "model": "gpt-oss:20b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Preserve source stance and uncertainty. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Post summary prompt v1\n\n- **prompt_id**: `conversation-post-summary-v1`\n- **status**: investigation\n- **model_role**: post summarizer\n\n## User prompt template\n\nSummarize one authentic technical-discussion post for an English phrase-learning pipeline.\n\nThe learner already understands software engineering.\nThe summary should make the conversational movement easy to follow without requiring the learner to read long code blocks, link lists, or implementation details.\n\nRequirements:\n\n- Write one or two short natural-English sentences.\n- Keep the summary at 55 words or fewer.\n- Preserve the author's stance, uncertainty, qualification, and conversational intent.\n- Do not invent technical facts, motives, adoption claims, or conclusions.\n- Omit code and detailed examples unless they are essential to the author's main point.\n- Describe what the author is doing conversationally, not every technical detail they mention.\n- Treat the summary as generated text, not as a quotation.\n- Use the supplied parent and quote summaries only as context. The authentic current post is the authority.\n\nReturn one JSON object matching the supplied JSON schema.\n\n## Input\n\n{\n  \"topic\": {\n    \"id\": 107565,\n    \"title\": \"Thoughts on standardizing build backend support for non-standard targets\"\n  },\n  \"post\": {\n    \"post_number\": 7,\n    \"username\": \"cjames23\",\n    \"explicit_reply_to\": 4,\n    \"quote_targets\": [\n      4\n    ],\n    \"projected_parent\": 4,\n    \"projection_reason\": \"explicit_reply\",\n    \"source_text\": \"[quote=\\\"Matthew Pleskow, post:4, topic:107565, username:MattP\\\"]\\nTo answer the “what frontends do I expect to use this” more directly, I can see uv, hatch, pdm, and other frontends that strive to be extensible providing support for this (once again, hatch already supports this. Standardization of this interface would allow using the uv frontend with the hatchling backend). I am of the mentality that providing extensibility to python developers is good, but if it seems like this will go unused, then I can understand the desire to keep things simple.\\n[/quote]\\n\\nAs a general rule for me, I want to see more than one tool implementing something with significant adoption before trying to standardize it. We provide this functionality in hatch via our plugin mechanism but many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases. The one exception might be the zipped directory plugin and hatch-aws which are really different flavors of the same thing.\",\n    \"source_text_truncated\": false\n  },\n  \"context\": {\n    \"projected_parent_summary\": {\n      \"post_number\": 4,\n      \"summary\": \"MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.\",\n      \"conversational_intent\": \"seeking feedback and discussion\",\n      \"stance\": \"expressing uncertainty\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets.\"\n    },\n    \"quote_target_summaries\": [\n      {\n        \"post_number\": 4,\n        \"summary\": \"MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.\",\n        \"conversational_intent\": \"seeking feedback and discussion\",\n        \"stance\": \"expressing uncertainty\",\n        \"technical_burden\": \"low\",\n        \"phrase_learning_potential\": \"high\",\n        \"important_uncertainty\": \"Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets.\"\n      }\n    ]\n  }\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"post_number\": {\n      \"type\": \"integer\"\n    },\n    \"summary\": {\n      \"type\": \"string\"\n    },\n    \"conversational_intent\": {\n      \"type\": \"string\"\n    },\n    \"stance\": {\n      \"type\": \"string\"\n    },\n    \"technical_burden\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"phrase_learning_potential\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"important_uncertainty\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ]\n    }\n  },\n  \"required\": [\n    \"post_number\",\n    \"summary\",\n    \"conversational_intent\",\n    \"stance\",\n    \"technical_burden\",\n    \"phrase_learning_potential\",\n    \"important_uncertainty\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "post_number": {
+        "type": "integer"
+      },
+      "summary": {
+        "type": "string"
+      },
+      "conversational_intent": {
+        "type": "string"
+      },
+      "stance": {
+        "type": "string"
+      },
+      "technical_burden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "phrase_learning_potential": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "important_uncertainty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "post_number",
+      "summary",
+      "conversational_intent",
+      "stance",
+      "technical_burden",
+      "phrase_learning_potential",
+      "important_uncertainty"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0
+  },
+  "keep_alive": "30m",
+  "think": "medium"
+}

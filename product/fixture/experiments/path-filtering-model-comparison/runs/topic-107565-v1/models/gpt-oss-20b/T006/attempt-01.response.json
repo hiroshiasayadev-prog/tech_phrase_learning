@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T10:51:54.1023934Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\n  \"case_id\": \"T006\",\n  \"valid_for_quiz\": true,\n  \"decision\": \"accept\",\n  \"confidence\": \"high\",\n  \"learning_focus\": [\n    \"expressing proposals and concerns\",\n    \"communicating availability of options\"\n  ],\n  \"reading_burden\": \"medium\",\n  \"technical_burden\": \"medium\",\n  \"reusable_phrase_evidence\": [\n    \"I want to standardize hatchling targets.\",\n    \"I feel like this overcomplicates the pyproject.toml\",\n    \"I have a couple of these options\",\n    \"you can use the CLI directly\"\n  ],\n  \"exclusion_reasons\": [],\n  \"explanation\": \"The path contains two posts, each with clear conversational intent and at least one source‑verified phrase that is reusable conversational wording. The technical detail is moderate and does not overwhelm the conversational learning value. The conversation is coherent and within the allowed length, satisfying all validity criteria.\"\n}",
+    "thinking": "We need to judge validity. Path has 2 posts, mechanically valid, post_count 2. Summaries: first is about standardizing hatchling targets, second about options for pymsbuild. Are there reusable conversational phrases? Yes: \"I want to standardize hatchling targets.\" is a proposal. \"I feel like this overcomplicates the pyproject.toml\" expresses concern. \"I have a couple of these options\" expresses availability. \"I have no desire to see them formalised\" expresses reluctance. \"you can use the CLI directly\" provides alternative. These are conversational. So at least one reusable phrase. Technical burden: first medium, second low. Combined maybe medium. Reading burden: 2 posts, moderate. So valid. We need to produce JSON with valid_for_quiz true, decision accept, confidence high? Probably high. Learning focus: maybe \"expressing proposals and concerns\" or \"expressing availability of options\". Provide at least one. Reusable phrase evidence: list some phrases. Exclusion reasons: none. Explanation: path is valid. Ensure all required fields present. Let's craft."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 3467307059,
+  "load_duration": 143824083,
+  "prompt_eval_count": 1697,
+  "prompt_eval_duration": 6917054,
+  "eval_count": 204,
+  "eval_duration": 1304204521
+}

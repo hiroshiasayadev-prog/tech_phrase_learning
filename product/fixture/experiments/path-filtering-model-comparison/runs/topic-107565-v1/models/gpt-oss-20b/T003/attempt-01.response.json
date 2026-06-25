@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T10:51:42.171356005Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\n  \"case_id\": \"T003\",\n  \"valid_for_quiz\": true,\n  \"decision\": \"accept\",\n  \"confidence\": \"high\",\n  \"learning_focus\": [\n    \"expressing uncertainty about adoption\",\n    \"seeking feedback\"\n  ],\n  \"reading_burden\": \"medium\",\n  \"technical_burden\": \"medium\",\n  \"reusable_phrase_evidence\": [\n    \"I want to standardize hatchling targets.\"\n  ],\n  \"exclusion_reasons\": [],\n  \"explanation\": \"The path contains four posts, mechanically valid, and includes source‑verified phrase candidates that are conversational in nature (e.g., \\\"I want to standardize hatchling targets.\\\"). The technical content is moderate and does not overwhelm the conversational learning value. All criteria for a valid quiz path are satisfied.\"\n}",
+    "thinking": "We need to judge validity. Path has 4 posts, mechanically valid, between 2-6 posts. Need at least one reusable conversational phrase candidate. Let's check phrase candidates: Post1 has \"I want to standardize hatchling targets.\" That's a proposal, but is it reusable conversational wording? It's specific to hatchling. But phrase \"I want to standardize\" is generic. But phrase candidate includes \"I want to standardize hatchling targets.\" That is a phrase. It's a conversational phrase? It's a statement. It's reusable? It's somewhat specific. But requirement: at least one supplied source-verified phrase candidate is reusable conversational wording rather than only a technical term. The phrase includes \"hatchling targets\" which is technical. But the phrase \"I want to standardize\" is generic. But the phrase candidate is the whole string. It might be considered reusable? It's a phrase that could be used in conversation. It's not purely technical term. So qualifies.\n\nAlso other posts have \"I don't expect pip to\" etc. Those are conversational.\n\nTechnical burden: posts have medium and low. Overall technical burden medium? The path has medium technical burden overall? The requirement: technical detail does not overwhelm the available conversational learning value. The content is about build targets, but it's technical. But maybe acceptable. The path is 4 posts, reading burden medium. So valid.\n\nThus decision accept. Provide learning focus: maybe \"expressing uncertainty about adoption\" or \"seeking feedback\". Provide reusable phrase evidence: pick one phrase: \"I want to standardize hatchling targets.\" or \"I don't expect pip to\". Provide reading_burden medium, technical_burden medium. Confidence high.\n\nExclusion reasons empty array.\n\nReturn JSON."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 4192801604,
+  "load_duration": 143687676,
+  "prompt_eval_count": 2258,
+  "prompt_eval_duration": 6974792,
+  "eval_count": 173,
+  "eval_duration": 1110105107
+}

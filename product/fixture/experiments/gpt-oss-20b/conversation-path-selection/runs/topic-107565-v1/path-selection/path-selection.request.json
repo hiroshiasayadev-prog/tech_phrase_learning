@@ -1,0 +1,76 @@
+{
+  "model": "gpt-oss:20b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Preserve source stance and uncertainty. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Learning path selection prompt v1\n\n- **prompt_id**: `conversation-learning-path-selection-v1`\n- **status**: investigation\n- **model_role**: learning-path selector\n\n## User prompt template\n\nChoose one path through the supplied coarse conversation tree for an English phrase-learning session.\n\nThe tree is an approximate traversal structure. It is not a claim that every projected edge is an explicit source reply.\nEach post summary is generated from the authentic source and may omit technical detail.\n\nChoose a path that:\n\n- starts at the opening post;\n- follows parent-to-child edges in the supplied coarse tree;\n- contains between 2 and 6 posts;\n- has a broadly understandable conversational flow;\n- contains useful disagreement, clarification, qualification, evaluation, or collaboration language;\n- avoids unnecessary code-heavy or detail-heavy branches;\n- is light enough for phrase learning rather than deep technical reading.\n\nDo not choose a path merely because it is longest.\nDo not invent relationships that are not present in the supplied tree.\nReturn one JSON object matching the supplied JSON schema.\n\n## Input\n\n{\n  \"topic\": {\n    \"id\": 107565,\n    \"title\": \"Thoughts on standardizing build backend support for non-standard targets\"\n  },\n  \"root_post_number\": 1,\n  \"coarse_tree\": \"#1 @MattP — MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.\\n├─ #2 @pf_moore — pf_moore questions which frontends would adopt the new interface, noting pip likely won’t, and says without such usage there’s little reason to standardise. He also observes little demand for non‑standard targets, though he admits he may not be aware of all needs.\\n│  └─ #4 @MattP — MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.\\n│     ├─ #5 @bwoodsend — bwoodsend explains that most projects using setuptools.Command for custom build targets were created when setuptools handled the whole workflow, but now metadata lives in pyproject.toml and tools like cxfreeze have decoupled from setuptools. He notes this historical shift and its impact on current tooling.\\n│     ├─ #6 @steve.dower — Steve explains that the tools MattP listed are actually frontend build tools under PEP 517, not implemented as setuptools commands. He notes they would infer the needed compiler, build, and arrange files, and if they used a wheel as an intermediate they'd resemble pip more than setuptools.\\n│     └─ #7 @cjames23 — cjames23 says he would only standardize the interface if multiple widely adopted tools support it, noting hatch’s plugin system already covers most cases and that only a few plugins like zipped directory and hatch‑aws are truly distinct. He remains uncertain whether the feature will be widely used.\\n└─ #3 @steve.dower — He notes he has options for pymsbuild but doesn't want to formalize them into a standard interface or expose them via a frontend; instead, users can build an MSIX directly with the CLI.\",\n  \"posts\": [\n    {\n      \"post_number\": 1,\n      \"username\": \"MattP\",\n      \"explicit_reply_to\": null,\n      \"quote_targets\": [],\n      \"projected_parent\": null,\n      \"projection_reason\": \"opening_post\",\n      \"summary\": \"MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.\",\n      \"conversational_intent\": \"seeking feedback and discussion\",\n      \"stance\": \"proposing a new idea, open to critique\",\n      \"technical_burden\": \"high\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"uncertain about best approach, whether to include targets in pyproject.toml, how to handle custom function names\"\n    },\n    {\n      \"post_number\": 2,\n      \"username\": \"pf_moore\",\n      \"explicit_reply_to\": null,\n      \"quote_targets\": [],\n      \"projected_parent\": 1,\n      \"projection_reason\": \"topic_level_projection\",\n      \"summary\": \"pf_moore questions which frontends would adopt the new interface, noting pip likely won’t, and says without such usage there’s little reason to standardise. He also observes little demand for non‑standard targets, though he admits he may not be aware of all needs.\",\n      \"conversational_intent\": \"seeking feedback and discussion\",\n      \"stance\": \"expressing uncertainty\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets.\"\n    },\n    {\n      \"post_number\": 3,\n      \"username\": \"steve.dower\",\n      \"explicit_reply_to\": null,\n      \"quote_targets\": [],\n      \"projected_parent\": 1,\n      \"projection_reason\": \"topic_level_projection\",\n      \"summary\": \"He notes he has options for pymsbuild but doesn't want to formalize them into a standard interface or expose them via a frontend; instead, users can build an MSIX directly with the CLI.\",\n      \"conversational_intent\": \"informing\",\n      \"stance\": \"informative\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"low\",\n      \"important_uncertainty\": null\n    },\n    {\n      \"post_number\": 4,\n      \"username\": \"MattP\",\n      \"explicit_reply_to\": 2,\n      \"quote_targets\": [],\n      \"projected_parent\": 2,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.\",\n      \"conversational_intent\": \"seeking feedback and discussion\",\n      \"stance\": \"expressing uncertainty\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets.\"\n    },\n    {\n      \"post_number\": 5,\n      \"username\": \"bwoodsend\",\n      \"explicit_reply_to\": 4,\n      \"quote_targets\": [\n        4\n      ],\n      \"projected_parent\": 4,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"bwoodsend explains that most projects using setuptools.Command for custom build targets were created when setuptools handled the whole workflow, but now metadata lives in pyproject.toml and tools like cxfreeze have decoupled from setuptools. He notes this historical shift and its impact on current tooling.\",\n      \"conversational_intent\": \"explaining\",\n      \"stance\": \"assertive\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": null\n    },\n    {\n      \"post_number\": 6,\n      \"username\": \"steve.dower\",\n      \"explicit_reply_to\": 4,\n      \"quote_targets\": [\n        4\n      ],\n      \"projected_parent\": 4,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"Steve explains that the tools MattP listed are actually frontend build tools under PEP 517, not implemented as setuptools commands. He notes they would infer the needed compiler, build, and arrange files, and if they used a wheel as an intermediate they'd resemble pip more than setuptools.\",\n      \"conversational_intent\": \"clarifying\",\n      \"stance\": \"neutral\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": null\n    },\n    {\n      \"post_number\": 7,\n      \"username\": \"cjames23\",\n      \"explicit_reply_to\": 4,\n      \"quote_targets\": [\n        4\n      ],\n      \"projected_parent\": 4,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"cjames23 says he would only standardize the interface if multiple widely adopted tools support it, noting hatch’s plugin system already covers most cases and that only a few plugins like zipped directory and hatch‑aws are truly distinct. He remains uncertain whether the feature will be widely used.\",\n      \"conversational_intent\": \"responding to feedback and discussing standardization\",\n      \"stance\": \"expressing uncertainty\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"Uncertainty about whether the interface will be widely adopted and if non‑standard targets have sufficient demand.\"\n    }\n  ]\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"selected_path\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"integer\"\n      },\n      \"minItems\": 2,\n      \"maxItems\": 6\n    },\n    \"path_summary\": {\n      \"type\": \"string\"\n    },\n    \"selection_reasons\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"rejected_alternatives\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"post_number\": {\n            \"type\": \"integer\"\n          },\n          \"reason\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"post_number\",\n          \"reason\"\n        ],\n        \"additionalProperties\": false\n      }\n    },\n    \"confidence\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    }\n  },\n  \"required\": [\n    \"selected_path\",\n    \"path_summary\",\n    \"selection_reasons\",\n    \"rejected_alternatives\",\n    \"confidence\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "selected_path": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "minItems": 2,
+        "maxItems": 6
+      },
+      "path_summary": {
+        "type": "string"
+      },
+      "selection_reasons": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "rejected_alternatives": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "post_number": {
+              "type": "integer"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "post_number",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "confidence": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    },
+    "required": [
+      "selected_path",
+      "path_summary",
+      "selection_reasons",
+      "rejected_alternatives",
+      "confidence"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0
+  },
+  "keep_alive": "30m",
+  "think": "medium"
+}

@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "case_id": {"type": "string"},
+    "valid_for_quiz": {"type": "boolean"},
+    "decision": {
+      "type": "string",
+      "enum": ["accept", "reject"]
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "learning_focus": {
+      "type": "array",
+      "items": {"type": "string"},
+      "maxItems": 4
+    },
+    "reading_burden": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "excessive"]
+    },
+    "technical_burden": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "excessive"]
+    },
+    "reusable_phrase_evidence": {
+      "type": "array",
+      "items": {"type": "string"},
+      "maxItems": 5
+    },
+    "exclusion_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "invalid_structure",
+          "incoherent_conversation",
+          "no_reusable_phrase",
+          "excessive_session_length",
+          "excessive_technical_burden",
+          "insufficient_context"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "explanation": {"type": "string"}
+  },
+  "required": [
+    "case_id",
+    "valid_for_quiz",
+    "decision",
+    "confidence",
+    "learning_focus",
+    "reading_burden",
+    "technical_burden",
+    "reusable_phrase_evidence",
+    "exclusion_reasons",
+    "explanation"
+  ],
+  "additionalProperties": false
+}

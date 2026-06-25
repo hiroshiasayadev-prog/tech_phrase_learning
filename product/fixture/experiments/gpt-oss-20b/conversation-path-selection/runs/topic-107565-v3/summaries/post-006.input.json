@@ -1,0 +1,61 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 6,
+    "username": "steve.dower",
+    "explicit_reply_to": 4,
+    "quote_targets": [
+      4
+    ],
+    "projected_parent": 4,
+    "projection_reason": "explicit_reply",
+    "authored_text": "What you've listed here are actually _frontend_ tools, in PEP 517 land. They aren't implemented like that, of course, but in the modern world all of these tools would look at a directory of code, infer what tool is needed to compile/layout the files, and then take the compiled files and do their own arrangements. If they used a wheel as an intermediate step and then unpacked it to e.g. turn the files into a `.app` or `.pex`, they start to look a lot more like `pip` (which unpacks a wheel to integrate it into a Python environment) than `setuptools` (which takes sources and produces a wheel-shaped Python library).",
+    "authored_text_truncated": false,
+    "quoted_blocks_removed": true
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 4,
+      "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+      "conversational_intent": "seeking feedback",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "I can't definitively say this one way of the other",
+      "phrase_candidates": [
+        {
+          "text": "I can't definitively say this one way of the other",
+          "function": "expressing uncertainty"
+        },
+        {
+          "text": "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+          "function": "seeking feedback"
+        }
+      ]
+    },
+    "quote_target_summaries": [
+      {
+        "post_number": 4,
+        "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+        "conversational_intent": "seeking feedback",
+        "stance": "questioning",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "I can't definitively say this one way of the other",
+        "phrase_candidates": [
+          {
+            "text": "I can't definitively say this one way of the other",
+            "function": "expressing uncertainty"
+          },
+          {
+            "text": "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+            "function": "seeking feedback"
+          }
+        ]
+      }
+    ]
+  }
+}

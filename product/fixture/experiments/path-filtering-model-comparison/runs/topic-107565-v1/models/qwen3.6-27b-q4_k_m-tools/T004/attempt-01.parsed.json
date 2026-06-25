@@ -1,0 +1,22 @@
+{
+  "case_id": "T004",
+  "valid_for_quiz": true,
+  "decision": "accept",
+  "confidence": "high",
+  "learning_focus": [
+    "expressing uncertainty",
+    "seeking feedback",
+    "clarifying technical points",
+    "expressing concern about complexity"
+  ],
+  "reading_burden": "medium",
+  "technical_burden": "medium",
+  "reusable_phrase_evidence": [
+    "I feel like this overcomplicates the pyproject.toml",
+    "I don't *know* if that's the case",
+    "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+    "They aren't implemented like that, of course"
+  ],
+  "exclusion_reasons": [],
+  "explanation": "The path satisfies all five validity conditions: it is mechanically valid, forms a coherent four-post discussion about Python build tool standardization, and falls within the required 2-6 post range. The technical context is present but manageable (low to medium burden) and does not obscure the conversational language. Multiple source-verified phrase candidates clearly demonstrate reusable conversational functions such as expressing uncertainty, seeking feedback, and clarifying, making the path suitable for a lightweight English learning quiz."
+}

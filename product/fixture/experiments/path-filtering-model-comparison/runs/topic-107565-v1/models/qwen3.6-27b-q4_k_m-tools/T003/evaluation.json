@@ -1,0 +1,38 @@
+{
+  "case_id": "T003",
+  "control_class": "real_valid_path",
+  "expected_valid": true,
+  "actual_valid": true,
+  "correct": true,
+  "accepted_attempt": 1,
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "available_phrase_count": 11,
+    "reasoning_effort": "high",
+    "timed_out": false
+  },
+  "result": {
+    "case_id": "T003",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing proposals and concerns",
+      "seeking feedback",
+      "expressing uncertainty",
+      "clarifying context"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I feel like this overcomplicates the pyproject.toml",
+      "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+      "I don't *know* if that's the case",
+      "I'm pretty certain",
+      "I can't definitively say this one way of the other"
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path satisfies all validity conditions: it is mechanically valid, presents a coherent conversational sequence regarding tool standardization and adoption, contains multiple source-verified reusable conversational phrases focused on proposing, questioning, seeking feedback, and clarifying, maintains a medium technical burden that does not overwhelm the conversational learning value, and contains exactly four posts. No exclusion criteria are triggered."
+  }
+}

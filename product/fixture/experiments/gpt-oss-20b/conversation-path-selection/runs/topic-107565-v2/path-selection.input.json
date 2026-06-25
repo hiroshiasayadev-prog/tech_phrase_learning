@@ -1,0 +1,208 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "root_post_number": 1,
+  "coarse_tree": "#1 @MattP — Matt proposes standardizing custom build targets in Python packaging, noting that only hatchling and setuptools currently support them. He outlines a potential interface, discusses pros and cons of adding a `targets` table to pyproject.toml, and seeks feedback on design choices, expressing uncertainty about the best approach.\n├─ #2 @pf_moore — He questions whether any frontend, like pip, will adopt the new interface and notes a lack of demand for non‑standard targets, so he doubts the need to standardise. He also admits uncertainty about whether the examples are truly needed.\n│  └─ #4 @MattP — He explains that non‑standard targets are for distribution, not pip installs, and notes that many developers still use legacy build systems; he wonders if standardizing this interface is worthwhile and asks frontends for feedback.\n│     ├─ #5 @bwoodsend — He explains that most legacy tools use setuptools.Command because they were built when setuptools handled the whole workflow, and notes that the shift to pyproject.toml has made those patterns obsolete.\n│     ├─ #6 @steve.dower — Steve clarifies that the listed tools are frontend tools in PEP 517 land, not implemented like setuptools. He explains that using a wheel as an intermediate step would make them resemble pip more than setuptools.\n│     └─ #7 @cjames23 — He notes that several extensible frontends exist but worries the feature might go unused, preferring simplicity. He says he only wants to standardize when multiple widely adopted tools support it, citing plugin limits and narrow use cases.\n└─ #3 @steve.dower — The author notes they have options for pymsbuild but do not want to formalize them into a standard interface or expose them via a frontend, and suggests using the CLI directly to build an MSIX instead of a wheel.",
+  "posts": [
+    {
+      "post_number": 1,
+      "username": "MattP",
+      "explicit_reply_to": null,
+      "quote_targets": [],
+      "projected_parent": null,
+      "projection_reason": "opening_post",
+      "summary": "Matt proposes standardizing custom build targets in Python packaging, noting that only hatchling and setuptools currently support them. He outlines a potential interface, discusses pros and cons of adding a `targets` table to pyproject.toml, and seeks feedback on design choices, expressing uncertainty about the best approach.",
+      "conversational_intent": "proposing a standardization and seeking feedback",
+      "stance": "proposing, uncertain, seeking feedback",
+      "technical_burden": "high",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about whether to include targets in pyproject.toml and how to name custom functions.",
+      "phrase_candidates": [
+        {
+          "text": "I feel like this overcomplicates the pyproject.toml",
+          "function": "expressing uncertainty about the complexity of adding a targets table"
+        },
+        {
+          "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+          "function": "expressing uncertainty about feature support for unlisted targets"
+        },
+        {
+          "text": "I just wanted to get the ball rolling on something that I've wanted out of python packaging.",
+          "function": "expressing desire to initiate discussion and gather feedback"
+        }
+      ]
+    },
+    {
+      "post_number": 2,
+      "username": "pf_moore",
+      "explicit_reply_to": null,
+      "quote_targets": [],
+      "projected_parent": 1,
+      "projection_reason": "topic_level_projection",
+      "summary": "He questions whether any frontend, like pip, will adopt the new interface and notes a lack of demand for non‑standard targets, so he doubts the need to standardise. He also admits uncertainty about whether the examples are truly needed.",
+      "conversational_intent": "evaluating, qualifying",
+      "stance": "uncertain, evaluating, challenging",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about whether the examples are truly needed and about demand for non‑standard targets.",
+      "phrase_candidates": [
+        {
+          "text": "I don't expect pip to",
+          "function": "expressing uncertainty about pip support for the new interface"
+        },
+        {
+          "text": "I don't see a good reason for standardising anything",
+          "function": "expressing doubt about the necessity of standardisation"
+        },
+        {
+          "text": "I don't *know* if that's the case, though",
+          "function": "expressing uncertainty about the demand for the examples"
+        }
+      ]
+    },
+    {
+      "post_number": 3,
+      "username": "steve.dower",
+      "explicit_reply_to": null,
+      "quote_targets": [],
+      "projected_parent": 1,
+      "projection_reason": "topic_level_projection",
+      "summary": "The author notes they have options for pymsbuild but do not want to formalize them into a standard interface or expose them via a frontend, and suggests using the CLI directly to build an MSIX instead of a wheel.",
+      "conversational_intent": "clarifying",
+      "stance": "clarifying, no desire to formalize",
+      "technical_burden": "low",
+      "phrase_learning_potential": "low",
+      "important_uncertainty": null,
+      "phrase_candidates": [
+        {
+          "text": "FWIW",
+          "function": "expressing a brief, informal remark"
+        },
+        {
+          "text": "If you want to e.g. build an MSIX instead of a wheel, you can use the CLI directly.",
+          "function": "providing a practical alternative to a standard interface"
+        }
+      ]
+    },
+    {
+      "post_number": 4,
+      "username": "MattP",
+      "explicit_reply_to": 2,
+      "quote_targets": [],
+      "projected_parent": 2,
+      "projection_reason": "explicit_reply",
+      "summary": "He explains that non‑standard targets are for distribution, not pip installs, and notes that many developers still use legacy build systems; he wonders if standardizing this interface is worthwhile and asks frontends for feedback.",
+      "conversational_intent": "evaluating, qualifying, proposing, seeking feedback",
+      "stance": "uncertain, evaluating, challenging",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.",
+      "phrase_candidates": [
+        {
+          "text": "I can't definitively say this one way of the other",
+          "function": "expressing uncertainty about the direction of standardization"
+        },
+        {
+          "text": "Maybe I'm demanding too much within the constraints of the build ecosystem",
+          "function": "self‑critical assessment of the proposal’s ambition"
+        },
+        {
+          "text": "I would love to get some feedback from any of these frontend developers",
+          "function": "soliciting input from frontend developers"
+        }
+      ]
+    },
+    {
+      "post_number": 5,
+      "username": "bwoodsend",
+      "explicit_reply_to": 4,
+      "quote_targets": [
+        4
+      ],
+      "projected_parent": 4,
+      "projection_reason": "explicit_reply",
+      "summary": "He explains that most legacy tools use setuptools.Command because they were built when setuptools handled the whole workflow, and notes that the shift to pyproject.toml has made those patterns obsolete.",
+      "conversational_intent": "evaluating, clarifying, qualifying",
+      "stance": "certain, evaluating, clarifying",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null,
+      "phrase_candidates": [
+        {
+          "text": "pretty certain",
+          "function": "expressing confidence"
+        },
+        {
+          "text": "only do so because",
+          "function": "explaining reason"
+        },
+        {
+          "text": "fully decoupled itself from setuptools",
+          "function": "describing separation"
+        }
+      ]
+    },
+    {
+      "post_number": 6,
+      "username": "steve.dower",
+      "explicit_reply_to": 4,
+      "quote_targets": [
+        4
+      ],
+      "projected_parent": 4,
+      "projection_reason": "explicit_reply",
+      "summary": "Steve clarifies that the listed tools are frontend tools in PEP 517 land, not implemented like setuptools. He explains that using a wheel as an intermediate step would make them resemble pip more than setuptools.",
+      "conversational_intent": "clarifying, evaluating",
+      "stance": "clarifying, evaluating",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null,
+      "phrase_candidates": [
+        {
+          "text": "What you've listed here are actually _frontend_ tools, in PEP 517 land.",
+          "function": "clarifying the nature of the tools"
+        },
+        {
+          "text": "They aren't implemented like that, of course,",
+          "function": "correcting a misconception"
+        },
+        {
+          "text": "If they used a wheel as an intermediate step and then unpacked it to e.g. turn the files into a `.app` or `.pex`, they start to look a lot more like `pip` (which unpacks a wheel to integrate it into a Python environment) than `setuptools` (which takes sources and produces a wheel-shaped Python library).",
+          "function": "explaining a comparison"
+        }
+      ]
+    },
+    {
+      "post_number": 7,
+      "username": "cjames23",
+      "explicit_reply_to": 4,
+      "quote_targets": [
+        4
+      ],
+      "projected_parent": 4,
+      "projection_reason": "explicit_reply",
+      "summary": "He notes that several extensible frontends exist but worries the feature might go unused, preferring simplicity. He says he only wants to standardize when multiple widely adopted tools support it, citing plugin limits and narrow use cases.",
+      "conversational_intent": "evaluating, qualifying, proposing",
+      "stance": "uncertain, evaluating, challenging",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.",
+      "phrase_candidates": [
+        {
+          "text": "I can see uv, hatch, pdm, and other frontends that strive to be extensible providing support for this",
+          "function": "expressing observation about existing extensible frontends"
+        },
+        {
+          "text": "but if it seems like this will go unused, then I can understand the desire to keep things simple.",
+          "function": "expressing conditional understanding of potential lack of use and preference for simplicity"
+        },
+        {
+          "text": "As a general rule for me, I want to see more than one tool implementing something with significant adoption before trying to standardize it.",
+          "function": "expressing personal rule for standardization based on adoption"
+        }
+      ]
+    }
+  ]
+}

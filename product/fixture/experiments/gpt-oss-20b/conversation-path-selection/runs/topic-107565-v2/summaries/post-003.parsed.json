@@ -1,0 +1,19 @@
+{
+  "post_number": 3,
+  "summary": "The author notes they have options for pymsbuild but do not want to formalize them into a standard interface or expose them via a frontend, and suggests using the CLI directly to build an MSIX instead of a wheel.",
+  "conversational_intent": "clarifying",
+  "stance": "clarifying, no desire to formalize",
+  "technical_burden": "low",
+  "phrase_learning_potential": "low",
+  "important_uncertainty": null,
+  "phrase_candidates": [
+    {
+      "text": "FWIW",
+      "function": "expressing a brief, informal remark"
+    },
+    {
+      "text": "If you want to e.g. build an MSIX instead of a wheel, you can use the CLI directly.",
+      "function": "providing a practical alternative to a standard interface"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "case_id": "T008",
+  "path": [
+    1,
+    2,
+    4
+  ],
+  "post_count": 3,
+  "mechanically_valid": true,
+  "posts": [
+    {
+      "post_number": 1,
+      "username": "MattP",
+      "summary": "Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.",
+      "conversational_intent": "seeking feedback and clarification",
+      "stance": "proposing and questioning",
+      "technical_burden": "medium",
+      "phrase_candidates": []
+    },
+    {
+      "post_number": 2,
+      "username": "pf_moore",
+      "summary": "I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.",
+      "conversational_intent": "questioning and evaluating",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_candidates": []
+    },
+    {
+      "post_number": 4,
+      "username": "MattP",
+      "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+      "conversational_intent": "seeking feedback",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_candidates": []
+    }
+  ]
+}

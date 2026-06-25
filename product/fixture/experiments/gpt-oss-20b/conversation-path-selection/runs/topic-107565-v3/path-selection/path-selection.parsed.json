@@ -1,0 +1,30 @@
+{
+  "selected_path": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "path_summary": "Matt proposes standardizing custom build targets, pf_moore questions whether frontends will adopt the interface, Matt follows up asking for feedback, and bwoodsend clarifies the historical reliance on setuptools and the current independence of tools.",
+  "selection_reasons": [
+    "The path begins with the original proposal and immediately introduces a counter‑point, creating a natural dialogue of proposal, doubt, and clarification.",
+    "It contains a clear disagreement (pf_moore’s doubt) followed by a request for feedback (Matt) and a substantive clarification (bwoodsend), satisfying the requirement for useful disagreement, clarification, and evaluation language.",
+    "All posts in the path provide high‑value phrase candidates that are source‑verified and reusable in teaching phrase learning.",
+    "The length (four posts) falls within the 2‑6 post window and keeps the conversation focused without unnecessary technical detail."
+  ],
+  "rejected_alternatives": [
+    {
+      "post_number": 3,
+      "reason": "This post discusses pymsbuild options and does not relate to the debate about standardizing build targets, so it would break the conversational flow."
+    },
+    {
+      "post_number": 6,
+      "reason": "While it offers a useful clarification about frontend tools, the path already contains a strong clarification from bwoodsend, and including this would extend the path beyond the desired length."
+    },
+    {
+      "post_number": 7,
+      "reason": "This post expresses a stance to wait for broader adoption, but the chosen path already provides a clear counter‑point and clarification, making this alternative redundant for the learning objective."
+    }
+  ],
+  "confidence": "high"
+}

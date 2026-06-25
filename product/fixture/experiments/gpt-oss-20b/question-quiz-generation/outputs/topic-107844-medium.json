@@ -1,0 +1,36 @@
+{
+  "experiment_metadata": {
+    "topic_id": 107844,
+    "model": "gpt-oss-20b",
+    "reasoning": "medium",
+    "capture_status": "copied from recorded model output"
+  },
+  "output": {
+    "title": "Choosing a Clear Question for Nested Context Managers",
+    "context": "You are writing Python code that opens several files, database connections, and temporary directories.",
+    "options": [
+      {
+        "id": "A",
+        "text": "Which pattern is considered the most Pythonic for handling multiple nested context managers today?",
+        "preferred": true,
+        "explanation": "Directly asks for best practice with a clear focus on context managers."
+      },
+      {
+        "id": "B",
+        "text": "How do we manage nested contexts in Python?",
+        "preferred": false,
+        "explanation": "Too vague; it could refer to any nested contexts without specifying the intent."
+      },
+      {
+        "id": "C",
+        "text": "Is it preferable to use contextlib.ExitStack or the with a, b, c syntax when dealing with several files and temporary directories?",
+        "preferred": false,
+        "explanation": "Unnecessarily tied to specific implementation details rather than broader patterns."
+      }
+    ],
+    "source_phrase": {
+      "text": "what's the most Pythonic approach these days?",
+      "function": "question"
+    }
+  }
+}

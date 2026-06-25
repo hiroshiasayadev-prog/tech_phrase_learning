@@ -1,0 +1,17 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "case_id": "T007",
+    "valid_for_quiz": false,
+    "decision": "reject",
+    "confidence": "high",
+    "learning_focus": [],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [],
+    "exclusion_reasons": [
+      "invalid_structure"
+    ],
+    "explanation": "The supplied metadata explicitly marks the path as mechanically invalid ('mechanically_valid': false), which directly violates the first validity criterion. Although the post count falls within the acceptable range and reusable conversational phrases are present, the structural failure alone mandates rejection."
+  }
+}

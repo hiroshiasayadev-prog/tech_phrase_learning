@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "errors": [],
+  "expected_candidate_ids": [
+    "P001",
+    "P002",
+    "P003"
+  ],
+  "returned_candidate_ids": [
+    "P001",
+    "P003",
+    "P002"
+  ],
+  "returned_ranks": [
+    1,
+    2,
+    3
+  ],
+  "derived_weighted_scores": {
+    "P001": 4.9,
+    "P003": 4.0,
+    "P002": 3.75
+  },
+  "reasoning_effort": "high",
+  "timed_out": false
+}

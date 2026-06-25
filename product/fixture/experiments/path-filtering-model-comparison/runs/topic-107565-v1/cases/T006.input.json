@@ -1,0 +1,61 @@
+{
+  "case_id": "T006",
+  "path": [
+    1,
+    3
+  ],
+  "post_count": 2,
+  "mechanically_valid": true,
+  "posts": [
+    {
+      "post_number": 1,
+      "username": "MattP",
+      "summary": "Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.",
+      "conversational_intent": "seeking feedback and clarification",
+      "stance": "proposing and questioning",
+      "technical_burden": "medium",
+      "phrase_candidates": [
+        {
+          "text": "I want to standardize hatchling targets.",
+          "function": "expressing a proposal",
+          "source_verified": true
+        },
+        {
+          "text": "I feel like this overcomplicates the pyproject.toml",
+          "function": "expressing concern about complexity",
+          "source_verified": true
+        },
+        {
+          "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+          "function": "expressing uncertainty about scope",
+          "source_verified": true
+        }
+      ]
+    },
+    {
+      "post_number": 3,
+      "username": "steve.dower",
+      "summary": "I have options for pymsbuild but don't want to formalise them into a standard interface or expose them via a frontend; you can just use the CLI to build an MSIX instead of a wheel.",
+      "conversational_intent": "informing",
+      "stance": "informing",
+      "technical_burden": "low",
+      "phrase_candidates": [
+        {
+          "text": "I have a couple of these options",
+          "function": "expressing availability of options",
+          "source_verified": true
+        },
+        {
+          "text": "I have no desire to see them formalised",
+          "function": "expressing reluctance to formalize",
+          "source_verified": true
+        },
+        {
+          "text": "you can use the CLI directly",
+          "function": "providing alternative approach",
+          "source_verified": true
+        }
+      ]
+    }
+  ]
+}

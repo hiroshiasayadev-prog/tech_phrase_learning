@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T09:06:42.857674547Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\"post_number\":1,\"summary\":\"MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.\",\"conversational_intent\":\"seeking feedback and discussion\",\"stance\":\"proposing a new idea, open to critique\",\"technical_burden\":\"high\",\"phrase_learning_potential\":\"high\",\"important_uncertainty\":\"uncertain about best approach, whether to include targets in pyproject.toml, how to handle custom function names\"}",
+    "thinking": "We need to produce JSON with fields. Summarize the post: 1-2 short sentences, <=55 words. Preserve stance, uncertainty, qualification, conversational intent. The post is a proposal for standardizing build backend support for non-standard targets. The author is new, wants to propose, is uncertain about details, asks for feedback, acknowledges complexity. So summary: \"MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.\" That's 27 words. Good.\n\nConversational_intent: \"seeking feedback and discussion\". stance: \"proposing a new idea, open to critique\". technical_burden: \"high\" because detailed interface, many options. phrase_learning_potential: \"high\" because many terms. important_uncertainty: \"uncertain about best approach, whether to include targets in pyproject.toml, how to handle custom functions\". Provide string.\n\nReturn JSON. Ensure no extra properties."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 5389332829,
+  "load_duration": 2319778957,
+  "prompt_eval_count": 3048,
+  "prompt_eval_duration": 7008194,
+  "eval_count": 111,
+  "eval_duration": 712008609
+}

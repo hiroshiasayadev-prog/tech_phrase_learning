@@ -1,0 +1,23 @@
+{
+  "post_number": 2,
+  "summary": "I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.",
+  "conversational_intent": "questioning and evaluating",
+  "stance": "questioning",
+  "technical_burden": "low",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": "I'm unsure if there is real demand for non‑standard targets beyond niche hatch plugins.",
+  "phrase_candidates": [
+    {
+      "text": "I don't expect pip to",
+      "function": "expressing doubt about adoption"
+    },
+    {
+      "text": "Without a frontend using these new APIs",
+      "function": "highlighting prerequisite for standardization"
+    },
+    {
+      "text": "I don't *know* if that's the case",
+      "function": "indicating uncertainty about the claim"
+    }
+  ]
+}

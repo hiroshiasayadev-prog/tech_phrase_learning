@@ -1,0 +1,9 @@
+{
+  "post_number": 1,
+  "summary": "MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.",
+  "conversational_intent": "seeking feedback and discussion",
+  "stance": "proposing a new idea, open to critique",
+  "technical_burden": "high",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": "uncertain about best approach, whether to include targets in pyproject.toml, how to handle custom function names"
+}

@@ -1,0 +1,79 @@
+{
+  "started_at": "2026-06-25T10:51:24.920709+00:00",
+  "source_run": "C:\\Users\\imved\\projects\\tech_phrase_learning\\product\\fixture\\experiments\\gpt-oss-20b\\conversation-path-selection\\runs\\topic-107565-v3",
+  "source_hashes": {
+    "coarse-tree.json": "6628d751469f66eb6ffea10564198f421d7e8816a4c93210837a31c8a1e783c1",
+    "post-summaries.json": "9cbaca83c0ecfb33880a1b6f257f3a78ab01fab2e828a57e4ae5d373923af0c0"
+  },
+  "fixture_hashes": {
+    "path-filter-prompt-v1.md": "d4046df9e50172baaa6fdc72fbf7d53518d2bbf114cbeb70e686d5e29378554f",
+    "path-filter-v1.schema.json": "dcea81d0cc701609a0371779019fda4e78ce726641c6733e72b7ba784097c53c",
+    "filter-cases-v1.json": "41e49f59e57e2cbb01b94afc81c8a90c3284fcb9ca148f39e6bacd5b122c526a"
+  },
+  "base_url": "http://192.168.11.22:11434",
+  "models": {
+    "gpt": {
+      "requested_model": "gpt-oss:20b",
+      "think": "medium",
+      "resolved_model": "gpt-oss:20b"
+    },
+    "qwen": {
+      "requested_model": "qwen3.6-27b:q4_k_m-tools",
+      "think": "high",
+      "resolved_model": "qwen3.6-27b:q4_k_m-tools"
+    }
+  },
+  "installed_models": [
+    "gpt-oss:20b",
+    "qwen3.6-27b:q4_k_m",
+    "qwen3.6-27b:q4_k_m-tools"
+  ],
+  "temperature": 0.0,
+  "keep_alive": "30m",
+  "timeout": 900.0,
+  "max_output_tokens": 4096,
+  "retries": 2,
+  "blind_evaluation": {
+    "expected_labels_not_sent": true,
+    "cases_judged_independently": true,
+    "alternative_paths_not_sent": true
+  },
+  "prepare_only": false,
+  "completed_at": "2026-06-25T11:02:35.153181+00:00",
+  "model_metrics": {
+    "gpt": {
+      "total_cases": 9,
+      "correct_cases": 9,
+      "accuracy": 1.0,
+      "real_valid_cases": 6,
+      "real_valid_accepted": 6,
+      "valid_path_recall": 1.0,
+      "invalid_controls": 3,
+      "invalid_controls_rejected": 3,
+      "invalid_control_rejection_rate": 1.0,
+      "false_rejections": [],
+      "false_acceptances": [],
+      "acceptance_target_met": true
+    },
+    "qwen": {
+      "total_cases": 9,
+      "correct_cases": 9,
+      "accuracy": 1.0,
+      "real_valid_cases": 6,
+      "real_valid_accepted": 6,
+      "valid_path_recall": 1.0,
+      "invalid_controls": 3,
+      "invalid_controls_rejected": 3,
+      "invalid_control_rejection_rate": 1.0,
+      "false_rejections": [],
+      "false_acceptances": [],
+      "acceptance_target_met": true
+    }
+  },
+  "agreement": {
+    "case_count": 9,
+    "same_decision_count": 9,
+    "agreement_rate": 1.0,
+    "disagreement_case_ids": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "post_number": 3,
+  "summary": "He notes he has options for pymsbuild but doesn't want to formalize them into a standard interface or expose them via a frontend; instead, users can build an MSIX directly with the CLI.",
+  "conversational_intent": "informing",
+  "stance": "informative",
+  "technical_burden": "low",
+  "phrase_learning_potential": "low",
+  "important_uncertainty": null
+}

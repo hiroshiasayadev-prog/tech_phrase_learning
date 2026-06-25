@@ -1,0 +1,43 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 2,
+    "username": "pf_moore",
+    "explicit_reply_to": null,
+    "quote_targets": [],
+    "projected_parent": 1,
+    "projection_reason": "topic_level_projection",
+    "authored_text": "What *frontend* tools do you expect to support this new interface? I don't expect pip to - pip currently only uses `build_wheel` and the associated methods, we don't even have a need for `build_sdist`.\n\nWithout a frontend using these new APIs, I don't see a good reason for standardising anything.\n\nThere's also the fact that I've seen almost no demand for building \"non-standard targets\" of the form you're describing, but that may simply because I don't work on tools that would see such demand. I note that the examples you found are *plugins* for hatch, and therefore could easily have been created to satisfy one person's nice use case (I don't *know* if that's the case, though, so I'm not claiming there's no demand, just that I'm not aware of any).",
+    "authored_text_truncated": false,
+    "quoted_blocks_removed": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 1,
+      "summary": "Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.",
+      "conversational_intent": "seeking feedback and clarification",
+      "stance": "proposing and questioning",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+      "phrase_candidates": [
+        {
+          "text": "I want to standardize hatchling targets.",
+          "function": "expressing a proposal"
+        },
+        {
+          "text": "I feel like this overcomplicates the pyproject.toml",
+          "function": "expressing concern about complexity"
+        },
+        {
+          "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+          "function": "expressing uncertainty about scope"
+        }
+      ]
+    },
+    "quote_target_summaries": []
+  }
+}

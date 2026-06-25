@@ -1,0 +1,109 @@
+{
+  "model": "qwen3.6-27b:q4_k_m-tools",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Act as an absolute quiz-path validity filter. Judge only the supplied path. Never reject it merely because another path could be better. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Independent quiz-path filter prompt v1\n\n- **prompt_id**: `quiz-path-filter-v1`\n- **status**: investigation\n- **model_role**: independent absolute filter\n\n## User prompt template\n\nDecide whether the supplied conversation path is usable as one English phrase-learning quiz session.\n\nJudge this path independently. Do not compare it with any alternative path, and do not reject it merely because a shorter, richer, or more interesting path might exist.\n\nThe learner already understands software engineering. The product goal is lightweight exposure to reusable conversational English, not deep technical reading.\n\nA path is valid when all of these are true:\n\n1. its supplied structure is mechanically valid;\n2. the summarized conversation is understandable as one sequence;\n3. at least one supplied source-verified phrase candidate is reusable conversational wording rather than only a technical term;\n4. technical detail does not overwhelm the available conversational learning value;\n5. the path contains between two and six posts.\n\nImportant rules:\n\n- Use only the supplied phrase candidates as exact phrase evidence.\n- Do not invent a phrase from a summary.\n- A path may be valid with only one narrow learning focus.\n- A path may be valid even when it is not the best candidate in the topic.\n- Medium reading burden is not by itself a rejection reason.\n- Technical context is allowed when reusable conversational language remains visible.\n- Reject only for an actual validity failure, not relative inferiority.\n- For a valid path, return at least one learning focus and at least one exact phrase candidate as evidence.\n- For an invalid path, return one or more controlled exclusion reasons.\n\nControlled exclusion reasons:\n\n- `invalid_structure`\n- `incoherent_conversation`\n- `no_reusable_phrase`\n- `excessive_session_length`\n- `excessive_technical_burden`\n- `insufficient_context`\n\nReturn one JSON object matching the supplied schema.\n\n## Input\n\n{\n  \"case_id\": \"T001\",\n  \"path\": [\n    1,\n    2\n  ],\n  \"post_count\": 2,\n  \"mechanically_valid\": true,\n  \"posts\": [\n    {\n      \"post_number\": 1,\n      \"username\": \"MattP\",\n      \"summary\": \"Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.\",\n      \"conversational_intent\": \"seeking feedback and clarification\",\n      \"stance\": \"proposing and questioning\",\n      \"technical_burden\": \"medium\",\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I want to standardize hatchling targets.\",\n          \"function\": \"expressing a proposal\",\n          \"source_verified\": true\n        },\n        {\n          \"text\": \"I feel like this overcomplicates the pyproject.toml\",\n          \"function\": \"expressing concern about complexity\",\n          \"source_verified\": true\n        },\n        {\n          \"text\": \"I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\",\n          \"function\": \"expressing uncertainty about scope\",\n          \"source_verified\": true\n        }\n      ]\n    },\n    {\n      \"post_number\": 2,\n      \"username\": \"pf_moore\",\n      \"summary\": \"I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.\",\n      \"conversational_intent\": \"questioning and evaluating\",\n      \"stance\": \"questioning\",\n      \"technical_burden\": \"low\",\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I don't expect pip to\",\n          \"function\": \"expressing doubt about adoption\",\n          \"source_verified\": true\n        },\n        {\n          \"text\": \"Without a frontend using these new APIs\",\n          \"function\": \"highlighting prerequisite for standardization\",\n          \"source_verified\": true\n        },\n        {\n          \"text\": \"I don't *know* if that's the case\",\n          \"function\": \"indicating uncertainty about the claim\",\n          \"source_verified\": true\n        }\n      ]\n    }\n  ]\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"case_id\": {\n      \"type\": \"string\"\n    },\n    \"valid_for_quiz\": {\n      \"type\": \"boolean\"\n    },\n    \"decision\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"accept\",\n        \"reject\"\n      ]\n    },\n    \"confidence\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"learning_focus\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"maxItems\": 4\n    },\n    \"reading_burden\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\",\n        \"excessive\"\n      ]\n    },\n    \"technical_burden\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\",\n        \"excessive\"\n      ]\n    },\n    \"reusable_phrase_evidence\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      },\n      \"maxItems\": 5\n    },\n    \"exclusion_reasons\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\",\n        \"enum\": [\n          \"invalid_structure\",\n          \"incoherent_conversation\",\n          \"no_reusable_phrase\",\n          \"excessive_session_length\",\n          \"excessive_technical_burden\",\n          \"insufficient_context\"\n        ]\n      },\n      \"uniqueItems\": true\n    },\n    \"explanation\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\n    \"case_id\",\n    \"valid_for_quiz\",\n    \"decision\",\n    \"confidence\",\n    \"learning_focus\",\n    \"reading_burden\",\n    \"technical_burden\",\n    \"reusable_phrase_evidence\",\n    \"exclusion_reasons\",\n    \"explanation\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "case_id": {
+        "type": "string"
+      },
+      "valid_for_quiz": {
+        "type": "boolean"
+      },
+      "decision": {
+        "type": "string",
+        "enum": [
+          "accept",
+          "reject"
+        ]
+      },
+      "confidence": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "learning_focus": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 4
+      },
+      "reading_burden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "excessive"
+        ]
+      },
+      "technical_burden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "excessive"
+        ]
+      },
+      "reusable_phrase_evidence": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 5
+      },
+      "exclusion_reasons": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "invalid_structure",
+            "incoherent_conversation",
+            "no_reusable_phrase",
+            "excessive_session_length",
+            "excessive_technical_burden",
+            "insufficient_context"
+          ]
+        },
+        "uniqueItems": true
+      },
+      "explanation": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "case_id",
+      "valid_for_quiz",
+      "decision",
+      "confidence",
+      "learning_focus",
+      "reading_burden",
+      "technical_burden",
+      "reusable_phrase_evidence",
+      "exclusion_reasons",
+      "explanation"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0,
+    "num_predict": 4096
+  },
+  "keep_alive": "30m",
+  "think": "high"
+}

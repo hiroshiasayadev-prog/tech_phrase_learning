@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "properties": {
+    "summary_reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "post_number": {"type": "integer"},
+          "verdict": {
+            "type": "string",
+            "enum": ["pass", "needs_review"]
+          },
+          "fidelity_issues": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "readability": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "notes": {"type": "string"}
+        },
+        "required": [
+          "post_number",
+          "verdict",
+          "fidelity_issues",
+          "readability",
+          "notes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "path_verdict": {
+      "type": "string",
+      "enum": ["pass", "needs_review"]
+    },
+    "coherence_notes": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "reading_burden": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "phrase_learning_potential": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "overall_notes": {"type": "string"}
+  },
+  "required": [
+    "summary_reviews",
+    "path_verdict",
+    "coherence_notes",
+    "reading_burden",
+    "phrase_learning_potential",
+    "overall_notes"
+  ],
+  "additionalProperties": false
+}

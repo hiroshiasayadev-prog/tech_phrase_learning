@@ -1,0 +1,40 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 7,
+    "username": "cjames23",
+    "explicit_reply_to": 4,
+    "quote_targets": [
+      4
+    ],
+    "projected_parent": 4,
+    "projection_reason": "explicit_reply",
+    "source_text": "[quote=\"Matthew Pleskow, post:4, topic:107565, username:MattP\"]\nTo answer the “what frontends do I expect to use this” more directly, I can see uv, hatch, pdm, and other frontends that strive to be extensible providing support for this (once again, hatch already supports this. Standardization of this interface would allow using the uv frontend with the hatchling backend). I am of the mentality that providing extensibility to python developers is good, but if it seems like this will go unused, then I can understand the desire to keep things simple.\n[/quote]\n\nAs a general rule for me, I want to see more than one tool implementing something with significant adoption before trying to standardize it. We provide this functionality in hatch via our plugin mechanism but many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases. The one exception might be the zipped directory plugin and hatch-aws which are really different flavors of the same thing.",
+    "source_text_truncated": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 4,
+      "summary": "MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.",
+      "conversational_intent": "seeking feedback and discussion",
+      "stance": "expressing uncertainty",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets."
+    },
+    "quote_target_summaries": [
+      {
+        "post_number": 4,
+        "summary": "MattP explains that non‑standard build targets are meant for distribution tools like shiv, not pip installs, lists several projects that use custom targets, and notes that frontends such as uv, hatch, and pdm could support them. He asks for feedback on whether standardizing this interface is worthwhile, expressing uncertainty about demand and adoption.",
+        "conversational_intent": "seeking feedback and discussion",
+        "stance": "expressing uncertainty",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets."
+      }
+    ]
+  }
+}

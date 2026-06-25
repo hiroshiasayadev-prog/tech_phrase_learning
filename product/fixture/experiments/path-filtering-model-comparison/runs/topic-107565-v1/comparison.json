@@ -1,0 +1,644 @@
+{
+  "models": {
+    "gpt": {
+      "model": "gpt-oss:20b",
+      "records": [
+        {
+          "case_id": "T001",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 6,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T001",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing proposals and concerns about standardization",
+              "expressing uncertainty about adoption"
+            ],
+            "reading_burden": "low",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I want to standardize hatchling targets.",
+              "I feel like this overcomplicates the pyproject.toml"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path contains two posts, mechanically valid, and includes source‑verified phrase candidates that are conversational in nature (e.g., \"I want to standardize hatchling targets.\" and \"I feel like this overcomplicates the pyproject.toml\"). The technical detail is moderate but does not overwhelm the conversational learning value, and the session length is within the allowed 2–6 posts. Therefore the path meets all validity criteria."
+          }
+        },
+        {
+          "case_id": "T002",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 8,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T002",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing uncertainty",
+              "seeking feedback"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I can't definitively say this one way of the other",
+              "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized."
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path contains three posts, each with source‑verified phrase candidates. At least one candidate, \"I can't definitively say this one way of the other\", is a reusable conversational phrase that is not purely technical. The conversation remains coherent, stays within the 2–6 post limit, and the technical detail is moderate, allowing learners to focus on conversational patterns such as expressing uncertainty and seeking feedback."
+          }
+        },
+        {
+          "case_id": "T003",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 11,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T003",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing uncertainty about adoption",
+              "seeking feedback"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I want to standardize hatchling targets."
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path contains four posts, mechanically valid, and includes source‑verified phrase candidates that are conversational in nature (e.g., \"I want to standardize hatchling targets.\"). The technical content is moderate and does not overwhelm the conversational learning value. All criteria for a valid quiz path are satisfied."
+          }
+        },
+        {
+          "case_id": "T004",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 10,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T004",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing uncertainty about adoption",
+              "seeking feedback"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I want to standardize hatchling targets.",
+              "I feel like this overcomplicates the pyproject.toml",
+              "I don't expect pip to",
+              "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized."
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path contains four posts, each with at least one source‑verified conversational phrase. The technical content is moderate and does not overwhelm the conversational learning value. The conversation is coherent, the structure is mechanically valid, and the post count falls within the allowed range. Therefore the path is valid for a lightweight English phrase‑learning quiz session."
+          }
+        },
+        {
+          "case_id": "T005",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 10,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T005",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "seeking feedback on standardization",
+              "expressing uncertainty about adoption"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized."
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path contains four posts, which is within the allowed range of 2–6. The structure is mechanically valid and the conversation flows coherently. At least one phrase candidate is a reusable conversational expression: \"I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.\" Technical detail is present but not overwhelming, and the overall reading and technical burdens are moderate. Therefore the path satisfies all validity criteria."
+          }
+        },
+        {
+          "case_id": "T006",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 6,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T006",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing proposals and concerns",
+              "communicating availability of options"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I want to standardize hatchling targets.",
+              "I feel like this overcomplicates the pyproject.toml",
+              "I have a couple of these options",
+              "you can use the CLI directly"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path contains two posts, each with clear conversational intent and at least one source‑verified phrase that is reusable conversational wording. The technical detail is moderate and does not overwhelm the conversational learning value. The conversation is coherent and within the allowed length, satisfying all validity criteria."
+          }
+        },
+        {
+          "case_id": "T007",
+          "control_class": "invalid_disconnected_structure",
+          "expected_valid": false,
+          "actual_valid": false,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 6,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T007",
+            "valid_for_quiz": false,
+            "decision": "reject",
+            "confidence": "low",
+            "learning_focus": [],
+            "reading_burden": "low",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I'm pretty certain"
+            ],
+            "exclusion_reasons": [
+              "invalid_structure"
+            ],
+            "explanation": "The supplied path is marked as mechanically invalid, which disqualifies it from being a valid quiz path regardless of other criteria."
+          }
+        },
+        {
+          "case_id": "T008",
+          "control_class": "invalid_no_phrase_evidence",
+          "expected_valid": false,
+          "actual_valid": false,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 0,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T008",
+            "valid_for_quiz": false,
+            "decision": "reject",
+            "confidence": "low",
+            "learning_focus": [],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [],
+            "exclusion_reasons": [
+              "no_reusable_phrase"
+            ],
+            "explanation": "The supplied path contains no phrase candidates, so it fails the requirement that at least one reusable conversational wording be present. Without such evidence, the path cannot be considered valid for a quiz session."
+          }
+        },
+        {
+          "case_id": "T009",
+          "control_class": "invalid_technical_only_phrase_evidence",
+          "expected_valid": false,
+          "actual_valid": false,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 10,
+            "reasoning_effort": "medium",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T009",
+            "valid_for_quiz": false,
+            "decision": "reject",
+            "confidence": "low",
+            "learning_focus": [],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [],
+            "exclusion_reasons": [
+              "no_reusable_phrase"
+            ],
+            "explanation": "All phrase candidates in the supplied posts are technical terms only and none represent reusable conversational wording. Therefore the path fails the requirement for at least one reusable phrase candidate."
+          }
+        }
+      ],
+      "metrics": {
+        "total_cases": 9,
+        "correct_cases": 9,
+        "accuracy": 1.0,
+        "real_valid_cases": 6,
+        "real_valid_accepted": 6,
+        "valid_path_recall": 1.0,
+        "invalid_controls": 3,
+        "invalid_controls_rejected": 3,
+        "invalid_control_rejection_rate": 1.0,
+        "false_rejections": [],
+        "false_acceptances": [],
+        "acceptance_target_met": true
+      }
+    },
+    "qwen": {
+      "model": "qwen3.6-27b:q4_k_m-tools",
+      "records": [
+        {
+          "case_id": "T001",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 6,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T001",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing proposals and concerns",
+              "questioning feasibility and adoption",
+              "indicating uncertainty"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I feel like this overcomplicates the pyproject.toml",
+              "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+              "I don't expect pip to",
+              "I don't *know* if that's the case"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path meets all validity criteria. It contains exactly two posts forming a coherent proposal-and-response sequence. The supplied phrase candidates are source-verified and clearly reusable in general conversational contexts (e.g., expressing concern about complexity, questioning adoption, indicating uncertainty). While the topic involves software build tools, the technical context does not overwhelm the conversational learning value, and the reading/technical burden remains within acceptable limits."
+          }
+        },
+        {
+          "case_id": "T002",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 8,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T002",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing proposals and concerns",
+              "seeking feedback and clarification",
+              "expressing uncertainty and doubt"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "low",
+            "reusable_phrase_evidence": [
+              "I feel like this overcomplicates the pyproject.toml",
+              "I don't expect pip to",
+              "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+              "I can't definitively say this one way of the other"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path meets all validity criteria: it is mechanically valid, contains exactly 3 posts (within the 2-6 limit), and forms a coherent conversational sequence about standardizing build targets. It supplies multiple source-verified, reusable conversational phrases focused on proposing ideas, expressing concern/uncertainty, and requesting feedback. The technical context is present but does not overwhelm the conversational learning value, making it fully suitable for a lightweight English phrase-learning quiz."
+          }
+        },
+        {
+          "case_id": "T003",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 11,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T003",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing proposals and concerns",
+              "seeking feedback",
+              "expressing uncertainty",
+              "clarifying context"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I feel like this overcomplicates the pyproject.toml",
+              "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+              "I don't *know* if that's the case",
+              "I'm pretty certain",
+              "I can't definitively say this one way of the other"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path satisfies all validity conditions: it is mechanically valid, presents a coherent conversational sequence regarding tool standardization and adoption, contains multiple source-verified reusable conversational phrases focused on proposing, questioning, seeking feedback, and clarifying, maintains a medium technical burden that does not overwhelm the conversational learning value, and contains exactly four posts. No exclusion criteria are triggered."
+          }
+        },
+        {
+          "case_id": "T004",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 10,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T004",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing uncertainty",
+              "seeking feedback",
+              "clarifying technical points",
+              "expressing concern about complexity"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I feel like this overcomplicates the pyproject.toml",
+              "I don't *know* if that's the case",
+              "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+              "They aren't implemented like that, of course"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path satisfies all five validity conditions: it is mechanically valid, forms a coherent four-post discussion about Python build tool standardization, and falls within the required 2-6 post range. The technical context is present but manageable (low to medium burden) and does not obscure the conversational language. Multiple source-verified phrase candidates clearly demonstrate reusable conversational functions such as expressing uncertainty, seeking feedback, and clarifying, making the path suitable for a lightweight English learning quiz."
+          }
+        },
+        {
+          "case_id": "T005",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 10,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T005",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing uncertainty",
+              "seeking feedback",
+              "stating conditions for action",
+              "proposing and evaluating ideas"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I feel like this overcomplicates the pyproject.toml",
+              "I don't *know* if that's the case",
+              "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+              "I want to see more than one tool implementing something with significant adoption before trying to standardize it.",
+              "I can't definitively say this one way of the other"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path satisfies all five validity conditions: it is mechanically valid with exactly four posts (within the 2–6 limit), presents a coherent back-and-forth sequence about standardization and adoption, includes multiple source-verified phrases that function as reusable conversational language rather than isolated technical terms, and maintains a medium technical burden that does not overshadow the practical phrasing. No exclusion criteria are triggered."
+          }
+        },
+        {
+          "case_id": "T006",
+          "control_class": "real_valid_path",
+          "expected_valid": true,
+          "actual_valid": true,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 6,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T006",
+            "valid_for_quiz": true,
+            "decision": "accept",
+            "confidence": "high",
+            "learning_focus": [
+              "expressing proposals and concerns",
+              "expressing reluctance and preferences",
+              "suggesting alternatives"
+            ],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [
+              "I feel like this overcomplicates the pyproject.toml",
+              "I have no desire to see them formalised",
+              "you can use the CLI directly"
+            ],
+            "exclusion_reasons": [],
+            "explanation": "The path satisfies all validity criteria: it is mechanically valid with exactly two posts, forms a coherent proposal-response sequence, provides multiple source-verified reusable conversational phrases, and maintains a medium technical burden that does not overwhelm the conversational learning value."
+          }
+        },
+        {
+          "case_id": "T007",
+          "control_class": "invalid_disconnected_structure",
+          "expected_valid": false,
+          "actual_valid": false,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 6,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T007",
+            "valid_for_quiz": false,
+            "decision": "reject",
+            "confidence": "high",
+            "learning_focus": [],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [],
+            "exclusion_reasons": [
+              "invalid_structure"
+            ],
+            "explanation": "The supplied metadata explicitly marks the path as mechanically invalid ('mechanically_valid': false), which directly violates the first validity criterion. Although the post count falls within the acceptable range and reusable conversational phrases are present, the structural failure alone mandates rejection."
+          }
+        },
+        {
+          "case_id": "T008",
+          "control_class": "invalid_no_phrase_evidence",
+          "expected_valid": false,
+          "actual_valid": false,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 0,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T008",
+            "valid_for_quiz": false,
+            "decision": "reject",
+            "confidence": "high",
+            "learning_focus": [],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [],
+            "exclusion_reasons": [
+              "no_reusable_phrase"
+            ],
+            "explanation": "The path satisfies structural, length, and coherence requirements, and the technical burden is manageable. However, every post contains an empty 'phrase_candidates' array. The validity criteria explicitly require at least one supplied source-verified phrase candidate that functions as reusable conversational wording. Since no candidates were provided, the path cannot support phrase-learning and is rejected."
+          }
+        },
+        {
+          "case_id": "T009",
+          "control_class": "invalid_technical_only_phrase_evidence",
+          "expected_valid": false,
+          "actual_valid": false,
+          "correct": true,
+          "accepted_attempt": 1,
+          "validation": {
+            "passed": true,
+            "errors": [],
+            "available_phrase_count": 10,
+            "reasoning_effort": "high",
+            "timed_out": false
+          },
+          "result": {
+            "case_id": "T009",
+            "valid_for_quiz": false,
+            "decision": "reject",
+            "confidence": "high",
+            "learning_focus": [],
+            "reading_burden": "medium",
+            "technical_burden": "medium",
+            "reusable_phrase_evidence": [],
+            "exclusion_reasons": [
+              "no_reusable_phrase"
+            ],
+            "explanation": "The path fails criterion 3: all supplied phrase candidates are explicitly marked as 'technical term only' (e.g., 'pyproject.toml', 'build_wheel', 'pip', 'uv', 'PEP 517'). None qualify as reusable conversational wording. While the structure is valid, the sequence is coherent, and the post count is within limits, the complete absence of conversational phrase evidence makes it unsuitable for the stated phrase-learning goal."
+          }
+        }
+      ],
+      "metrics": {
+        "total_cases": 9,
+        "correct_cases": 9,
+        "accuracy": 1.0,
+        "real_valid_cases": 6,
+        "real_valid_accepted": 6,
+        "valid_path_recall": 1.0,
+        "invalid_controls": 3,
+        "invalid_controls_rejected": 3,
+        "invalid_control_rejection_rate": 1.0,
+        "false_rejections": [],
+        "false_acceptances": [],
+        "acceptance_target_met": true
+      }
+    }
+  },
+  "agreement": {
+    "case_count": 9,
+    "same_decision_count": 9,
+    "agreement_rate": 1.0,
+    "disagreement_case_ids": []
+  }
+}

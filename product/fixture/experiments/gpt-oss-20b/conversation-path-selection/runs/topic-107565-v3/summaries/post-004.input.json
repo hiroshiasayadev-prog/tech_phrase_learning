@@ -1,0 +1,43 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 4,
+    "username": "MattP",
+    "explicit_reply_to": 2,
+    "quote_targets": [],
+    "projected_parent": 2,
+    "projection_reason": "explicit_reply",
+    "authored_text": "The goal with these non-standard targets isn't for them to be installed (by `pip` or related). They exist for any other context in which python code will need to be distributed. I.e. `shiv` or the other examples given earlier. \n\nI understand that I'm approaching this from a more abstract standpoint as opposed to addressing a concrete problem.\n\nI can't definitively say this one way of the other, but since this ecosystem is still relatively new, I feel as though the users who need to create custom targets have probably just stayed with their old build system.\n\nSince I only provided examples for hatch targets in the original post, I went to go look for projects using distutils/[`setuptools.Command`](https://setuptools.pypa.io/en/latest/userguide/extension.html#setuptools.Command) to create these custom targets and found these.\n\n- [py2app](https://github.com/ronaldoussoren/py2app/tree/main): creating macOS `.app` files of executeable python.\n\n- [clamped](https://github.com/jimbaker/clamped): converting python code to java for use with Jython\n\n- [pex](https://pex.readthedocs.io/en/v2.1.41/buildingpex.html#using-bdist-pex): pex uses `bdist_pex` to build `.pex` files with setuptools\n\n- [conda-build](https://docs.conda.io/projects/conda-build/en/24.3.x/user-guide/recipes/build-without-recipe.html), [hatch-conda-build](https://pypi.org/project/hatch-conda-build/): builds conda packages\n\n- [cx-freeze](https://cx-freeze.readthedocs.io/en/stable/builtdist.html): pretty much just `py2app` for multiple OSes\n\n(side note: I found [Nuitka](https://nuitka.net/user-documentation/use-cases.html#setuptools-wheels) which compiles python into bytecode, but still seems to create a `.whl`, so that wouldn't really be considered a different target. It does create non wheel targets, so this proposal might be helpful for it, but it doesn't seem to use the traditional python packaging tools. I didn't dive deep enough to see how dependency management and environment creation is handled in the build process)\n\nTo answer the \"what frontends do I expect to use this\" more directly, I can see uv, hatch, pdm, and other frontends that strive to be extensible providing support for this (once again, hatch already supports this. Standardization of this interface would allow using the uv frontend with the hatchling backend). I am of the mentality that providing extensibility to python developers is good, but if it seems like this will go unused, then I can understand the desire to keep things simple.\n\nMaybe I'm demanding too much within the constraints of the build ecosystem and instead this sort of process should operate on already built `.whl`s like how [PyApp](https://github.com/ofek/pyapp) works, but I find it convenient for developers to just have frontend tools like uv that are able to handle all parts of taking python code from its source to its final deliverable.\n\nI would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+    "authored_text_truncated": false,
+    "quoted_blocks_removed": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 2,
+      "summary": "I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.",
+      "conversational_intent": "questioning and evaluating",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "I'm unsure if there is real demand for non‑standard targets beyond niche hatch plugins.",
+      "phrase_candidates": [
+        {
+          "text": "I don't expect pip to",
+          "function": "expressing doubt about adoption"
+        },
+        {
+          "text": "Without a frontend using these new APIs",
+          "function": "highlighting prerequisite for standardization"
+        },
+        {
+          "text": "I don't *know* if that's the case",
+          "function": "indicating uncertainty about the claim"
+        }
+      ]
+    },
+    "quote_target_summaries": []
+  }
+}

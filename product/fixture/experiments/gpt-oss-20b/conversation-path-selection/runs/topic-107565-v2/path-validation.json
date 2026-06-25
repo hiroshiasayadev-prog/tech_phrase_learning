@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "errors": [],
+  "path": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "rejected_post_numbers": [
+    3,
+    6,
+    7
+  ]
+}

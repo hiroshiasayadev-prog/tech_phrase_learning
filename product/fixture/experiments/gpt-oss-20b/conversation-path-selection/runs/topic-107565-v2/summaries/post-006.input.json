@@ -1,0 +1,68 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 6,
+    "username": "steve.dower",
+    "explicit_reply_to": 4,
+    "quote_targets": [
+      4
+    ],
+    "projected_parent": 4,
+    "projection_reason": "explicit_reply",
+    "source_text": "[quote=\"Matthew Pleskow, post:4, topic:107565, username:MattP\"]\nSince I only provided examples for hatch targets in the original post, I went to go look for projects using distutils/[`setuptools.Command`](https://setuptools.pypa.io/en/latest/userguide/extension.html#setuptools.Command) to create these custom targets and found these.\n[/quote]\n\nWhat you've listed here are actually _frontend_ tools, in PEP 517 land. They aren't implemented like that, of course, but in the modern world all of these tools would look at a directory of code, infer what tool is needed to compile/layout the files, and then take the compiled files and do their own arrangements. If they used a wheel as an intermediate step and then unpacked it to e.g. turn the files into a `.app` or `.pex`, they start to look a lot more like `pip` (which unpacks a wheel to integrate it into a Python environment) than `setuptools` (which takes sources and produces a wheel-shaped Python library).",
+    "source_text_truncated": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 4,
+      "summary": "He explains that non‑standard targets are for distribution, not pip installs, and notes that many developers still use legacy build systems; he wonders if standardizing this interface is worthwhile and asks frontends for feedback.",
+      "conversational_intent": "evaluating, qualifying, proposing, seeking feedback",
+      "stance": "uncertain, evaluating, challenging",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.",
+      "phrase_candidates": [
+        {
+          "text": "I can't definitively say this one way of the other",
+          "function": "expressing uncertainty about the direction of standardization"
+        },
+        {
+          "text": "Maybe I'm demanding too much within the constraints of the build ecosystem",
+          "function": "self‑critical assessment of the proposal’s ambition"
+        },
+        {
+          "text": "I would love to get some feedback from any of these frontend developers",
+          "function": "soliciting input from frontend developers"
+        }
+      ]
+    },
+    "quote_target_summaries": [
+      {
+        "post_number": 4,
+        "summary": "He explains that non‑standard targets are for distribution, not pip installs, and notes that many developers still use legacy build systems; he wonders if standardizing this interface is worthwhile and asks frontends for feedback.",
+        "conversational_intent": "evaluating, qualifying, proposing, seeking feedback",
+        "stance": "uncertain, evaluating, challenging",
+        "technical_burden": "medium",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.",
+        "phrase_candidates": [
+          {
+            "text": "I can't definitively say this one way of the other",
+            "function": "expressing uncertainty about the direction of standardization"
+          },
+          {
+            "text": "Maybe I'm demanding too much within the constraints of the build ecosystem",
+            "function": "self‑critical assessment of the proposal’s ambition"
+          },
+          {
+            "text": "I would love to get some feedback from any of these frontend developers",
+            "function": "soliciting input from frontend developers"
+          }
+        ]
+      }
+    ]
+  }
+}

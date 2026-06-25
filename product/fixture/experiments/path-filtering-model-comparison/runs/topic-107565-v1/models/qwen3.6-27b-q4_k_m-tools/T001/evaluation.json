@@ -1,0 +1,36 @@
+{
+  "case_id": "T001",
+  "control_class": "real_valid_path",
+  "expected_valid": true,
+  "actual_valid": true,
+  "correct": true,
+  "accepted_attempt": 1,
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "available_phrase_count": 6,
+    "reasoning_effort": "high",
+    "timed_out": false
+  },
+  "result": {
+    "case_id": "T001",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing proposals and concerns",
+      "questioning feasibility and adoption",
+      "indicating uncertainty"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I feel like this overcomplicates the pyproject.toml",
+      "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+      "I don't expect pip to",
+      "I don't *know* if that's the case"
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path meets all validity criteria. It contains exactly two posts forming a coherent proposal-and-response sequence. The supplied phrase candidates are source-verified and clearly reusable in general conversational contexts (e.g., expressing concern about complexity, questioning adoption, indicating uncertainty). While the topic involves software build tools, the technical context does not overwhelm the conversational learning value, and the reading/technical burden remains within acceptable limits."
+  }
+}

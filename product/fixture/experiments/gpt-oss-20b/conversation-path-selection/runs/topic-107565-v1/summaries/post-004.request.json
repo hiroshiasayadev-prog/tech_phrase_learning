@@ -1,0 +1,68 @@
+{
+  "model": "gpt-oss:20b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Preserve source stance and uncertainty. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Post summary prompt v1\n\n- **prompt_id**: `conversation-post-summary-v1`\n- **status**: investigation\n- **model_role**: post summarizer\n\n## User prompt template\n\nSummarize one authentic technical-discussion post for an English phrase-learning pipeline.\n\nThe learner already understands software engineering.\nThe summary should make the conversational movement easy to follow without requiring the learner to read long code blocks, link lists, or implementation details.\n\nRequirements:\n\n- Write one or two short natural-English sentences.\n- Keep the summary at 55 words or fewer.\n- Preserve the author's stance, uncertainty, qualification, and conversational intent.\n- Do not invent technical facts, motives, adoption claims, or conclusions.\n- Omit code and detailed examples unless they are essential to the author's main point.\n- Describe what the author is doing conversationally, not every technical detail they mention.\n- Treat the summary as generated text, not as a quotation.\n- Use the supplied parent and quote summaries only as context. The authentic current post is the authority.\n\nReturn one JSON object matching the supplied JSON schema.\n\n## Input\n\n{\n  \"topic\": {\n    \"id\": 107565,\n    \"title\": \"Thoughts on standardizing build backend support for non-standard targets\"\n  },\n  \"post\": {\n    \"post_number\": 4,\n    \"username\": \"MattP\",\n    \"explicit_reply_to\": 2,\n    \"quote_targets\": [],\n    \"projected_parent\": 2,\n    \"projection_reason\": \"explicit_reply\",\n    \"source_text\": \"The goal with these non-standard targets isn't for them to be installed (by `pip` or related). They exist for any other context in which python code will need to be distributed. I.e. `shiv` or the other examples given earlier. \\n\\nI understand that I'm approaching this from a more abstract standpoint as opposed to addressing a concrete problem.\\n\\nI can't definitively say this one way of the other, but since this ecosystem is still relatively new, I feel as though the users who need to create custom targets have probably just stayed with their old build system.\\n\\nSince I only provided examples for hatch targets in the original post, I went to go look for projects using distutils/[`setuptools.Command`](https://setuptools.pypa.io/en/latest/userguide/extension.html#setuptools.Command) to create these custom targets and found these.\\n\\n- [py2app](https://github.com/ronaldoussoren/py2app/tree/main): creating macOS `.app` files of executeable python.\\n\\n- [clamped](https://github.com/jimbaker/clamped): converting python code to java for use with Jython\\n\\n- [pex](https://pex.readthedocs.io/en/v2.1.41/buildingpex.html#using-bdist-pex): pex uses `bdist_pex` to build `.pex` files with setuptools\\n\\n- [conda-build](https://docs.conda.io/projects/conda-build/en/24.3.x/user-guide/recipes/build-without-recipe.html), [hatch-conda-build](https://pypi.org/project/hatch-conda-build/): builds conda packages\\n\\n- [cx-freeze](https://cx-freeze.readthedocs.io/en/stable/builtdist.html): pretty much just `py2app` for multiple OSes\\n\\n(side note: I found [Nuitka](https://nuitka.net/user-documentation/use-cases.html#setuptools-wheels) which compiles python into bytecode, but still seems to create a `.whl`, so that wouldn't really be considered a different target. It does create non wheel targets, so this proposal might be helpful for it, but it doesn't seem to use the traditional python packaging tools. I didn't dive deep enough to see how dependency management and environment creation is handled in the build process)\\n\\nTo answer the \\\"what frontends do I expect to use this\\\" more directly, I can see uv, hatch, pdm, and other frontends that strive to be extensible providing support for this (once again, hatch already supports this. Standardization of this interface would allow using the uv frontend with the hatchling backend). I am of the mentality that providing extensibility to python developers is good, but if it seems like this will go unused, then I can understand the desire to keep things simple.\\n\\nMaybe I'm demanding too much within the constraints of the build ecosystem and instead this sort of process should operate on already built `.whl`s like how [PyApp](https://github.com/ofek/pyapp) works, but I find it convenient for developers to just have frontend tools like uv that are able to handle all parts of taking python code from its source to its final deliverable.\\n\\nI would love to get some feedback from any of these frontend developers if this is something they can see being standardized.\",\n    \"source_text_truncated\": false\n  },\n  \"context\": {\n    \"projected_parent_summary\": {\n      \"post_number\": 2,\n      \"summary\": \"pf_moore questions which frontends would adopt the new interface, noting pip likely won’t, and says without such usage there’s little reason to standardise. He also observes little demand for non‑standard targets, though he admits he may not be aware of all needs.\",\n      \"conversational_intent\": \"seeking feedback and discussion\",\n      \"stance\": \"expressing uncertainty\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"Uncertainty about which frontends will adopt the new interface and whether there is sufficient demand for non‑standard targets.\"\n    },\n    \"quote_target_summaries\": []\n  }\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"post_number\": {\n      \"type\": \"integer\"\n    },\n    \"summary\": {\n      \"type\": \"string\"\n    },\n    \"conversational_intent\": {\n      \"type\": \"string\"\n    },\n    \"stance\": {\n      \"type\": \"string\"\n    },\n    \"technical_burden\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"phrase_learning_potential\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"important_uncertainty\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ]\n    }\n  },\n  \"required\": [\n    \"post_number\",\n    \"summary\",\n    \"conversational_intent\",\n    \"stance\",\n    \"technical_burden\",\n    \"phrase_learning_potential\",\n    \"important_uncertainty\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "post_number": {
+        "type": "integer"
+      },
+      "summary": {
+        "type": "string"
+      },
+      "conversational_intent": {
+        "type": "string"
+      },
+      "stance": {
+        "type": "string"
+      },
+      "technical_burden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "phrase_learning_potential": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "important_uncertainty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    "required": [
+      "post_number",
+      "summary",
+      "conversational_intent",
+      "stance",
+      "technical_burden",
+      "phrase_learning_potential",
+      "important_uncertainty"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0
+  },
+  "keep_alive": "30m",
+  "think": "medium"
+}

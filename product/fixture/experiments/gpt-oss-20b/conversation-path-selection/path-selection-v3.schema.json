@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "selected_path": {
+      "type": "array",
+      "items": {"type": "integer"},
+      "minItems": 2,
+      "maxItems": 6
+    },
+    "path_summary": {"type": "string"},
+    "selection_reasons": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "rejected_alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "post_number": {"type": "integer"},
+          "reason": {"type": "string"}
+        },
+        "required": ["post_number", "reason"],
+        "additionalProperties": false
+      }
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    }
+  },
+  "required": [
+    "selected_path",
+    "path_summary",
+    "selection_reasons",
+    "rejected_alternatives",
+    "confidence"
+  ],
+  "additionalProperties": false
+}

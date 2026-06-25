@@ -1,0 +1,86 @@
+{
+  "evaluation": {
+    "summary_reviews": [
+      {
+        "post_number": 1,
+        "verdict": "pass",
+        "fidelity_issues": [],
+        "readability": "high",
+        "notes": "Summary accurately captures Matt’s proposal, uncertainty about pyproject.toml, and request for feedback."
+      },
+      {
+        "post_number": 2,
+        "verdict": "pass",
+        "fidelity_issues": [],
+        "readability": "high",
+        "notes": "Summary reflects the author’s concerns about pip support, lack of demand, and uncertainty."
+      },
+      {
+        "post_number": 3,
+        "verdict": "pass",
+        "fidelity_issues": [],
+        "readability": "high",
+        "notes": "Summary faithfully reports the author’s stance on formalising pymsbuild options."
+      },
+      {
+        "post_number": 4,
+        "verdict": "pass",
+        "fidelity_issues": [],
+        "readability": "high",
+        "notes": "Summary captures the author’s exploration of non‑standard targets, examples, and request for frontend feedback."
+      },
+      {
+        "post_number": 5,
+        "verdict": "pass",
+        "fidelity_issues": [],
+        "readability": "high",
+        "notes": "Summary correctly states the historical reliance on setuptools and current independence via pyproject.toml."
+      },
+      {
+        "post_number": 6,
+        "verdict": "pass",
+        "fidelity_issues": [],
+        "readability": "high",
+        "notes": "Summary accurately explains the nature of the listed tools as frontend tools per PEP 517."
+      },
+      {
+        "post_number": 7,
+        "verdict": "pass",
+        "fidelity_issues": [],
+        "readability": "high",
+        "notes": "Summary reflects the author’s stance on waiting for broader adoption before standardising."
+      }
+    ],
+    "path_verdict": "pass",
+    "coherence_notes": [
+      "All selected summaries are coherent with each other and with the source text.",
+      "No contradictions or unsupported claims were found across the selected posts."
+    ],
+    "reading_burden": "medium",
+    "phrase_learning_potential": "high",
+    "overall_notes": "The generated summaries faithfully represent the source material, preserve uncertainty, and maintain attribution. No revisions are required."
+  },
+  "coverage_validation": {
+    "passed": true,
+    "errors": [],
+    "reviewed_post_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "expected_post_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "human_review_required": true
+}

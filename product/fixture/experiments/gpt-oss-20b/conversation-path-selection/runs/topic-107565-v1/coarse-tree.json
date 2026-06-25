@@ -1,0 +1,67 @@
+{
+  "root_post_number": 1,
+  "nodes": [
+    {
+      "post_number": 1,
+      "username": "MattP",
+      "explicit_reply_to": null,
+      "quote_targets": [],
+      "projected_parent": null,
+      "projection_reason": "opening_post"
+    },
+    {
+      "post_number": 2,
+      "username": "pf_moore",
+      "explicit_reply_to": null,
+      "quote_targets": [],
+      "projected_parent": 1,
+      "projection_reason": "topic_level_projection"
+    },
+    {
+      "post_number": 3,
+      "username": "steve.dower",
+      "explicit_reply_to": null,
+      "quote_targets": [],
+      "projected_parent": 1,
+      "projection_reason": "topic_level_projection"
+    },
+    {
+      "post_number": 4,
+      "username": "MattP",
+      "explicit_reply_to": 2,
+      "quote_targets": [],
+      "projected_parent": 2,
+      "projection_reason": "explicit_reply"
+    },
+    {
+      "post_number": 5,
+      "username": "bwoodsend",
+      "explicit_reply_to": 4,
+      "quote_targets": [
+        4
+      ],
+      "projected_parent": 4,
+      "projection_reason": "explicit_reply"
+    },
+    {
+      "post_number": 6,
+      "username": "steve.dower",
+      "explicit_reply_to": 4,
+      "quote_targets": [
+        4
+      ],
+      "projected_parent": 4,
+      "projection_reason": "explicit_reply"
+    },
+    {
+      "post_number": 7,
+      "username": "cjames23",
+      "explicit_reply_to": 4,
+      "quote_targets": [
+        4
+      ],
+      "projected_parent": 4,
+      "projection_reason": "explicit_reply"
+    }
+  ]
+}

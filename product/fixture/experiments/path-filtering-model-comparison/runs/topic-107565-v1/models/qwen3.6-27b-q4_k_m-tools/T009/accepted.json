@@ -1,0 +1,17 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "case_id": "T009",
+    "valid_for_quiz": false,
+    "decision": "reject",
+    "confidence": "high",
+    "learning_focus": [],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [],
+    "exclusion_reasons": [
+      "no_reusable_phrase"
+    ],
+    "explanation": "The path fails criterion 3: all supplied phrase candidates are explicitly marked as 'technical term only' (e.g., 'pyproject.toml', 'build_wheel', 'pip', 'uv', 'PEP 517'). None qualify as reusable conversational wording. While the structure is valid, the sequence is coherent, and the post count is within limits, the complete absence of conversational phrase evidence makes it unsuitable for the stated phrase-learning goal."
+  }
+}

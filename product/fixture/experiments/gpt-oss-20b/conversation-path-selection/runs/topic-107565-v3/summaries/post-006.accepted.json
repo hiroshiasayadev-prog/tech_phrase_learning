@@ -1,0 +1,22 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "post_number": 6,
+    "summary": "The author explains that the tools listed are frontend tools per PEP 517, not implemented as described; they analyze code directories, infer the needed tool, compile, and arrange outputs. Using a wheel intermediate would make them resemble pip more than setuptools.",
+    "conversational_intent": "clarifying",
+    "stance": "informative",
+    "technical_burden": "low",
+    "phrase_learning_potential": "high",
+    "important_uncertainty": null,
+    "phrase_candidates": [
+      {
+        "text": "What you've listed here are actually _frontend_ tools",
+        "function": "introducing clarification"
+      },
+      {
+        "text": "They aren't implemented like that, of course",
+        "function": "expressing clarification"
+      }
+    ]
+  }
+}

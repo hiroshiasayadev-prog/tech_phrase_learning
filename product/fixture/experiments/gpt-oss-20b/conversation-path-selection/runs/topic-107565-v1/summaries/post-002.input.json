@@ -1,0 +1,28 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 2,
+    "username": "pf_moore",
+    "explicit_reply_to": null,
+    "quote_targets": [],
+    "projected_parent": 1,
+    "projection_reason": "topic_level_projection",
+    "source_text": "What *frontend* tools do you expect to support this new interface? I don't expect pip to - pip currently only uses `build_wheel` and the associated methods, we don't even have a need for `build_sdist`.\n\nWithout a frontend using these new APIs, I don't see a good reason for standardising anything.\n\nThere's also the fact that I've seen almost no demand for building \"non-standard targets\" of the form you're describing, but that may simply because I don't work on tools that would see such demand. I note that the examples you found are *plugins* for hatch, and therefore could easily have been created to satisfy one person's nice use case (I don't *know* if that's the case, though, so I'm not claiming there's no demand, just that I'm not aware of any).",
+    "source_text_truncated": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 1,
+      "summary": "MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.",
+      "conversational_intent": "seeking feedback and discussion",
+      "stance": "proposing a new idea, open to critique",
+      "technical_burden": "high",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "uncertain about best approach, whether to include targets in pyproject.toml, how to handle custom function names"
+    },
+    "quote_target_summaries": []
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "selected_path": [
+    1,
+    2,
+    4,
+    6
+  ],
+  "path_summary": "Opening post proposing standardization, followed by a question about frontend adoption, then a reply clarifying the target use cases, and a clarification that the tools are frontend build tools under PEP 517 rather than setuptools commands.",
+  "selection_reasons": [
+    "Provides a clear question–answer–clarification flow that is easy to follow.",
+    "Contains useful disagreement and clarification language suitable for phrase learning.",
+    "Avoids heavy technical detail while still covering the core discussion points.",
+    "Keeps the path length within the 2–6 post requirement."
+  ],
+  "rejected_alternatives": [
+    {
+      "post_number": 5,
+      "reason": "Focuses on historical shift and tooling decoupling, which is less directly relevant to the clarification of the new interface."
+    },
+    {
+      "post_number": 7,
+      "reason": "Emphasizes adoption uncertainty rather than providing a concrete clarification of the interface."
+    },
+    {
+      "post_number": 3,
+      "reason": "Too short and does not engage with the main discussion about standardization."
+    },
+    {
+      "post_number": 4,
+      "reason": "Too short; lacks a follow‑up clarification or evaluation."
+    }
+  ],
+  "confidence": "high"
+}

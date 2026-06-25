@@ -1,0 +1,9 @@
+{
+  "post_number": 6,
+  "summary": "Steve explains that the tools MattP listed are actually frontend build tools under PEP 517, not implemented as setuptools commands. He notes they would infer the needed compiler, build, and arrange files, and if they used a wheel as an intermediate they'd resemble pip more than setuptools.",
+  "conversational_intent": "clarifying",
+  "stance": "neutral",
+  "technical_burden": "low",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": null
+}

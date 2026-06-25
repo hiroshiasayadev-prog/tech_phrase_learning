@@ -1,0 +1,232 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "selected_path": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "all_posts": [
+    {
+      "post_number": 1,
+      "selected": true,
+      "username": "MattP",
+      "authored_text": "I'm new to the python packaging realm, but wanted to propose something that I've been wanting for a while.\n\nI want to standardize hatchling targets.\n\nFrom what I can tell hatchling and setuptools (which treats them as custom \"commands\") are the only popular backends that support custom targets.\n\nBuild frontends have no reason to support custom backend targets, so if you want to use custom targets you have to use hatch.\n\n## What do I mean by target?\n\nI wasn't actually sure the correct terminology here, but I went with target since hatchling uses it.\n\nA target can be any artifact that is created by applying some transformation to the source.\n\nObviously, wheels and sdists are targets.\n\nI will refer to them as \"standard targets\" going forward.\n\n## Motivation\n\nI personally believe that providing extensibility to the interface is a good thing.\n\nThe current system forces people who want to create a custom target to either use hatch specifically or create their own build frontend and backend.\n\n### Zipapps\n\nThe primary purpose custom targets will serve me is the ability to create targets like [shiv](https://shiv.readthedocs.io/en/latest/) which vendor their dependencies.\n\n### Other Examples\n\nThese examples are linked in the hatch documentation\n\n- [hatch-zipped-directory](https://github.com/dairiki/hatch-zipped-directory)\n\n- [hatch-aws](https://github.com/trash-panda-v91-beta/hatch-aws)\n\nI also found this\n\n- [hatch-babel](https://github.com/NiklasRosenstein/hatch-babel)\n\nOther ideas\n\n- If you had a python program that accepts python plugins, an alternative packaging scheme can be desirable for the plugins.\n\n- Other forms of packaged python meant as a standalone application.\n\n### What This is Not\n\nThis is not intended to provide a means to provide different _flavors_ of targets.\n\nWhat I mean by _flavors_ is performing some sort of transformation prior to creating a standard target.\n\nI.e. if you wanted to perform some form of obfuscation or minification prior to building a wheel, this is not a separate target.\n\nThis is intended to be done through the `config_settings` passed to the backend.\n\n## Interface\n\nHere's my idea for what an interface like this would look like.\n\nThis is a rough outline and I welcome any ideas on the best way to do this.\n\nTo keep in line with PEP 517 every target will have at least one required hook for building and one optional hook for getting build dependencies.\n\n### Build Hook\n\n```py\nbuild_XXX(output_directory, config_settings=None):\n  ...\n```\n\nLike the PEP 517 hooks, the first argument is the output directory of the build process. The same requirements hold for `build_wheel` and `build_sdist` as in PEP 517, but for targets outside of wheels and sdists, the hook must place the artifact(s) in the `output_directory`. If the hook creates a single file or directory, it must return the basename of that file or directory. Otherwise, it must return a list of the basenames of each file or directory it created.\n\nOther than the special case of `build_wheel`, no additional arguments are allowed.\n\nEvery build configuration option should be set through `config_settings`.\n\n### Requirements Hook\n\n```py\nget_requires_for_build_XXX(config_settings=None):\n   ...\n```\n\nThis follows the same specifications as in PEP 517. The returned dependencies will be installed when calling the associated `build_XXX` hook.\n\n### Target Naming\n\nIt might be convenient for the frontend or other tools to know what targets can be built.\n\nAdditionally, certain targets might not want to use the `build_XXX` or `get_requires_for_XXX` naming scheme.\n\nMy _initial_ solution to this is putting something in the pyproject.toml.\n\nTargets are listed in the `build-system` table.\n\nThe `targets` key is a table containing the target name associated with another table containing an optional `build_function` and an optional `requires_function`.\n\nBy default, the build_function is `build_TARGETNAME` and the requires_function is `get_requires_for_BUILD_FUNCTION`.\n\nAssume that the wheel target and sdist target are included by default, but they can be overritten by the targets key.\n\n```toml\n[build-system]\n\n# Defined by PEP 518:\n\nrequires = [\"my_custom_build_library\"]\n\n# Defined by PEP 517:\n\nbuild-backend = \"local_backend\"\n\nbackend-path = [\"backend\"]\n\n# Defined here\n\ntargets = {\n\n  shiv = {},\n\n  custom_target = {\n\n    build_function = \"build_my_target\",\n\n    requires_function = \"get_my_requires\"\n\n  },\n\n  other_target = {\n\n    build_function = \"do_other\"\n\n  }\n\n}\n\n```\n\nAlternatively, they can be defined like:\n\n```toml\n[build-system.targets.shiv]\n\n#build_function = \"build_shiv\"\n\n#requires_function = \"get_requires_for_build_shiv\"\n\n[build-system.targets.custom_target]\n\nbuild_function = \"build_my_target\"\n\nrequires_function = \"get_my_requires\"\n\n[build-system.targets.other_target]\n\nbuild_function = \"do_other\"\n\n#requires_function = \"get_requires_for_do_other\"\n\n```\n\nIn this example, the backend may provide the `build_wheel`, `build_sdist`, `build_shiv`, `build_my_target`, and `do_other` functions.\n\nIf a build function is not provided by the backend it should raise an `AttributeError` when the frontend calls it.\n\nThe backend may optionally provide the `get_requires_for_build_wheel`, `get_requires_for_build_sdist`, `get_requires_for_build_shiv`, `get_my_requires`, and `get_requires_for_do_other` functions.\n\nIf a requires function is not provided by the backend, the frontend should assume an implementation equivalent to `return []` as described in PEP 517.\n\n#### Notes\n\n__I am looking for feedback here. I feel like this overcomplicates the pyproject.toml__\n\nThe primary intention with including the targets key is to provide static information to the build frontend and other tools that might use the `pyproject.toml`.\n\nI don't know if this is a desirable feature.\n\nI'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\n\nI'm not sure if the `pyproject.toml` should include this information, or if this is something that should be handled solely by the build frontend.\n\nFor projects with many targets, it seems like using this might bloat the pyproject.toml.\n\nI don't want build backends to have to support multiple targets outside of wheels and sdist.\n\nDoes including the `targets` as a key confuse users that lack a thorough understanding of their backend?\n\nShould custom function names be allowed or should the format be restricted to `build_TARGETNAME`?\n\nThis would allow the `targets` key to just be a list of names instead of a table.\n\nThe requires_function is optional.\n\nIf the `pyproject.toml` specifies a specific `requires_function` and it doesn't exist, should this be silently ignored?\n\nShould the frontend warn the user?\n\nIt might also make sense to support using different backends for different targets, but thought that would complicate this even further.\n\nSomething along the lines of this could make it easier to distribute custom backends meant for different targets.\n\n```toml\n[build-system]\n\nrequires = [\"hatchling\", \"shiv_builder\"]\n\nbuild-backend = \"hatchling.build\"\n\ntargets = {\n  shiv = { \n    backend = \"shiv_builder.build\",\n    build_function = \"build_shiv\" \n  }\n}\n\n```\n\n### Minimal Alternative\n\nTo avoid the complications described above, it might be easier to just set up a basic interface that involves the build frontend dynamically looking up functions from the backend.\n\nThis might make implementation a lot simpler and get something like this pushed through the PEP pipeline much faster.\n\nSimply, the build frontend exposes the ability to the user to set a target name, and then attempts to call `build_TARGETNAME`/`get_requires_for_build_TARGETNAME` from the backend.\n\nThis solution would be backwards compatible and would not require `pyproject.toml` updates.\n\nA backend is free to use any implementation they like, but I imagine a module level `__getattr__` might make a lot of sense here:\n\n```py\n# backend/build.py\n\ndef build_sdist(...):\n\n  ...\n\ndef build_wheel(...):\n\n  ...\n\n...\n\ndef __getattr__(name):\n\n  return do_dynamic_lookup(name)\n\n```\n\n#### Another Alternative\n\nOne other possible option to putting targets in the `pyproject.toml` would be to have a function like `get_targets` which the backend should define which lists the available targets (and possibly their custom function names). If undefined, the frontend should only assume the functions from PEP 517 are defined.\n\n## Conclusion\n\nTo recap, I just wanted to get the ball rolling on something that I've wanted out of python packaging. I'm not super familiar with how this process should go.\n\nI'd be happy to flush this out further since clearly there's a lot of specifics that still have to be determined, but I wanted to get the general reception of this idea before spending more time working on this.",
+      "authored_text_truncated": false,
+      "quoted_blocks_removed": false,
+      "quote_targets": [],
+      "generated_summary": {
+        "post_number": 1,
+        "summary": "Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.",
+        "conversational_intent": "seeking feedback and clarification",
+        "stance": "proposing and questioning",
+        "technical_burden": "medium",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+        "phrase_candidates": [
+          {
+            "text": "I want to standardize hatchling targets.",
+            "function": "expressing a proposal"
+          },
+          {
+            "text": "I feel like this overcomplicates the pyproject.toml",
+            "function": "expressing concern about complexity"
+          },
+          {
+            "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+            "function": "expressing uncertainty about scope"
+          }
+        ]
+      }
+    },
+    {
+      "post_number": 2,
+      "selected": true,
+      "username": "pf_moore",
+      "authored_text": "What *frontend* tools do you expect to support this new interface? I don't expect pip to - pip currently only uses `build_wheel` and the associated methods, we don't even have a need for `build_sdist`.\n\nWithout a frontend using these new APIs, I don't see a good reason for standardising anything.\n\nThere's also the fact that I've seen almost no demand for building \"non-standard targets\" of the form you're describing, but that may simply because I don't work on tools that would see such demand. I note that the examples you found are *plugins* for hatch, and therefore could easily have been created to satisfy one person's nice use case (I don't *know* if that's the case, though, so I'm not claiming there's no demand, just that I'm not aware of any).",
+      "authored_text_truncated": false,
+      "quoted_blocks_removed": false,
+      "quote_targets": [],
+      "generated_summary": {
+        "post_number": 2,
+        "summary": "I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.",
+        "conversational_intent": "questioning and evaluating",
+        "stance": "questioning",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "I'm unsure if there is real demand for non‑standard targets beyond niche hatch plugins.",
+        "phrase_candidates": [
+          {
+            "text": "I don't expect pip to",
+            "function": "expressing doubt about adoption"
+          },
+          {
+            "text": "Without a frontend using these new APIs",
+            "function": "highlighting prerequisite for standardization"
+          },
+          {
+            "text": "I don't *know* if that's the case",
+            "function": "indicating uncertainty about the claim"
+          }
+        ]
+      }
+    },
+    {
+      "post_number": 3,
+      "selected": false,
+      "username": "steve.dower",
+      "authored_text": "FWIW, I have a couple of these options for `pymsbuild`, but I have no desire to see them formalised into a standard interface or exposed through a frontend.\n\nIf you want to e.g. build an MSIX instead of a wheel, you can use the CLI directly.",
+      "authored_text_truncated": false,
+      "quoted_blocks_removed": false,
+      "quote_targets": [],
+      "generated_summary": {
+        "post_number": 3,
+        "summary": "I have options for pymsbuild but don't want to formalise them into a standard interface or expose them via a frontend; you can just use the CLI to build an MSIX instead of a wheel.",
+        "conversational_intent": "informing",
+        "stance": "informing",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": null,
+        "phrase_candidates": [
+          {
+            "text": "I have a couple of these options",
+            "function": "expressing availability of options"
+          },
+          {
+            "text": "I have no desire to see them formalised",
+            "function": "expressing reluctance to formalize"
+          },
+          {
+            "text": "you can use the CLI directly",
+            "function": "providing alternative approach"
+          }
+        ]
+      }
+    },
+    {
+      "post_number": 4,
+      "selected": true,
+      "username": "MattP",
+      "authored_text": "The goal with these non-standard targets isn't for them to be installed (by `pip` or related). They exist for any other context in which python code will need to be distributed. I.e. `shiv` or the other examples given earlier. \n\nI understand that I'm approaching this from a more abstract standpoint as opposed to addressing a concrete problem.\n\nI can't definitively say this one way of the other, but since this ecosystem is still relatively new, I feel as though the users who need to create custom targets have probably just stayed with their old build system.\n\nSince I only provided examples for hatch targets in the original post, I went to go look for projects using distutils/[`setuptools.Command`](https://setuptools.pypa.io/en/latest/userguide/extension.html#setuptools.Command) to create these custom targets and found these.\n\n- [py2app](https://github.com/ronaldoussoren/py2app/tree/main): creating macOS `.app` files of executeable python.\n\n- [clamped](https://github.com/jimbaker/clamped): converting python code to java for use with Jython\n\n- [pex](https://pex.readthedocs.io/en/v2.1.41/buildingpex.html#using-bdist-pex): pex uses `bdist_pex` to build `.pex` files with setuptools\n\n- [conda-build](https://docs.conda.io/projects/conda-build/en/24.3.x/user-guide/recipes/build-without-recipe.html), [hatch-conda-build](https://pypi.org/project/hatch-conda-build/): builds conda packages\n\n- [cx-freeze](https://cx-freeze.readthedocs.io/en/stable/builtdist.html): pretty much just `py2app` for multiple OSes\n\n(side note: I found [Nuitka](https://nuitka.net/user-documentation/use-cases.html#setuptools-wheels) which compiles python into bytecode, but still seems to create a `.whl`, so that wouldn't really be considered a different target. It does create non wheel targets, so this proposal might be helpful for it, but it doesn't seem to use the traditional python packaging tools. I didn't dive deep enough to see how dependency management and environment creation is handled in the build process)\n\nTo answer the \"what frontends do I expect to use this\" more directly, I can see uv, hatch, pdm, and other frontends that strive to be extensible providing support for this (once again, hatch already supports this. Standardization of this interface would allow using the uv frontend with the hatchling backend). I am of the mentality that providing extensibility to python developers is good, but if it seems like this will go unused, then I can understand the desire to keep things simple.\n\nMaybe I'm demanding too much within the constraints of the build ecosystem and instead this sort of process should operate on already built `.whl`s like how [PyApp](https://github.com/ofek/pyapp) works, but I find it convenient for developers to just have frontend tools like uv that are able to handle all parts of taking python code from its source to its final deliverable.\n\nI would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+      "authored_text_truncated": false,
+      "quoted_blocks_removed": false,
+      "quote_targets": [],
+      "generated_summary": {
+        "post_number": 4,
+        "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+        "conversational_intent": "seeking feedback",
+        "stance": "questioning",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": "I can't definitively say this one way of the other",
+        "phrase_candidates": [
+          {
+            "text": "I can't definitively say this one way of the other",
+            "function": "expressing uncertainty"
+          },
+          {
+            "text": "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+            "function": "seeking feedback"
+          }
+        ]
+      }
+    },
+    {
+      "post_number": 5,
+      "selected": true,
+      "username": "bwoodsend",
+      "authored_text": "I'm pretty certain most, if not all, of those only do so because they date back to when setuptools tried to be the whole workflow instead of just a wheel builder and `python setup.py test` and the like were the norm.\n\nDesigning these tools to latch onto setuptools allowed them to *borrow* configuration like project name and version but the move to putting core metadata in the backend agnostic pyproject.toml's `[project]` section ([pep 621](https://peps.python.org/pep-0621/)) superseded that. If you look at [cxfreeze's usage guide](https://cx-freeze.readthedocs.io/en/stable/setup_script.html) you can see that, whilst the old `setup.py` based way is still there, the default has completely moved on; it's fully decoupled itself from setuptools using the shared `[project]` configuration for common metadata, its own configuration for the rest and its own standalone `cxfreeze build` command.",
+      "authored_text_truncated": false,
+      "quoted_blocks_removed": true,
+      "quote_targets": [
+        4
+      ],
+      "generated_summary": {
+        "post_number": 5,
+        "summary": "I think most of those tools still rely on setuptools because they originated when setuptools handled the whole workflow, but the shift to pyproject.toml's [project] section has made tools like cxFreeze fully independent from setuptools.",
+        "conversational_intent": "clarifying",
+        "stance": "explanatory",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": null,
+        "phrase_candidates": [
+          {
+            "text": "I'm pretty certain",
+            "function": "expressing certainty"
+          },
+          {
+            "text": "only do so because they date back to when",
+            "function": "explaining historical reason"
+          },
+          {
+            "text": "fully decoupled itself from setuptools",
+            "function": "describing current independence"
+          }
+        ]
+      }
+    },
+    {
+      "post_number": 6,
+      "selected": false,
+      "username": "steve.dower",
+      "authored_text": "What you've listed here are actually _frontend_ tools, in PEP 517 land. They aren't implemented like that, of course, but in the modern world all of these tools would look at a directory of code, infer what tool is needed to compile/layout the files, and then take the compiled files and do their own arrangements. If they used a wheel as an intermediate step and then unpacked it to e.g. turn the files into a `.app` or `.pex`, they start to look a lot more like `pip` (which unpacks a wheel to integrate it into a Python environment) than `setuptools` (which takes sources and produces a wheel-shaped Python library).",
+      "authored_text_truncated": false,
+      "quoted_blocks_removed": true,
+      "quote_targets": [
+        4
+      ],
+      "generated_summary": {
+        "post_number": 6,
+        "summary": "The author explains that the tools listed are frontend tools per PEP 517, not implemented as described; they analyze code directories, infer the needed tool, compile, and arrange outputs. Using a wheel intermediate would make them resemble pip more than setuptools.",
+        "conversational_intent": "clarifying",
+        "stance": "informative",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": null,
+        "phrase_candidates": [
+          {
+            "text": "What you've listed here are actually _frontend_ tools",
+            "function": "introducing clarification"
+          },
+          {
+            "text": "They aren't implemented like that, of course",
+            "function": "expressing clarification"
+          }
+        ]
+      }
+    },
+    {
+      "post_number": 7,
+      "selected": false,
+      "username": "cjames23",
+      "authored_text": "As a general rule for me, I want to see more than one tool implementing something with significant adoption before trying to standardize it. We provide this functionality in hatch via our plugin mechanism but many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases. The one exception might be the zipped directory plugin and hatch-aws which are really different flavors of the same thing.",
+      "authored_text_truncated": false,
+      "quoted_blocks_removed": true,
+      "quote_targets": [
+        4
+      ],
+      "generated_summary": {
+        "post_number": 7,
+        "summary": "I think we should wait until multiple tools with strong adoption implement a feature before standardizing it; most hatch plugins have narrow use cases, except the zipped directory and hatch‑aws plugins, which are essentially the same.",
+        "conversational_intent": "expressing stance",
+        "stance": "assertive",
+        "technical_burden": "low",
+        "phrase_learning_potential": "high",
+        "important_uncertainty": null,
+        "phrase_candidates": [
+          {
+            "text": "I want to see more than one tool implementing something with significant adoption before trying to standardize it.",
+            "function": "expressing stance"
+          },
+          {
+            "text": "many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases.",
+            "function": "describing plugin use cases"
+          }
+        ]
+      }
+    }
+  ]
+}

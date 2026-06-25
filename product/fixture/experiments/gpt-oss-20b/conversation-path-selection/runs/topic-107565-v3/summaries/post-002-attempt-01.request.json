@@ -1,0 +1,90 @@
+{
+  "model": "gpt-oss:20b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Preserve source stance and uncertainty. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Post summary prompt v3: authored text\n\n- **prompt_id**: `conversation-post-summary-v3-authored-text`\n- **status**: current investigation prompt\n- **model_role**: post summarizer\n\n## User prompt template\n\nSummarize one technical-discussion post for an English phrase-learning pipeline.\n\nThe supplied `authored_text` contains only the current author's own contribution. Quoted blocks from earlier posts were removed mechanically. Use parent and quote-target summaries only as conversational context; never attribute them to the current author.\n\nThe learner already understands software engineering. Make the conversational movement easy to follow without requiring long code, link lists, or implementation detail.\n\nRequirements:\n\n- Write one or two short natural-English sentences.\n- Keep the summary at 55 words or fewer.\n- Preserve the author's stance, uncertainty, qualification, and conversational intent.\n- Do not invent technical facts, motives, adoption claims, or conclusions.\n- Omit code and detailed examples unless essential to the main conversational point.\n- Distinguish challenging, evaluating, clarifying, proposing, qualifying, and seeking feedback.\n- Treat the summary as generated text, not as a quotation.\n- Extract one to three short reusable phrase candidates copied exactly from `authored_text`.\n- Each phrase candidate must contain reusable conversational wording, not only technical terms.\n- Preserve every source character in each phrase candidate.\n- Prefer short candidates without Markdown links.\n- If a candidate includes a Markdown link, copy the complete source syntax.\n- Explain each candidate's conversational function without answering the technical issue.\n\nReturn one JSON object matching the supplied JSON schema.\n\n## Input\n\n{\n  \"topic\": {\n    \"id\": 107565,\n    \"title\": \"Thoughts on standardizing build backend support for non-standard targets\"\n  },\n  \"post\": {\n    \"post_number\": 2,\n    \"username\": \"pf_moore\",\n    \"explicit_reply_to\": null,\n    \"quote_targets\": [],\n    \"projected_parent\": 1,\n    \"projection_reason\": \"topic_level_projection\",\n    \"authored_text\": \"What *frontend* tools do you expect to support this new interface? I don't expect pip to - pip currently only uses `build_wheel` and the associated methods, we don't even have a need for `build_sdist`.\\n\\nWithout a frontend using these new APIs, I don't see a good reason for standardising anything.\\n\\nThere's also the fact that I've seen almost no demand for building \\\"non-standard targets\\\" of the form you're describing, but that may simply because I don't work on tools that would see such demand. I note that the examples you found are *plugins* for hatch, and therefore could easily have been created to satisfy one person's nice use case (I don't *know* if that's the case, though, so I'm not claiming there's no demand, just that I'm not aware of any).\",\n    \"authored_text_truncated\": false,\n    \"quoted_blocks_removed\": false\n  },\n  \"context\": {\n    \"projected_parent_summary\": {\n      \"post_number\": 1,\n      \"summary\": \"Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.\",\n      \"conversational_intent\": \"seeking feedback and clarification\",\n      \"stance\": \"proposing and questioning\",\n      \"technical_burden\": \"medium\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\",\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I want to standardize hatchling targets.\",\n          \"function\": \"expressing a proposal\"\n        },\n        {\n          \"text\": \"I feel like this overcomplicates the pyproject.toml\",\n          \"function\": \"expressing concern about complexity\"\n        },\n        {\n          \"text\": \"I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\",\n          \"function\": \"expressing uncertainty about scope\"\n        }\n      ]\n    },\n    \"quote_target_summaries\": []\n  }\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"post_number\": {\n      \"type\": \"integer\"\n    },\n    \"summary\": {\n      \"type\": \"string\"\n    },\n    \"conversational_intent\": {\n      \"type\": \"string\"\n    },\n    \"stance\": {\n      \"type\": \"string\"\n    },\n    \"technical_burden\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"phrase_learning_potential\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    },\n    \"important_uncertainty\": {\n      \"type\": [\n        \"string\",\n        \"null\"\n      ]\n    },\n    \"phrase_candidates\": {\n      \"type\": \"array\",\n      \"minItems\": 1,\n      \"maxItems\": 3,\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"text\": {\n            \"type\": \"string\"\n          },\n          \"function\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"text\",\n          \"function\"\n        ],\n        \"additionalProperties\": false\n      }\n    }\n  },\n  \"required\": [\n    \"post_number\",\n    \"summary\",\n    \"conversational_intent\",\n    \"stance\",\n    \"technical_burden\",\n    \"phrase_learning_potential\",\n    \"important_uncertainty\",\n    \"phrase_candidates\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "post_number": {
+        "type": "integer"
+      },
+      "summary": {
+        "type": "string"
+      },
+      "conversational_intent": {
+        "type": "string"
+      },
+      "stance": {
+        "type": "string"
+      },
+      "technical_burden": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "phrase_learning_potential": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      },
+      "important_uncertainty": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "phrase_candidates": {
+        "type": "array",
+        "minItems": 1,
+        "maxItems": 3,
+        "items": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "function": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text",
+            "function"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": [
+      "post_number",
+      "summary",
+      "conversational_intent",
+      "stance",
+      "technical_burden",
+      "phrase_learning_potential",
+      "important_uncertainty",
+      "phrase_candidates"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0
+  },
+  "keep_alive": "30m",
+  "think": "medium"
+}

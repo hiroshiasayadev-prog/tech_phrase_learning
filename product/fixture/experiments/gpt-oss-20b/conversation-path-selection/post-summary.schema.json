@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "post_number": {"type": "integer"},
+    "summary": {"type": "string"},
+    "conversational_intent": {"type": "string"},
+    "stance": {"type": "string"},
+    "technical_burden": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "phrase_learning_potential": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "important_uncertainty": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": [
+    "post_number",
+    "summary",
+    "conversational_intent",
+    "stance",
+    "technical_burden",
+    "phrase_learning_potential",
+    "important_uncertainty"
+  ],
+  "additionalProperties": false
+}

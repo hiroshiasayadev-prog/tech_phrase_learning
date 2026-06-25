@@ -1,0 +1,23 @@
+{
+  "post_number": 2,
+  "summary": "I doubt pip or other frontends will adopt the new API, so I see little reason to standardise it; demand for non‑standard targets seems low, though I may not be aware of all use cases.",
+  "conversational_intent": "questioning and qualifying",
+  "stance": "questioning and uncertain",
+  "technical_burden": "low",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": "I don't see a good reason for standardising anything",
+  "phrase_candidates": [
+    {
+      "text": "I don't expect pip to",
+      "function": "expressing expectation about frontend support"
+    },
+    {
+      "text": "I don't see a good reason for standardising anything.",
+      "function": "expressing lack of justification for standardisation"
+    },
+    {
+      "text": "I don't know if that's the case",
+      "function": "expressing uncertainty about the existence of demand"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Handling Missing Target Definitions",
+  "context": "The author is uncertain if a frontend ought to invoke a standard build_XXX hook when a requested custom target is absent from the `targets` table.",
+  "options": [
+    {
+      "id": "A",
+      "text": "Should the frontend attempt to call a conventionally named build_XXX hook if the requested target isn't listed in the targets table?",
+      "preferred": true,
+      "explanation": "Directly addresses the specific concern about invoking hooks for unlisted custom targets, matching the context."
+    },
+    {
+      "id": "B",
+      "text": "Is it better to restrict custom function names to the build_TARGETNAME pattern or allow arbitrary names for flexibility?",
+      "preferred": false,
+      "explanation": "Explores a different aspect of the proposal—function naming conventions—rather than the hook invocation issue."
+    },
+    {
+      "id": "C",
+      "text": "If a requires_function is specified but missing, should the frontend silently ignore it or warn the user?",
+      "preferred": false,
+      "explanation": "Questions handling of absent requires functions, which relates to the proposal but not to the hook‑calling concern."
+    }
+  ],
+  "source_phrase": {
+    "text": "Does including the `targets` as a key confuse users that lack a thorough understanding of their backend?",
+    "function": "Asks whether a proposed configuration choice could confuse users."
+  }
+}

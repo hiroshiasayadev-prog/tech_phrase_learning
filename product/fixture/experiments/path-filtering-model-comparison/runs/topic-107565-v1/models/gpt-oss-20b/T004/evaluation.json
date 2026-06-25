@@ -1,0 +1,35 @@
+{
+  "case_id": "T004",
+  "control_class": "real_valid_path",
+  "expected_valid": true,
+  "actual_valid": true,
+  "correct": true,
+  "accepted_attempt": 1,
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "available_phrase_count": 10,
+    "reasoning_effort": "medium",
+    "timed_out": false
+  },
+  "result": {
+    "case_id": "T004",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing uncertainty about adoption",
+      "seeking feedback"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I want to standardize hatchling targets.",
+      "I feel like this overcomplicates the pyproject.toml",
+      "I don't expect pip to",
+      "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized."
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path contains four posts, each with at least one source‑verified conversational phrase. The technical content is moderate and does not overwhelm the conversational learning value. The conversation is coherent, the structure is mechanically valid, and the post count falls within the allowed range. Therefore the path is valid for a lightweight English phrase‑learning quiz session."
+  }
+}

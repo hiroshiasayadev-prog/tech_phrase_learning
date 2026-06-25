@@ -1,0 +1,38 @@
+{
+  "T001": {
+    "expected_valid": true,
+    "control_class": "real_valid_path"
+  },
+  "T002": {
+    "expected_valid": true,
+    "control_class": "real_valid_path"
+  },
+  "T003": {
+    "expected_valid": true,
+    "control_class": "real_valid_path"
+  },
+  "T004": {
+    "expected_valid": true,
+    "control_class": "real_valid_path"
+  },
+  "T005": {
+    "expected_valid": true,
+    "control_class": "real_valid_path"
+  },
+  "T006": {
+    "expected_valid": true,
+    "control_class": "real_valid_path"
+  },
+  "T007": {
+    "expected_valid": false,
+    "control_class": "invalid_disconnected_structure"
+  },
+  "T008": {
+    "expected_valid": false,
+    "control_class": "invalid_no_phrase_evidence"
+  },
+  "T009": {
+    "expected_valid": false,
+    "control_class": "invalid_technical_only_phrase_evidence"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "summary_reviews": [
+    {
+      "post_number": 1,
+      "verdict": "pass",
+      "fidelity_issues": [],
+      "readability": "medium",
+      "notes": "Accurately captures the proposal, uncertainty, and request for feedback."
+    },
+    {
+      "post_number": 2,
+      "verdict": "pass",
+      "fidelity_issues": [],
+      "readability": "low",
+      "notes": "Concise and faithful to the source; no missing nuance."
+    },
+    {
+      "post_number": 4,
+      "verdict": "pass",
+      "fidelity_issues": [],
+      "readability": "medium",
+      "notes": "Includes key examples and expresses uncertainty about demand."
+    },
+    {
+      "post_number": 6,
+      "verdict": "pass",
+      "fidelity_issues": [],
+      "readability": "low",
+      "notes": "Faithfully summarizes Steve’s clarification without adding unsupported claims."
+    }
+  ],
+  "path_verdict": "pass",
+  "coherence_notes": [
+    "All summaries maintain the main intent and uncertainty of their respective posts.",
+    "No summary introduces new claims or omits critical context."
+  ],
+  "reading_burden": "medium",
+  "phrase_learning_potential": "high",
+  "overall_notes": "The selected path presents a coherent discussion of standardizing custom build targets, with each summary accurately reflecting its source post. The summaries preserve uncertainty, avoid unsupported statements, and provide sufficient context for readers to understand the technical proposals and concerns."
+}

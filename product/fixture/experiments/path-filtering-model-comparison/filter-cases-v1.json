@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "source_topic_id": 107565,
+  "cases": [
+    {
+      "case_id": "T001",
+      "path": [1, 2],
+      "mechanically_valid": true,
+      "transform": "none",
+      "expected_valid": true,
+      "control_class": "real_valid_path"
+    },
+    {
+      "case_id": "T002",
+      "path": [1, 2, 4],
+      "mechanically_valid": true,
+      "transform": "none",
+      "expected_valid": true,
+      "control_class": "real_valid_path"
+    },
+    {
+      "case_id": "T003",
+      "path": [1, 2, 4, 5],
+      "mechanically_valid": true,
+      "transform": "none",
+      "expected_valid": true,
+      "control_class": "real_valid_path"
+    },
+    {
+      "case_id": "T004",
+      "path": [1, 2, 4, 6],
+      "mechanically_valid": true,
+      "transform": "none",
+      "expected_valid": true,
+      "control_class": "real_valid_path"
+    },
+    {
+      "case_id": "T005",
+      "path": [1, 2, 4, 7],
+      "mechanically_valid": true,
+      "transform": "none",
+      "expected_valid": true,
+      "control_class": "real_valid_path"
+    },
+    {
+      "case_id": "T006",
+      "path": [1, 3],
+      "mechanically_valid": true,
+      "transform": "none",
+      "expected_valid": true,
+      "control_class": "real_valid_path"
+    },
+    {
+      "case_id": "T007",
+      "path": [1, 5],
+      "mechanically_valid": false,
+      "transform": "none",
+      "expected_valid": false,
+      "control_class": "invalid_disconnected_structure"
+    },
+    {
+      "case_id": "T008",
+      "path": [1, 2, 4],
+      "mechanically_valid": true,
+      "transform": "remove_phrase_candidates",
+      "expected_valid": false,
+      "control_class": "invalid_no_phrase_evidence"
+    },
+    {
+      "case_id": "T009",
+      "path": [1, 2, 4, 6],
+      "mechanically_valid": true,
+      "transform": "technical_terms_only",
+      "expected_valid": false,
+      "control_class": "invalid_technical_only_phrase_evidence"
+    }
+  ]
+}

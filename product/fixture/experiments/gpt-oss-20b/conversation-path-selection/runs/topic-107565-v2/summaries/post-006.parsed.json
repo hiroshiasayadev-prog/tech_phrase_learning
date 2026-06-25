@@ -1,0 +1,23 @@
+{
+  "post_number": 6,
+  "summary": "Steve clarifies that the listed tools are frontend tools in PEP 517 land, not implemented like setuptools. He explains that using a wheel as an intermediate step would make them resemble pip more than setuptools.",
+  "conversational_intent": "clarifying, evaluating",
+  "stance": "clarifying, evaluating",
+  "technical_burden": "medium",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": null,
+  "phrase_candidates": [
+    {
+      "text": "What you've listed here are actually _frontend_ tools, in PEP 517 land.",
+      "function": "clarifying the nature of the tools"
+    },
+    {
+      "text": "They aren't implemented like that, of course,",
+      "function": "correcting a misconception"
+    },
+    {
+      "text": "If they used a wheel as an intermediate step and then unpacked it to e.g. turn the files into a `.app` or `.pex`, they start to look a lot more like `pip` (which unpacks a wheel to integrate it into a Python environment) than `setuptools` (which takes sources and produces a wheel-shaped Python library).",
+      "function": "explaining a comparison"
+    }
+  ]
+}

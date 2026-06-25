@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "post_number": {"type": "integer"},
+    "summary": {"type": "string"},
+    "conversational_intent": {"type": "string"},
+    "stance": {"type": "string"},
+    "technical_burden": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "phrase_learning_potential": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "important_uncertainty": {
+      "type": ["string", "null"]
+    },
+    "phrase_candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "text": {"type": "string"},
+          "function": {"type": "string"}
+        },
+        "required": ["text", "function"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "post_number",
+    "summary",
+    "conversational_intent",
+    "stance",
+    "technical_burden",
+    "phrase_learning_potential",
+    "important_uncertainty",
+    "phrase_candidates"
+  ],
+  "additionalProperties": false
+}

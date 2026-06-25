@@ -1,0 +1,14 @@
+{
+  "case_id": "T008",
+  "valid_for_quiz": false,
+  "decision": "reject",
+  "confidence": "low",
+  "learning_focus": [],
+  "reading_burden": "medium",
+  "technical_burden": "medium",
+  "reusable_phrase_evidence": [],
+  "exclusion_reasons": [
+    "no_reusable_phrase"
+  ],
+  "explanation": "The supplied path contains no phrase candidates, so it fails the requirement that at least one reusable conversational wording be present. Without such evidence, the path cannot be considered valid for a quiz session."
+}

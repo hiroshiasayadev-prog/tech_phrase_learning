@@ -1,0 +1,28 @@
+{
+  "title": "Standardization Justification",
+  "context": "The need for standardizing the new API is uncertain due to unclear frontend adoption.",
+  "options": [
+    {
+      "id": "A",
+      "text": "I think we should collect evidence of which frontends are likely to use this before committing to a standard.",
+      "preferred": true,
+      "explanation": "Calls for gathering data on frontend interest, directly addressing uncertainty."
+    },
+    {
+      "id": "B",
+      "text": "Even if some frontends adopt it, the added complexity might slow current projects.",
+      "preferred": false,
+      "explanation": "Highlights risk of increased effort for existing tooling."
+    },
+    {
+      "id": "C",
+      "text": "We should also consider whether this standard would outlive its initial use cases and remain useful over time.",
+      "preferred": false,
+      "explanation": "Raises concern about long-term relevance."
+    }
+  ],
+  "source_phrase": {
+    "text": "Without a frontend using these new APIs, I don't see a good reason for standardising anything.",
+    "function": "Challenges whether standardization is justified without expected adoption."
+  }
+}

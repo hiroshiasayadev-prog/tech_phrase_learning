@@ -1,0 +1,38 @@
+{
+  "case_id": "T005",
+  "control_class": "real_valid_path",
+  "expected_valid": true,
+  "actual_valid": true,
+  "correct": true,
+  "accepted_attempt": 1,
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "available_phrase_count": 10,
+    "reasoning_effort": "high",
+    "timed_out": false
+  },
+  "result": {
+    "case_id": "T005",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing uncertainty",
+      "seeking feedback",
+      "stating conditions for action",
+      "proposing and evaluating ideas"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I feel like this overcomplicates the pyproject.toml",
+      "I don't *know* if that's the case",
+      "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+      "I want to see more than one tool implementing something with significant adoption before trying to standardize it.",
+      "I can't definitively say this one way of the other"
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path satisfies all five validity conditions: it is mechanically valid with exactly four posts (within the 2–6 limit), presents a coherent back-and-forth sequence about standardization and adoption, includes multiple source-verified phrases that function as reusable conversational language rather than isolated technical terms, and maintains a medium technical burden that does not overshadow the practical phrasing. No exclusion criteria are triggered."
+  }
+}

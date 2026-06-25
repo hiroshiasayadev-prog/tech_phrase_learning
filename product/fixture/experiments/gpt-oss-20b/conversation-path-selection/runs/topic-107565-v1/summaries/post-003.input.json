@@ -1,0 +1,28 @@
+{
+  "topic": {
+    "id": 107565,
+    "title": "Thoughts on standardizing build backend support for non-standard targets"
+  },
+  "post": {
+    "post_number": 3,
+    "username": "steve.dower",
+    "explicit_reply_to": null,
+    "quote_targets": [],
+    "projected_parent": 1,
+    "projection_reason": "topic_level_projection",
+    "source_text": "FWIW, I have a couple of these options for `pymsbuild`, but I have no desire to see them formalised into a standard interface or exposed through a frontend.\n\nIf you want to e.g. build an MSIX instead of a wheel, you can use the CLI directly.",
+    "source_text_truncated": false
+  },
+  "context": {
+    "projected_parent_summary": {
+      "post_number": 1,
+      "summary": "MattP proposes standardizing custom build targets in Python packaging, suggesting a flexible interface and optional pyproject.toml entries, but is uncertain about the best approach and seeks community feedback.",
+      "conversational_intent": "seeking feedback and discussion",
+      "stance": "proposing a new idea, open to critique",
+      "technical_burden": "high",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "uncertain about best approach, whether to include targets in pyproject.toml, how to handle custom function names"
+    },
+    "quote_target_summaries": []
+  }
+}

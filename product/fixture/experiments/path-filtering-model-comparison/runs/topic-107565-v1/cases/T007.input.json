@@ -1,0 +1,61 @@
+{
+  "case_id": "T007",
+  "path": [
+    1,
+    5
+  ],
+  "post_count": 2,
+  "mechanically_valid": false,
+  "posts": [
+    {
+      "post_number": 1,
+      "username": "MattP",
+      "summary": "Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.",
+      "conversational_intent": "seeking feedback and clarification",
+      "stance": "proposing and questioning",
+      "technical_burden": "medium",
+      "phrase_candidates": [
+        {
+          "text": "I want to standardize hatchling targets.",
+          "function": "expressing a proposal",
+          "source_verified": true
+        },
+        {
+          "text": "I feel like this overcomplicates the pyproject.toml",
+          "function": "expressing concern about complexity",
+          "source_verified": true
+        },
+        {
+          "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+          "function": "expressing uncertainty about scope",
+          "source_verified": true
+        }
+      ]
+    },
+    {
+      "post_number": 5,
+      "username": "bwoodsend",
+      "summary": "I think most of those tools still rely on setuptools because they originated when setuptools handled the whole workflow, but the shift to pyproject.toml's [project] section has made tools like cxFreeze fully independent from setuptools.",
+      "conversational_intent": "clarifying",
+      "stance": "explanatory",
+      "technical_burden": "low",
+      "phrase_candidates": [
+        {
+          "text": "I'm pretty certain",
+          "function": "expressing certainty",
+          "source_verified": true
+        },
+        {
+          "text": "only do so because they date back to when",
+          "function": "explaining historical reason",
+          "source_verified": true
+        },
+        {
+          "text": "fully decoupled itself from setuptools",
+          "function": "describing current independence",
+          "source_verified": true
+        }
+      ]
+    }
+  ]
+}

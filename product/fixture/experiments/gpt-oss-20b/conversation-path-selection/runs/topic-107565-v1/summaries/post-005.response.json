@@ -1,0 +1,17 @@
+{
+  "model": "gpt-oss:20b",
+  "created_at": "2026-06-25T09:07:05.088727717Z",
+  "message": {
+    "role": "assistant",
+    "content": "{\"post_number\":5,\"summary\":\"bwoodsend explains that most projects using setuptools.Command for custom build targets were created when setuptools handled the whole workflow, but now metadata lives in pyproject.toml and tools like cxfreeze have decoupled from setuptools. He notes this historical shift and its impact on current tooling.\",\"conversational_intent\":\"explaining\",\"stance\":\"assertive\",\"technical_burden\":\"low\",\"phrase_learning_potential\":\"high\",\"important_uncertainty\":null}",
+    "thinking": "We need to produce JSON with fields. Summarize the post. The post says: bwoodsend says that most projects using setuptools.Command for custom targets date back to when setuptools was whole workflow; now metadata moved to pyproject.toml; example cxfreeze decoupled from setuptools. So summary: He notes that many custom targets were built when setuptools handled everything, but now metadata is in pyproject.toml and tools like cxfreeze have moved away from setuptools. He is explaining why those projects exist and how they evolved. Keep 55 words or fewer. Provide conversational intent: likely \"explaining\" or \"informing\". Stance: \"expressing uncertainty\"? He says \"I'm pretty certain most, if not all, of those only do so because they date back...\" That's a certainty. He is not uncertain. So stance: \"expressing certainty\" or \"assertive\". But schema expects stance string; we can use \"assertive\" or \"expressing certainty\". The context had stance \"expressing uncertainty\" for parent. But this post is more assertive. So stance: \"assertive\". Technical burden: low. Phrase learning potential: high. Important uncertainty: maybe none. So null.\n\nWe need to keep summary <=55 words. Let's craft: \"bwoodsend explains that most projects using setuptools.Command for custom build targets were created when setuptools handled the whole workflow, but now metadata lives in pyproject.toml and tools like cxfreeze have decoupled from setuptools. He notes this historical shift and its impact on current tooling.\" Count words: bwoodsend(1) explains(2) that(3) most(4) projects(5) using(6) setuptools.Command(7) for(8) custom(9) build(10) targets(11) were(12) created(13) when(14) setuptools(15) handled(16) the(17) whole(18) workflow,(19) but(20) now(21) metadata(22) lives(23) in(24) pyproject.toml(25) and(26) tools(27) like(28) cxfreeze(29) have(30) decoupled(31) from(32) setuptools.(33) He(34) notes(35) this(36) historical(37) shift(38) and(39) its(40) impact(41) on(42) current(43) tooling.(44) 44 words. Good.\n\nConversational intent: \"explaining\". Stance: \"assertive\". Technical burden: low. Phrase learning potential: high. Important uncertainty: null.\n\nReturn JSON."
+  },
+  "done": true,
+  "done_reason": "stop",
+  "total_duration": 4892522026,
+  "load_duration": 139172661,
+  "prompt_eval_count": 1838,
+  "prompt_eval_duration": 6792048,
+  "eval_count": 101,
+  "eval_duration": 645900700
+}

@@ -1,0 +1,23 @@
+{
+  "post_number": 7,
+  "summary": "He notes that several extensible frontends exist but worries the feature might go unused, preferring simplicity. He says he only wants to standardize when multiple widely adopted tools support it, citing plugin limits and narrow use cases.",
+  "conversational_intent": "evaluating, qualifying, proposing",
+  "stance": "uncertain, evaluating, challenging",
+  "technical_burden": "medium",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": "Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.",
+  "phrase_candidates": [
+    {
+      "text": "I can see uv, hatch, pdm, and other frontends that strive to be extensible providing support for this",
+      "function": "expressing observation about existing extensible frontends"
+    },
+    {
+      "text": "but if it seems like this will go unused, then I can understand the desire to keep things simple.",
+      "function": "expressing conditional understanding of potential lack of use and preference for simplicity"
+    },
+    {
+      "text": "As a general rule for me, I want to see more than one tool implementing something with significant adoption before trying to standardize it.",
+      "function": "expressing personal rule for standardization based on adoption"
+    }
+  ]
+}

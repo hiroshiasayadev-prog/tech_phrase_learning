@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "errors": [],
+  "reviewed_post_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "expected_post_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
+}

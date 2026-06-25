@@ -1,0 +1,64 @@
+{
+  "type": "object",
+  "properties": {
+    "ranked_candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "candidate_id": {"type": "string"},
+          "rank": {"type": "integer", "minimum": 1},
+          "scores": {
+            "type": "object",
+            "properties": {
+              "conversation_coherence": {"type": "integer", "minimum": 1, "maximum": 5},
+              "reusable_phrase_value": {"type": "integer", "minimum": 1, "maximum": 5},
+              "cognitive_lightness": {"type": "integer", "minimum": 1, "maximum": 5},
+              "technical_detail_control": {"type": "integer", "minimum": 1, "maximum": 5},
+              "conversational_function_variety": {"type": "integer", "minimum": 1, "maximum": 5}
+            },
+            "required": [
+              "conversation_coherence",
+              "reusable_phrase_value",
+              "cognitive_lightness",
+              "technical_detail_control",
+              "conversational_function_variety"
+            ],
+            "additionalProperties": false
+          },
+          "strengths": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "weaknesses": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "reason": {"type": "string"}
+        },
+        "required": [
+          "candidate_id",
+          "rank",
+          "scores",
+          "strengths",
+          "weaknesses",
+          "reason"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "top_candidate_id": {"type": "string"},
+    "top_choice_reason": {"type": "string"},
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    }
+  },
+  "required": [
+    "ranked_candidates",
+    "top_candidate_id",
+    "top_choice_reason",
+    "confidence"
+  ],
+  "additionalProperties": false
+}

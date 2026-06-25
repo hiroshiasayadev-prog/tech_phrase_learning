@@ -1,0 +1,41 @@
+{
+  "topic_id": 107565,
+  "captured_at": "2026-06-25T06:51:28.599890+00:00",
+  "selected_post_numbers": [
+    1,
+    2,
+    4,
+    7
+  ],
+  "requests": [
+    {
+      "url": "https://discuss.python.org/t/107565.json?include_raw=true",
+      "output": "source-topic.raw.json",
+      "status_code": 200,
+      "content_type": "application/json; charset=utf-8",
+      "etag": null,
+      "last_modified": null,
+      "sha256": "ecb8e803ee5e2e4f335dd7f8836f8356a658fae1f5eb91ed0e981898112b8d20"
+    }
+  ],
+  "derived_output": "source-posts.json",
+  "comparison_report": "source-comparison.md",
+  "source_phrase_checks": [
+    {
+      "file": "question-interaction.json",
+      "phrase": "Does including the `targets` as a key confuse users that lack a thorough understanding of their backend?",
+      "matching_posts": [
+        1
+      ],
+      "passed": true
+    },
+    {
+      "file": "reply-interaction.json",
+      "phrase": "Without a frontend using these new APIs, I don't see a good reason for standardising anything.",
+      "matching_posts": [
+        2
+      ],
+      "passed": true
+    }
+  ]
+}

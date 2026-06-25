@@ -1,0 +1,155 @@
+{
+  "model": "gpt-oss:20b",
+  "summaries": [
+    {
+      "post_number": 1,
+      "summary": "Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.",
+      "conversational_intent": "seeking feedback and clarification",
+      "stance": "proposing and questioning",
+      "technical_burden": "medium",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+      "phrase_candidates": [
+        {
+          "text": "I want to standardize hatchling targets.",
+          "function": "expressing a proposal"
+        },
+        {
+          "text": "I feel like this overcomplicates the pyproject.toml",
+          "function": "expressing concern about complexity"
+        },
+        {
+          "text": "I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.",
+          "function": "expressing uncertainty about scope"
+        }
+      ]
+    },
+    {
+      "post_number": 2,
+      "summary": "I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.",
+      "conversational_intent": "questioning and evaluating",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "I'm unsure if there is real demand for non‑standard targets beyond niche hatch plugins.",
+      "phrase_candidates": [
+        {
+          "text": "I don't expect pip to",
+          "function": "expressing doubt about adoption"
+        },
+        {
+          "text": "Without a frontend using these new APIs",
+          "function": "highlighting prerequisite for standardization"
+        },
+        {
+          "text": "I don't *know* if that's the case",
+          "function": "indicating uncertainty about the claim"
+        }
+      ]
+    },
+    {
+      "post_number": 3,
+      "summary": "I have options for pymsbuild but don't want to formalise them into a standard interface or expose them via a frontend; you can just use the CLI to build an MSIX instead of a wheel.",
+      "conversational_intent": "informing",
+      "stance": "informing",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null,
+      "phrase_candidates": [
+        {
+          "text": "I have a couple of these options",
+          "function": "expressing availability of options"
+        },
+        {
+          "text": "I have no desire to see them formalised",
+          "function": "expressing reluctance to formalize"
+        },
+        {
+          "text": "you can use the CLI directly",
+          "function": "providing alternative approach"
+        }
+      ]
+    },
+    {
+      "post_number": 4,
+      "summary": "I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.",
+      "conversational_intent": "seeking feedback",
+      "stance": "questioning",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": "I can't definitively say this one way of the other",
+      "phrase_candidates": [
+        {
+          "text": "I can't definitively say this one way of the other",
+          "function": "expressing uncertainty"
+        },
+        {
+          "text": "I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.",
+          "function": "seeking feedback"
+        }
+      ]
+    },
+    {
+      "post_number": 5,
+      "summary": "I think most of those tools still rely on setuptools because they originated when setuptools handled the whole workflow, but the shift to pyproject.toml's [project] section has made tools like cxFreeze fully independent from setuptools.",
+      "conversational_intent": "clarifying",
+      "stance": "explanatory",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null,
+      "phrase_candidates": [
+        {
+          "text": "I'm pretty certain",
+          "function": "expressing certainty"
+        },
+        {
+          "text": "only do so because they date back to when",
+          "function": "explaining historical reason"
+        },
+        {
+          "text": "fully decoupled itself from setuptools",
+          "function": "describing current independence"
+        }
+      ]
+    },
+    {
+      "post_number": 6,
+      "summary": "The author explains that the tools listed are frontend tools per PEP 517, not implemented as described; they analyze code directories, infer the needed tool, compile, and arrange outputs. Using a wheel intermediate would make them resemble pip more than setuptools.",
+      "conversational_intent": "clarifying",
+      "stance": "informative",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null,
+      "phrase_candidates": [
+        {
+          "text": "What you've listed here are actually _frontend_ tools",
+          "function": "introducing clarification"
+        },
+        {
+          "text": "They aren't implemented like that, of course",
+          "function": "expressing clarification"
+        }
+      ]
+    },
+    {
+      "post_number": 7,
+      "summary": "I think we should wait until multiple tools with strong adoption implement a feature before standardizing it; most hatch plugins have narrow use cases, except the zipped directory and hatch‑aws plugins, which are essentially the same.",
+      "conversational_intent": "expressing stance",
+      "stance": "assertive",
+      "technical_burden": "low",
+      "phrase_learning_potential": "high",
+      "important_uncertainty": null,
+      "phrase_candidates": [
+        {
+          "text": "I want to see more than one tool implementing something with significant adoption before trying to standardize it.",
+          "function": "expressing stance"
+        },
+        {
+          "text": "many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases.",
+          "function": "describing plugin use cases"
+        }
+      ]
+    }
+  ],
+  "warnings": []
+}

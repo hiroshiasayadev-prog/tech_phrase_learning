@@ -1,0 +1,31 @@
+{
+  "selected_path": [
+    1,
+    2,
+    4,
+    5
+  ],
+  "path_summary": "Opening proposal about standardizing custom build targets, followed by a skeptical evaluation questioning demand and adoption, then a clarification about distribution targets and seeking feedback, concluding with a clarification on legacy tools and their shift to pyproject.toml.",
+  "selection_reasons": [
+    "The path starts with the opening post and follows a clear parent‑to‑child chain.",
+    "It includes a mix of disagreement, qualification, and clarification, providing a natural conversational flow.",
+    "Each selected post contains strong, source‑verified phrase candidates useful for learning.",
+    "The chosen branch avoids overly technical or code‑heavy explanations, keeping the content light for phrase learning.",
+    "The path length (4 posts) satisfies the 2‑6 post requirement."
+  ],
+  "rejected_alternatives": [
+    {
+      "post_number": 3,
+      "reason": "Post 3 is a brief clarification about MSIX and does not contribute to the discussion on standardizing build targets."
+    },
+    {
+      "post_number": 6,
+      "reason": "Post 6 contains a detailed technical comparison of frontend tools and wheels, which is too detail‑heavy for the intended phrase learning focus."
+    },
+    {
+      "post_number": 7,
+      "reason": "Post 7 discusses adoption thresholds but adds less direct clarification or disagreement compared to the selected branch."
+    }
+  ],
+  "confidence": "high"
+}

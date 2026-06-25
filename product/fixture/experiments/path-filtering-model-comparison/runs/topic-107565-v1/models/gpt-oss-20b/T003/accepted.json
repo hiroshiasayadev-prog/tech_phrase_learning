@@ -1,0 +1,20 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "case_id": "T003",
+    "valid_for_quiz": true,
+    "decision": "accept",
+    "confidence": "high",
+    "learning_focus": [
+      "expressing uncertainty about adoption",
+      "seeking feedback"
+    ],
+    "reading_burden": "medium",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I want to standardize hatchling targets."
+    ],
+    "exclusion_reasons": [],
+    "explanation": "The path contains four posts, mechanically valid, and includes source‑verified phrase candidates that are conversational in nature (e.g., \"I want to standardize hatchling targets.\"). The technical content is moderate and does not overwhelm the conversational learning value. All criteria for a valid quiz path are satisfied."
+  }
+}

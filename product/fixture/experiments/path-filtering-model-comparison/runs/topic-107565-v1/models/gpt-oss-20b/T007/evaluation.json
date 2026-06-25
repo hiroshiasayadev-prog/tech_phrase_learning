@@ -1,0 +1,31 @@
+{
+  "case_id": "T007",
+  "control_class": "invalid_disconnected_structure",
+  "expected_valid": false,
+  "actual_valid": false,
+  "correct": true,
+  "accepted_attempt": 1,
+  "validation": {
+    "passed": true,
+    "errors": [],
+    "available_phrase_count": 6,
+    "reasoning_effort": "medium",
+    "timed_out": false
+  },
+  "result": {
+    "case_id": "T007",
+    "valid_for_quiz": false,
+    "decision": "reject",
+    "confidence": "low",
+    "learning_focus": [],
+    "reading_burden": "low",
+    "technical_burden": "medium",
+    "reusable_phrase_evidence": [
+      "I'm pretty certain"
+    ],
+    "exclusion_reasons": [
+      "invalid_structure"
+    ],
+    "explanation": "The supplied path is marked as mechanically invalid, which disqualifies it from being a valid quiz path regardless of other criteria."
+  }
+}

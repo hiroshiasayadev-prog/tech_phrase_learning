@@ -1,0 +1,23 @@
+{
+  "post_number": 4,
+  "summary": "He explains that non‑standard targets are for distribution, not pip installs, and notes that many developers still use legacy build systems; he wonders if standardizing this interface is worthwhile and asks frontends for feedback.",
+  "conversational_intent": "evaluating, qualifying, proposing, seeking feedback",
+  "stance": "uncertain, evaluating, challenging",
+  "technical_burden": "medium",
+  "phrase_learning_potential": "high",
+  "important_uncertainty": "Uncertainty about whether standardizing this interface will be adopted and about the demand for non‑standard targets.",
+  "phrase_candidates": [
+    {
+      "text": "I can't definitively say this one way of the other",
+      "function": "expressing uncertainty about the direction of standardization"
+    },
+    {
+      "text": "Maybe I'm demanding too much within the constraints of the build ecosystem",
+      "function": "self‑critical assessment of the proposal’s ambition"
+    },
+    {
+      "text": "I would love to get some feedback from any of these frontend developers",
+      "function": "soliciting input from frontend developers"
+    }
+  ]
+}

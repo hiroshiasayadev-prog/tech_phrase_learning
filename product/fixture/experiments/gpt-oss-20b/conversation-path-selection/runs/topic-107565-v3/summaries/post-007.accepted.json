@@ -1,0 +1,22 @@
+{
+  "accepted_attempt": 1,
+  "result": {
+    "post_number": 7,
+    "summary": "I think we should wait until multiple tools with strong adoption implement a feature before standardizing it; most hatch plugins have narrow use cases, except the zipped directory and hatch‑aws plugins, which are essentially the same.",
+    "conversational_intent": "expressing stance",
+    "stance": "assertive",
+    "technical_burden": "low",
+    "phrase_learning_potential": "high",
+    "important_uncertainty": null,
+    "phrase_candidates": [
+      {
+        "text": "I want to see more than one tool implementing something with significant adoption before trying to standardize it.",
+        "function": "expressing stance"
+      },
+      {
+        "text": "many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases.",
+        "function": "describing plugin use cases"
+      }
+    ]
+  }
+}

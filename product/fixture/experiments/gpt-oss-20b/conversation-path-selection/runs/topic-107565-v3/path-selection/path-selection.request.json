@@ -1,0 +1,76 @@
+{
+  "model": "gpt-oss:20b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Preserve source stance and uncertainty. Return only schema-valid JSON."
+    },
+    {
+      "role": "user",
+      "content": "# Learning path selection prompt v3: authored phrase evidence\n\n- **prompt_id**: `conversation-learning-path-selection-v3-authored-phrase-evidence`\n- **status**: current investigation prompt\n- **model_role**: learning-path selector\n\n## User prompt template\n\nChoose one path through the supplied coarse conversation tree for an English phrase-learning session.\n\nThe tree is an approximate traversal structure, not a claim that every projected edge is an explicit reply. Each summary and phrase candidate was generated from or validated against the current author's own text after quoted blocks were removed.\n\nChoose a path that:\n\n- starts at the opening post;\n- follows parent-to-child edges in the supplied coarse tree;\n- contains between 2 and 6 posts;\n- has a broadly understandable conversational flow;\n- contains useful disagreement, clarification, qualification, evaluation, or collaboration language;\n- gives strong weight to reusable source-verified phrase candidates;\n- avoids unnecessary code-heavy or detail-heavy branches;\n- remains light enough for phrase learning rather than deep technical reading.\n\nDo not choose a path merely because it is longest or most technically informative. Do not invent relationships. Do not list a selected post in `rejected_alternatives`. Every rejected alternative must be an unselected post from the supplied tree.\n\nReturn one JSON object matching the supplied JSON schema.\n\n## Input\n\n{\n  \"topic\": {\n    \"id\": 107565,\n    \"title\": \"Thoughts on standardizing build backend support for non-standard targets\"\n  },\n  \"root_post_number\": 1,\n  \"coarse_tree\": \"#1 @MattP — Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.\\n├─ #2 @pf_moore — I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.\\n│  └─ #4 @MattP — I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.\\n│     ├─ #5 @bwoodsend — I think most of those tools still rely on setuptools because they originated when setuptools handled the whole workflow, but the shift to pyproject.toml's [project] section has made tools like cxFreeze fully independent from setuptools.\\n│     ├─ #6 @steve.dower — The author explains that the tools listed are frontend tools per PEP 517, not implemented as described; they analyze code directories, infer the needed tool, compile, and arrange outputs. Using a wheel intermediate would make them resemble pip more than setuptools.\\n│     └─ #7 @cjames23 — I think we should wait until multiple tools with strong adoption implement a feature before standardizing it; most hatch plugins have narrow use cases, except the zipped directory and hatch‑aws plugins, which are essentially the same.\\n└─ #3 @steve.dower — I have options for pymsbuild but don't want to formalise them into a standard interface or expose them via a frontend; you can just use the CLI to build an MSIX instead of a wheel.\",\n  \"posts\": [\n    {\n      \"post_number\": 1,\n      \"username\": \"MattP\",\n      \"explicit_reply_to\": null,\n      \"quote_targets\": [],\n      \"projected_parent\": null,\n      \"projection_reason\": \"opening_post\",\n      \"summary\": \"Matt proposes standardizing custom build targets in hatchling, noting that only hatchling and setuptools support them. He argues extensibility is good but questions whether the pyproject.toml should list targets, fearing complexity, and seeks feedback on whether frontends should handle unlisted targets.\",\n      \"conversational_intent\": \"seeking feedback and clarification\",\n      \"stance\": \"proposing and questioning\",\n      \"technical_burden\": \"medium\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\",\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I want to standardize hatchling targets.\",\n          \"function\": \"expressing a proposal\"\n        },\n        {\n          \"text\": \"I feel like this overcomplicates the pyproject.toml\",\n          \"function\": \"expressing concern about complexity\"\n        },\n        {\n          \"text\": \"I'm not sure whether or not the build frontend should support building targets that are not listed in the `targets` table.\",\n          \"function\": \"expressing uncertainty about scope\"\n        }\n      ]\n    },\n    {\n      \"post_number\": 2,\n      \"username\": \"pf_moore\",\n      \"explicit_reply_to\": null,\n      \"quote_targets\": [],\n      \"projected_parent\": 1,\n      \"projection_reason\": \"topic_level_projection\",\n      \"summary\": \"I question whether pip or other frontends will adopt the new interface, noting pip only uses build_wheel and lacks build_sdist. Without frontend support, I see little reason to standardise, and I’m unsure if there’s real demand for non‑standard targets beyond niche hatch plugins.\",\n      \"conversational_intent\": \"questioning and evaluating\",\n      \"stance\": \"questioning\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"I'm unsure if there is real demand for non‑standard targets beyond niche hatch plugins.\",\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I don't expect pip to\",\n          \"function\": \"expressing doubt about adoption\"\n        },\n        {\n          \"text\": \"Without a frontend using these new APIs\",\n          \"function\": \"highlighting prerequisite for standardization\"\n        },\n        {\n          \"text\": \"I don't *know* if that's the case\",\n          \"function\": \"indicating uncertainty about the claim\"\n        }\n      ]\n    },\n    {\n      \"post_number\": 3,\n      \"username\": \"steve.dower\",\n      \"explicit_reply_to\": null,\n      \"quote_targets\": [],\n      \"projected_parent\": 1,\n      \"projection_reason\": \"topic_level_projection\",\n      \"summary\": \"I have options for pymsbuild but don't want to formalise them into a standard interface or expose them via a frontend; you can just use the CLI to build an MSIX instead of a wheel.\",\n      \"conversational_intent\": \"informing\",\n      \"stance\": \"informing\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": null,\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I have a couple of these options\",\n          \"function\": \"expressing availability of options\"\n        },\n        {\n          \"text\": \"I have no desire to see them formalised\",\n          \"function\": \"expressing reluctance to formalize\"\n        },\n        {\n          \"text\": \"you can use the CLI directly\",\n          \"function\": \"providing alternative approach\"\n        }\n      ]\n    },\n    {\n      \"post_number\": 4,\n      \"username\": \"MattP\",\n      \"explicit_reply_to\": 2,\n      \"quote_targets\": [],\n      \"projected_parent\": 2,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"I’m exploring whether non‑standard build targets should be standardized, noting that many developers still use older systems and that adoption by frontends like uv, hatch, and pdm is uncertain. I’d appreciate feedback from frontend developers on whether this standardization would be useful.\",\n      \"conversational_intent\": \"seeking feedback\",\n      \"stance\": \"questioning\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": \"I can't definitively say this one way of the other\",\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I can't definitively say this one way of the other\",\n          \"function\": \"expressing uncertainty\"\n        },\n        {\n          \"text\": \"I would love to get some feedback from any of these frontend developers if this is something they can see being standardized.\",\n          \"function\": \"seeking feedback\"\n        }\n      ]\n    },\n    {\n      \"post_number\": 5,\n      \"username\": \"bwoodsend\",\n      \"explicit_reply_to\": 4,\n      \"quote_targets\": [\n        4\n      ],\n      \"projected_parent\": 4,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"I think most of those tools still rely on setuptools because they originated when setuptools handled the whole workflow, but the shift to pyproject.toml's [project] section has made tools like cxFreeze fully independent from setuptools.\",\n      \"conversational_intent\": \"clarifying\",\n      \"stance\": \"explanatory\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": null,\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I'm pretty certain\",\n          \"function\": \"expressing certainty\"\n        },\n        {\n          \"text\": \"only do so because they date back to when\",\n          \"function\": \"explaining historical reason\"\n        },\n        {\n          \"text\": \"fully decoupled itself from setuptools\",\n          \"function\": \"describing current independence\"\n        }\n      ]\n    },\n    {\n      \"post_number\": 6,\n      \"username\": \"steve.dower\",\n      \"explicit_reply_to\": 4,\n      \"quote_targets\": [\n        4\n      ],\n      \"projected_parent\": 4,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"The author explains that the tools listed are frontend tools per PEP 517, not implemented as described; they analyze code directories, infer the needed tool, compile, and arrange outputs. Using a wheel intermediate would make them resemble pip more than setuptools.\",\n      \"conversational_intent\": \"clarifying\",\n      \"stance\": \"informative\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": null,\n      \"phrase_candidates\": [\n        {\n          \"text\": \"What you've listed here are actually _frontend_ tools\",\n          \"function\": \"introducing clarification\"\n        },\n        {\n          \"text\": \"They aren't implemented like that, of course\",\n          \"function\": \"expressing clarification\"\n        }\n      ]\n    },\n    {\n      \"post_number\": 7,\n      \"username\": \"cjames23\",\n      \"explicit_reply_to\": 4,\n      \"quote_targets\": [\n        4\n      ],\n      \"projected_parent\": 4,\n      \"projection_reason\": \"explicit_reply\",\n      \"summary\": \"I think we should wait until multiple tools with strong adoption implement a feature before standardizing it; most hatch plugins have narrow use cases, except the zipped directory and hatch‑aws plugins, which are essentially the same.\",\n      \"conversational_intent\": \"expressing stance\",\n      \"stance\": \"assertive\",\n      \"technical_burden\": \"low\",\n      \"phrase_learning_potential\": \"high\",\n      \"important_uncertainty\": null,\n      \"phrase_candidates\": [\n        {\n          \"text\": \"I want to see more than one tool implementing something with significant adoption before trying to standardize it.\",\n          \"function\": \"expressing stance\"\n        },\n        {\n          \"text\": \"many of the plugins that are not just flavors of wheels and sdists typically have relatively narrow use cases.\",\n          \"function\": \"describing plugin use cases\"\n        }\n      ]\n    }\n  ]\n}\n\n\nReturn JSON matching this schema:\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"selected_path\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"integer\"\n      },\n      \"minItems\": 2,\n      \"maxItems\": 6\n    },\n    \"path_summary\": {\n      \"type\": \"string\"\n    },\n    \"selection_reasons\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"rejected_alternatives\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"post_number\": {\n            \"type\": \"integer\"\n          },\n          \"reason\": {\n            \"type\": \"string\"\n          }\n        },\n        \"required\": [\n          \"post_number\",\n          \"reason\"\n        ],\n        \"additionalProperties\": false\n      }\n    },\n    \"confidence\": {\n      \"type\": \"string\",\n      \"enum\": [\n        \"low\",\n        \"medium\",\n        \"high\"\n      ]\n    }\n  },\n  \"required\": [\n    \"selected_path\",\n    \"path_summary\",\n    \"selection_reasons\",\n    \"rejected_alternatives\",\n    \"confidence\"\n  ],\n  \"additionalProperties\": false\n}"
+    }
+  ],
+  "stream": false,
+  "format": {
+    "type": "object",
+    "properties": {
+      "selected_path": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        },
+        "minItems": 2,
+        "maxItems": 6
+      },
+      "path_summary": {
+        "type": "string"
+      },
+      "selection_reasons": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "rejected_alternatives": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "post_number": {
+              "type": "integer"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "post_number",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "confidence": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ]
+      }
+    },
+    "required": [
+      "selected_path",
+      "path_summary",
+      "selection_reasons",
+      "rejected_alternatives",
+      "confidence"
+    ],
+    "additionalProperties": false
+  },
+  "options": {
+    "temperature": 0.0
+  },
+  "keep_alive": "30m",
+  "think": "medium"
+}

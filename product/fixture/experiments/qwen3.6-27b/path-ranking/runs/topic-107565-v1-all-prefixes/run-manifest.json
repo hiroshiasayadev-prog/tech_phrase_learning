@@ -1,0 +1,50 @@
+{
+  "started_at": "2026-06-25T09:55:11.664869+00:00",
+  "source_run": "C:\\Users\\imved\\projects\\tech_phrase_learning\\product\\fixture\\experiments\\gpt-oss-20b\\conversation-path-selection\\runs\\topic-107565-v3",
+  "source_hashes": {
+    "coarse-tree.json": "6628d751469f66eb6ffea10564198f421d7e8816a4c93210837a31c8a1e783c1",
+    "post-summaries.json": "9cbaca83c0ecfb33880a1b6f257f3a78ab01fab2e828a57e4ae5d373923af0c0",
+    "run-manifest.json": "a6e8d3b64f65ea520e66713903ab39b3d9041cdb759ac6b94d8aefe6ab7470e2",
+    "path-selection.parsed.json": "a991400c0619534286334d1009b3f8f7eda52aaa0b4c3e025831b7cf950b56ab"
+  },
+  "judge": {
+    "base_url": "http://192.168.11.22:11434",
+    "requested_model": "qwen3.6-27b:q4_k_m-tools",
+    "resolved_model": "qwen3.6-27b:q4_k_m-tools",
+    "installed_models": [
+      "gpt-oss:20b",
+      "qwen3.6-27b:q4_k_m",
+      "qwen3.6-27b:q4_k_m-tools"
+    ],
+    "think": "high",
+    "temperature": 0.0,
+    "keep_alive": "30m",
+    "ranking_retries": 2
+  },
+  "candidate_policy": {
+    "min_posts": 2,
+    "max_posts": 6,
+    "include_non_leaf_prefixes": true,
+    "candidate_count": 6
+  },
+  "blind_inputs": {
+    "expected_path_not_sent_to_judge": true,
+    "gpt_oss_path_not_sent_to_judge": true
+  },
+  "artifact_hashes": {
+    "path-ranking-prompt-v1.md": "c2822ec998b0a09c6d0d6d6e4176af1989bcec5a905afaee41ea99f940e2536b",
+    "path-ranking-v1.schema.json": "492fad3b18838a0c221957a45fe05fb91c10be8e9d107448e1232c106e4039c9"
+  },
+  "prepare_only": false,
+  "completed_at": "2026-06-25T09:59:08.164572+00:00",
+  "accepted_attempt": 1,
+  "ranking_validation_passed": true,
+  "qwen_top_candidate_id": "P002",
+  "qwen_top_path": [
+    1,
+    2,
+    4
+  ],
+  "expected_rank": 5,
+  "gpt_oss_rank": 4
+}
