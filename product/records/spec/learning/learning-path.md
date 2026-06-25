@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.learning.learning_path`
 - **status**: draft
-- **date**: 2026-06-25
+- **date**: 2026-06-26
 - **parent**: `spec:product.learning`
 
 ## What this is
@@ -82,7 +82,7 @@ The model defines learning suitability without defining pipeline algorithms or s
 | Learner-visible content generated from a path | `spec:product.learning.learning_unit` |
 | Session progression over one learning unit | `spec:product.learning.quiz_session` |
 | Path enumeration, validation, filtering, and provenance materialization | `spec:product.pipeline` |
-| Session-time learning-unit selection | Future application contract. |
+| Runtime learning-unit selection | `spec:product.application.learning_unit_selection`. |
 
 ## Related specs
 
@@ -93,4 +93,5 @@ The model defines learning suitability without defining pipeline algorithms or s
 | `spec:product.learning.learning_unit` | Defines content generated from one valid path. |
 | `spec:product.learning.quiz_session` | Defines progressive presentation of one selected learning unit. |
 | `spec:product.pipeline` | Implements candidate generation and filtering for this contract. |
+| `spec:product.application.learning_unit_selection` | Selects available learning units rather than raw learning paths. |
 | PRODUCT-ADR-LEARNING-005 | Establishes multiple valid paths and learning-unit generation from summarized source-post paths. |

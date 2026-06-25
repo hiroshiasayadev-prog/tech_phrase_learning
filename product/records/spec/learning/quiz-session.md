@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.learning.quiz_session`
 - **status**: draft
-- **date**: 2026-06-25
+- **date**: 2026-06-26
 - **parent**: `spec:product.learning`
 
 ## What this is
@@ -111,7 +111,7 @@ The session progressively replaces each active quiz card with an answered summar
 | Valid path and path-to-unit relationship | `spec:product.learning.learning_path` |
 | Meaning of quiz prompts, options, phrases, and summaries | `spec:product.learning.learning_unit` |
 | Card order and learner-visible transitions | `spec:product.learning.quiz_session` |
-| Session-time learning-unit selection | Future application contract. |
+| Runtime learning-unit selection | `spec:product.application.learning_unit_selection`. |
 | PWA runtime state, loading, retry, and navigation | `spec:product.ui.learning_flow` |
 | Session-state persistence | Out of scope for the first MVP. |
 | Package generation and validation | `spec:product.pipeline` |
@@ -125,6 +125,7 @@ The session progressively replaces each active quiz card with an answered summar
 | `spec:product.learning.learning_path` | Defines the source-post path presented by the session. |
 | `spec:product.learning.learning_unit` | Defines content shown within each card. |
 | `spec:product.pipeline` | Produces the ordered content consumed by the session. |
+| `spec:product.application.learning_unit_selection` | Selects and retrieves the available unit used by the session. |
 | `spec:product.ui.learning_flow` | Implements the transient PWA flow for this session contract. |
 | PRODUCT-ADR-LEARNING-005 | Establishes the current summarized learning-unit model. |
 | PRODUCT-ADR-LEARNING-006 | Establishes progressive quiz-to-summary card behavior. |

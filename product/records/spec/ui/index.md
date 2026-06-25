@@ -29,9 +29,9 @@ The area implements learning semantics without owning content generation or back
 
 ## Non-goals
 
-- Backend API shape.
+- Application transport shape.
 - Learning-unit selection and shuffle-generation policy.
-- Availability and publication ownership.
+- Published-content availability and publication ownership.
 - Durable learner progress and learner history.
 - Authentication and account behavior.
 - Concrete frontend framework, state library, route structure, or implementation component tree.
@@ -66,7 +66,7 @@ The area implements learning semantics without owning content generation or back
 | PWA runtime state and screen behavior | `spec:product.ui` |
 | Page and component visual models | `spec:product.ui.pages` and `spec:product.ui.components` |
 | Content ingestion, generation, validation, and publication | `spec:product.pipeline` |
-| Backend selection, API, and repository boundaries | Future application or backend contract. |
+| Runtime selection, retrieval, and outbound query ports | `spec:product.application`. |
 
 ## Related specs
 
@@ -77,5 +77,6 @@ The area implements learning semantics without owning content generation or back
 | `spec:product.learning.quiz_session` | Defines progressive quiz-to-summary behavior. |
 | `spec:product.ui.pages` | Shows the first-MVP page composition and navigation. |
 | `spec:product.ui.components` | Shows the reusable visual parts. |
-| `spec:product.pipeline` | Produces the published content consumed by the UI. |
+| `spec:product.pipeline` | Produces the published content consumed through the application boundary. |
+| `spec:product.application` | Provides runtime queue creation and learning-unit retrieval. |
 | PRODUCT-ADR-UI-001 | Establishes PWA ownership of transient learner-flow state. |

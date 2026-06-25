@@ -6,6 +6,7 @@
 - PRODUCT specification router: `product/records/spec/index.md`
 - Learning overview: `product/records/spec/learning/index.md`
 - Pipeline overview: `product/records/spec/pipeline/index.md`
+- Application overview: `product/records/spec/application/index.md`
 - Learner UI overview: `product/records/spec/ui/index.md`
 
 ### Shared authoring standards
@@ -75,14 +76,18 @@ Current top-level areas:
 | area | ownership |
 |---|---|
 | `learning/` | Target learner, learning outcome, conversation-context model, phrase-exposure model, and learner-facing semantics. |
-| `pipeline/` | Ingestion, normalization, filtering, extraction, LLM augmentation, validation, and provider integration. |
+| `pipeline/` | Ingestion, normalization, filtering, extraction, LLM augmentation, validation, publication decisions, and published-content writes. |
+| `application/` | Runtime learning-unit selection, availability-aware retrieval, application use cases, and outbound query ports. |
 | `ui/` | PWA screen flow, transient learner-flow state, navigation, loading, and operation feedback. |
 
 Dependency direction:
 
 - `pipeline` may depend on `learning`.
 - `learning` must not depend normatively on `pipeline`.
-- `ui` may depend on `learning`.
+- `application` may depend on `learning`.
+- `application` must not depend on pipeline internals.
+- `pipeline` may write the published-content boundary defined for application runtime reads.
+- `ui` may depend on `learning` and application interfaces.
 - `learning` must not depend normatively on `ui`.
 - `ui` must not depend on pipeline internals.
 - Learning semantics must remain valid when processing or UI technology changes.
@@ -99,6 +104,7 @@ Do not create a new top-level spec area until its semantic owner is explicit.
 - `PRODUCT-ADR-PIPELINE-001`: Prefer mechanical processing before LLM augmentation.
 - `PRODUCT-ADR-PIPELINE-002`: Use an OpenAI-compatible LLM provider boundary.
 - `PRODUCT-ADR-PIPELINE-004`: Use path-based generation and automated publication gating for the first MVP.
+- `PRODUCT-ADR-APPLICATION-001`: Separate published runtime content from pipeline internals.
 - `PRODUCT-ADR-UI-001`: Keep first-MVP learner-flow state in the PWA.
 
 Read the corresponding ADR before changing its decision or the specification derived from it.

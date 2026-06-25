@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.ui.learning_flow`
 - **status**: draft
-- **date**: 2026-06-25
+- **date**: 2026-06-26
 - **parent**: `spec:product.ui`
 
 ## What this is
@@ -70,7 +70,11 @@ LearningQueue
 - The queue index must advance only after the next learning unit loads successfully.
 - Queue exhaustion must trigger acquisition of another complete-shuffle queue.
 - Queue exhaustion must not require a return to the main screen.
-- Backend queue-production policy remains outside this spec.
+- A queued reference returned as unavailable must be removed from the pending queue candidates.
+- The UI must try the next pending reference without retrying the unavailable reference.
+- Removing an unavailable pending reference must not replace the loaded unit or active session.
+- Network and server failures must continue to use the retry behavior in this spec.
+- Application queue-production policy remains outside this spec.
 
 ### Session
 
@@ -149,8 +153,8 @@ initial request
 | Quiz, summary, target phrase, option, and attribution meaning | `spec:product.learning` |
 | Progressive learner-visible card semantics | `spec:product.learning.quiz_session` |
 | PWA state ownership and runtime transitions | `spec:product.ui.learning_flow` |
-| Unit availability and selection | Future application or backend contract. |
-| Queue generation and API transport | Future application or backend contract. |
+| Unit availability and selection | `spec:product.application.learning_unit_selection`. |
+| Queue generation and complete-unit retrieval | `spec:product.application.learning_unit_selection`. |
 | Content generation and publication | `spec:product.pipeline` |
 
 ## Related specs
@@ -163,4 +167,5 @@ initial request
 | `spec:product.learning.learning_unit` | Defines immutable learner-visible content consumed by the flow. |
 | `spec:product.learning.quiz_session` | Defines progressive card meaning and reveal order. |
 | `spec:product.pipeline` | Produces validated learning units before the flow starts. |
+| `spec:product.application.learning_unit_selection` | Creates queues and retrieves available complete units. |
 | PRODUCT-ADR-UI-001 | Establishes the state ownership and runtime boundaries in this spec. |

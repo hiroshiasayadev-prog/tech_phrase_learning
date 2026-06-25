@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.learning`
 - **status**: draft
-- **date**: 2026-06-25
+- **date**: 2026-06-26
 - **parent**: `spec:product`
 
 ## What this is
@@ -36,7 +36,7 @@ The area remains valid when content-processing technology changes.
 - Conversation parsing and normalization algorithms.
 - Path enumeration and filtering mechanics.
 - LLM model selection or provider integration.
-- Session-time selection algorithms.
+- Runtime learning-unit selection and availability-aware retrieval.
 - PWA runtime state, navigation, loading, and retry behavior.
 - Deployment, persistence, and concrete UI architecture.
 
@@ -51,7 +51,7 @@ The area remains valid when content-processing technology changes.
 | PWA runtime state, navigation, loading, and retry behavior | `spec:product.ui`. |
 | Ingestion, path enumeration, filtering, generation, and validation | `spec:product.pipeline`. |
 | LLM provider and model integration | `spec:product.pipeline`. |
-| Session-time learning-unit selection | Future application contract. |
+| Runtime learning-unit selection and retrieval | `spec:product.application.learning_unit_selection`. |
 
 ## Topics
 
@@ -68,6 +68,7 @@ The area remains valid when content-processing technology changes.
 |---|---|
 | `spec:product` | PRODUCT placement router and dependency direction. |
 | `spec:product.pipeline` | Implements content production for this learning contract. |
+| `spec:product.application` | Selects and retrieves published learning units. |
 | `spec:product.ui` | Implements the transient PWA flow for this learning contract. |
 | PRODUCT-ADR-LEARNING-001 | Establishes technical conversation trees as the primary learning source. |
 | PRODUCT-ADR-LEARNING-005 | Establishes summarized source-post paths, learning-unit generation, and publication gating. |

@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.pipeline`
 - **status**: draft
-- **date**: 2026-06-25
+- **date**: 2026-06-26
 - **parent**: `spec:product`
 
 ## What this is
@@ -37,7 +37,7 @@ The area implements learning-domain needs without owning their pedagogical meani
 - Target learner definition.
 - Learning outcome and pedagogical rationale.
 - Learner-visible phrase, summary, and card meaning.
-- Session-time learning-unit selection.
+- Runtime learning-unit selection and availability-aware retrieval.
 - Selection of a permanent concrete model or provider.
 - Complete cross-vendor support for every optional LLM feature.
 
@@ -72,7 +72,7 @@ The area implements learning-domain needs without owning their pedagogical meani
 | Summary, phrase, and quiz generation mechanics | `spec:product.pipeline`. |
 | Publication-gate implementation | `spec:product.pipeline`. |
 | Concrete provider adaptation | `spec:product.pipeline`. |
-| Session-time learning-unit selection | Future application contract. |
+| Runtime learning-unit selection and availability-aware retrieval | `spec:product.application`. |
 
 ## Topic map
 
@@ -87,6 +87,7 @@ This overview owns the current pipeline-domain contract.
 | `spec:product.learning` | Learning contract implemented by the pipeline. |
 | `spec:product.learning.learning_path` | Defines valid source-post path semantics. |
 | `spec:product.learning.learning_unit` | Defines the learner-visible unit produced by the pipeline. |
+| `spec:product.application.published_content` | Defines the runtime projection written after publication decisions. |
 | PRODUCT-ADR-PIPELINE-001 | Establishes deterministic processing before LLM augmentation. |
 | PRODUCT-ADR-PIPELINE-002 | Establishes the OpenAI-compatible provider boundary. |
 | PRODUCT-ADR-PIPELINE-004 | Establishes path-based generation and automated publication gating. |
