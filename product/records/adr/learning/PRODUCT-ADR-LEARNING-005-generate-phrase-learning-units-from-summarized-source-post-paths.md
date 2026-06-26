@@ -1,18 +1,29 @@
 # PRODUCT-ADR-LEARNING-005: Generate phrase-learning units from summarized source-post paths
 
 - **status**: accepted
-- **date**: 2026-06-25
+- **date**: 2026-06-26
 - **depends_on**: [PRODUCT-ADR-LEARNING-001]
 - **supersedes**: [PRODUCT-ADR-LEARNING-004]
-- **migrated_to_spec**: 2026-06-25
+- **migrated_to_spec**: 2026-06-26
 
 ## Context
 
 One technical discussion may contain several source-post sequences that support different phrase-learning value.
 The pipeline investigation concluded that the product must retain multiple valid sequences instead of selecting one canonical sequence during ingestion.
 
-One source-post sequence may also support more than one learning unit.
-Different quizzes may focus on different phrases or conversational functions within the same source conversation.
+Multiple learning opportunities from one discussion are represented by multiple valid paths.
+The identity source for a learning unit is one valid learning path.
+Generated fields do not create sibling learning units for the same path.
+
+Examples, not exhaustive:
+
+- target phrases;
+- quiz prompts;
+- answer options;
+- source-post summaries;
+- model identities;
+- prompt versions;
+- validation implementations.
 
 Raw source posts may contain code, links, and long technical explanations.
 The product must preserve source evidence without turning the learner session into technical-reading practice.
@@ -30,9 +41,12 @@ A source-post path is an ordered sequence of connected source posts from one tec
 One discussion may retain zero or more valid source-post paths.
 The pipeline will not select one canonical path during ingestion.
 
-One valid source-post path may produce zero or more learning units.
-A learning unit will reference its source-post path instead of copying the source posts or conversation tree.
+Each valid source-post path defines exactly one learning unit.
+The learning unit will reference its source-post path instead of copying the source posts or conversation tree.
 The source posts and conversation tree will remain separately managed source artifacts.
+Generated quiz content may be regenerated without creating another learning unit.
+Target-phrase or quiz-content changes replace current content for the same learning unit.
+The first MVP does not introduce learning-unit revision history.
 
 The application will select one available learning unit when a learner session starts.
 The application will not select a raw source-post path and generate unapproved quiz content during the session.
@@ -101,7 +115,8 @@ source posts and preserved relationships
   -> one target quiz phrase per selected post
   -> one three-option quiz per selected post
   -> automated publication gate
-  -> available learning unit
+  -> current generated content for one learning unit
+  -> available learning unit when the gate passes
 ```
 
 The exact prompts, model roles, schemas, retry rules, and validation thresholds belong to pipeline specifications.
@@ -130,7 +145,8 @@ Retaining several valid paths preserves different legitimate learning opportunit
 Selecting one canonical path during ingestion would discard useful alternatives before learner needs are known.
 
 Separating source posts, conversation trees, paths, and learning units avoids source duplication.
-The separation also allows one path to support several quiz variants.
+The separation keeps source material, path identity, generated content, and learner availability as distinct concerns.
+Anchoring learning-unit identity to the valid path keeps regeneration from creating duplicate units.
 
 Reusable summaries reduce repeated work.
 Path-specific revision fixes pronouns, omitted context, and other continuity problems that only appear inside one selected sequence.
@@ -149,7 +165,8 @@ An automated publication gate preserves a clear release boundary without requiri
 | alternative | rejection reason |
 |---|---|
 | Retain one canonical source-post path per discussion | One discussion may contain several independently useful phrase-learning sequences. |
-| Treat a source-post path as the learning unit | One path may support several quiz sets and target phrases. |
+| Treat a source-post path as the learner-visible unit | The path is source material, not generated quiz content. |
+| Create separate learning units for quiz variants on one path | Generated-content changes replace current content for the same logical unit. |
 | Copy source posts into every path and unit | Duplication would weaken provenance and complicate source updates. |
 | Generate every summary only for one path | Repeated generation would waste work shared across path candidates. |
 | Use only one reusable summary in every path | A locally accurate summary may still produce unnatural conversation continuity. |
@@ -164,7 +181,10 @@ An automated publication gate preserves a clear release boundary without requiri
 - Learning specifications must define valid source-post path principles independently from pipeline implementation.
 - Pipeline specifications must define path generation, filtering, summary stages, phrase selection, quiz generation, and publication gating.
 - The source-post path, conversation tree, source posts, and learning unit require separate identities and references.
-- One source-post path may be referenced by several learning units.
+- Each valid source-post path defines exactly one learning unit.
+- Stable learning-unit identity is anchored to valid learning-path identity.
+- Regeneration replaces current generated content for the same learning unit.
+- No learning-unit revision-history contract is introduced for the first MVP.
 - Each selected source post requires one summary, one quiz, and one target phrase in the first MVP.
 - Learner-facing content generated by this flow must be English.
 - The application session selector will query available learning units rather than raw paths.
@@ -176,6 +196,7 @@ An automated publication gate preserves a clear release boundary without requiri
 
 - PRODUCT-INV-PIPELINE-002 concluded that one topic may yield multiple independently valid paths.
 - The filtering comparison retained valid prefix-overlapping paths without ranking them against each other.
+- The corrected cardinality treats each retained valid path as the identity source for one learning unit.
 - Earlier experiments found that raw posts can contain code and technical detail that overwhelm phrase-learning context.
 - Earlier experiments also found that summaries can become misleading when quote text and authored text are not separated.
 - The agreed product flow uses technical summaries for revealed source turns and abstracted English phrases for quiz choices.

@@ -1,10 +1,10 @@
 # PRODUCT-ADR-PIPELINE-004: Use path-based generation and automated publication gating for the first MVP
 
-- **status**: accepted
-- **date**: 2026-06-25
+- **status**: superseded
+- **date**: 2026-06-26
 - **depends_on**: [PRODUCT-ADR-LEARNING-005, PRODUCT-ADR-PIPELINE-001, PRODUCT-ADR-PIPELINE-002]
 - **supersedes**: [PRODUCT-ADR-PIPELINE-003]
-- **migrated_to_spec**: 2026-06-25
+- **migrated_to_spec**: 2026-06-26
 
 ## Context
 
@@ -13,7 +13,7 @@ PRODUCT-ADR-PIPELINE-003 selected `discuss.python.org` and a manually reviewed s
 Later learning decisions replaced one segment per learning unit with two separate concepts:
 
 - a valid source-post path;
-- zero or more learning units generated from that path.
+- exactly one logical learning unit defined by that path.
 
 The learning contract also removed routine human approval for every learning unit.
 Routine item review cannot scale to the expected content volume.
@@ -39,12 +39,15 @@ The pipeline will use this flow:
 10. select one target quiz phrase per selected post;
 11. generate one three-option quiz per selected post;
 12. apply an automated publication gate;
-13. make passing learning units available to sessions.
+13. publish current generated content for the logical learning unit when the gate passes.
 
 The pipeline will not select one canonical path during ingestion.
 Prefix-overlapping valid paths may remain available for learning-unit generation.
 
-One valid source-post path may produce zero or more learning units.
+One valid source-post path defines exactly one logical learning unit.
+Regeneration may replace the current generated content for that logical learning unit.
+Changing the target phrase or quiz content through regeneration does not create a separate learning unit.
+The first MVP will not maintain runtime learning-unit revision history.
 Pipeline artifacts will reference source posts instead of copying source ownership into the learning domain.
 
 Phrase selection and quiz generation will remain separate bounded model tasks.
@@ -71,19 +74,21 @@ The validation set is evidence for gate development and does not become a public
 
 A failed or withdrawn learning unit will become unavailable to new sessions.
 Unavailability will preserve source snapshots, source references, evidence, attribution, provenance, pipeline version, model identity, and prompt version.
+Unavailability will not create an old unavailable sibling unit when regenerated content becomes available for the same path.
 
 ## Rationale
 
 Path-based processing matches the current learning model.
 The separation allows one discussion to retain several useful paths.
-The separation also allows one path to support several learning units.
+The separation anchors one logical learning-unit identity to each valid path.
 
 An automated gate provides a scalable publication boundary.
 Human-approved criteria retain product control without requiring routine item review.
 
 Golden fixtures and selected manual evaluations provide evidence for improving filters, prompts, schemas, and models.
 
-Immutable source snapshots and versioned derived artifacts preserve diagnosis and regeneration.
+Immutable source snapshots and versioned pipeline artifacts preserve diagnosis and regeneration.
+They do not introduce runtime learning-unit revision history.
 
 ## Rejected alternatives
 
@@ -103,6 +108,7 @@ Immutable source snapshots and versioned derived artifacts preserve diagnosis an
 - The initial `discuss.python.org` Packaging corpus remains unchanged.
 - Pipeline specifications must use valid-path and learning-unit terminology.
 - Pipeline specifications must replace routine human review with automated publication gating.
+- Pipeline specifications must treat one valid path as one logical learning unit with replaceable current content.
 - Human-reviewed fixtures remain evaluation evidence rather than a publication queue.
 - Deterministic validation and model-based judgment may share one publication result.
 - Exact prompts, schemas, thresholds, retries, and model roles belong to pipeline specifications or later architecture work.

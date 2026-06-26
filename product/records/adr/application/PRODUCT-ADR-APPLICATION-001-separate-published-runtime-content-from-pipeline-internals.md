@@ -2,7 +2,7 @@
 
 - **status**: accepted
 - **date**: 2026-06-26
-- **depends_on**: [PRODUCT-ADR-LEARNING-005, PRODUCT-ADR-PIPELINE-004, PRODUCT-ADR-UI-001]
+- **depends_on**: [PRODUCT-ADR-LEARNING-005, PRODUCT-ADR-PIPELINE-005, PRODUCT-ADR-UI-001]
 - **supersedes**: []
 - **migrated_to_spec**: 2026-06-26
 
@@ -118,6 +118,6 @@ Atomic publication replacement prevents mixed content and provenance from becomi
 ## Evidence
 
 - PRODUCT-ADR-LEARNING-005 requires session-time selection of available pre-generated learning units.
-- PRODUCT-ADR-PIPELINE-004 assigns generation, validation, publication gating, and provenance retention to the pipeline.
+- PRODUCT-ADR-PIPELINE-005 assigns generation, validation, publication gating, source reuse, and current provenance retention to the pipeline.
 - PRODUCT-ADR-UI-001 assigns transient `LearningQueue` and `Session` state to the PWA.
 - The accepted architecture discussion selected a shared physical database with separate pipeline-internal and published-content boundaries.

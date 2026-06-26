@@ -75,7 +75,7 @@ Classify content by the contract it defines before choosing a path.
 | `spec:product.application` | Runtime selection and published-content retrieval contract. |
 | `spec:product.ui` | Learner-facing runtime and transient-state contract. |
 | PRODUCT-ADR-LEARNING-001 | Establishes technical conversation trees as the primary learning source. |
-| PRODUCT-ADR-PIPELINE-001 | Establishes deterministic processing before LLM augmentation. |
 | PRODUCT-ADR-PIPELINE-002 | Establishes the OpenAI-compatible provider boundary. |
+| PRODUCT-ADR-PIPELINE-005 | Establishes staged path generation, publication gating, source reuse, and current-only retention. |
 | PRODUCT-ADR-UI-001 | Establishes PWA ownership of transient learner-flow state. |
 | PRODUCT-ADR-APPLICATION-001 | Establishes the published-content and runtime application boundary. |

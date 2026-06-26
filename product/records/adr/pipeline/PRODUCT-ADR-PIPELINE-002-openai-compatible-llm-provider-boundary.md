@@ -2,7 +2,7 @@
 
 - **status**: accepted
 - **date**: 2026-06-24
-- **depends_on**: [PRODUCT-ADR-PIPELINE-001]
+- **depends_on**: [PRODUCT-ADR-PIPELINE-005]
 - **supersedes**: []
 - **migrated_to_spec**: 2026-06-24
 

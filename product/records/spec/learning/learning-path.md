@@ -35,7 +35,7 @@ The model defines learning suitability without defining pipeline algorithms or s
 |---|---|
 | Source discussion to valid path | One discussion may provide zero or more valid paths. |
 | Valid path to source post | One valid path contains two to six ordered source-post references for the first MVP. |
-| Valid path to learning unit | One valid path may support zero or more learning units. |
+| Valid path to learning unit | Each valid path defines exactly one learning unit. |
 | Learning unit to valid path | One learning unit references exactly one valid path. |
 
 ## Rules
@@ -71,7 +71,8 @@ The model defines learning suitability without defining pipeline algorithms or s
 
 - A valid path is source material for learning-unit generation.
 - A valid path is not itself learner-facing quiz content.
-- Different learning units may use different target phrases or quiz choices for the same path.
+- Different target phrases or quiz choices do not create different learning units for the same path.
+- Generated-content changes replace current content for the same learning unit.
 - A valid path does not become session-available until an associated learning unit passes the publication gate.
 
 ## Boundary

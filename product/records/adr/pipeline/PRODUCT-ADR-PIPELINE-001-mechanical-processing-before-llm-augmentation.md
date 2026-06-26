@@ -1,6 +1,6 @@
 # PRODUCT-ADR-PIPELINE-001: Prefer mechanical processing before LLM augmentation
 
-- **status**: accepted
+- **status**: superseded
 - **date**: 2026-06-24
 - **depends_on**: [PRODUCT-ADR-LEARNING-001]
 - **supersedes**: []

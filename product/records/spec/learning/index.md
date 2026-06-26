@@ -19,7 +19,7 @@ The area remains valid when content-processing technology changes.
 | Primary source | Real technical conversation trees. |
 | Learning path | Use an ordered source-post sequence that begins with an opening post and continues through replies. |
 | Path multiplicity | One discussion may provide zero or more independently valid paths. |
-| Learning-unit multiplicity | One valid path may support zero or more learning units. |
+| Learning-unit cardinality | Each valid path defines exactly one learning unit. |
 | Interaction types | Use question-formulation and reply-formulation interactions. |
 | Quiz abstraction | Use one concise intent prompt and three natural English candidate responses per selected post. |
 | Target phrase | Use one technically abstracted reusable expression per interaction. |

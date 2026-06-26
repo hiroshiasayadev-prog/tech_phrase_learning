@@ -1,13 +1,13 @@
 # PRODUCT-TASK-APPLICATION-001-01: Open published-content and handoff design
 
 - **id**: PRODUCT-TASK-APPLICATION-001-01
-- **status**: not_started
+- **status**: done
 - **date**: 2026-06-26
 - **work_item**: PRODUCT-WORK-APPLICATION-001
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
 - **estimate**: 1d
 - **depends_on**: []
-- **outputs**: []
+- **outputs**: [PRODUCT-WORK-APPLICATION-002]
 
 ## Goal
 
@@ -67,4 +67,9 @@ The child work item must create an ADR when it adopts a new architectural decisi
 
 ## Evidence
 
-TBD
+- Created PRODUCT-WORK-APPLICATION-002 under `product/records/work-items/application/`.
+- Created PRODUCT-TASK-APPLICATION-002-01 through PRODUCT-TASK-APPLICATION-002-05 as the child work-item task graph.
+- Added PRODUCT-WORK-APPLICATION-002 to PRODUCT-REQ-APPLICATION-001 `work_items`.
+- Verified the child path, H1, metadata, source requirement, impact refs, task dependencies, and canonical references with filesystem reads.
+- Verified every child task references PRODUCT-WORK-APPLICATION-002 and PRODUCT-REQ-APPLICATION-001.
+- A new session can begin with PRODUCT-TASK-APPLICATION-002-01 without a separate handoff.

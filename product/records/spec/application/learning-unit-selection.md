@@ -89,7 +89,6 @@ The name does not require one queue to contain every available unit.
 - `Unavailable` must allow the PWA to bypass that reference and try another queued reference.
 - Network and server failures must remain distinct from `Unavailable`.
 - A queue containing only stale references may be exhausted and replaced.
-- A unit already loaded successfully must remain usable in the active PWA session.
 
 ### Domain and application separation
 

@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.learning.learning_unit`
 - **status**: draft
-- **date**: 2026-06-25
+- **date**: 2026-06-26
 - **parent**: `spec:product.learning`
 
 ## What this is
@@ -38,7 +38,7 @@ The model separates generated quiz content, source-derived summaries, and authen
 | relationship | contract |
 |---|---|
 | Learning unit to learning path | One learning unit references exactly one valid learning path. |
-| Learning path to learning unit | One valid learning path may support zero or more learning units. |
+| Learning path to learning unit | Each valid learning path defines exactly one learning unit. |
 | Selected source post to interaction | Every selected source post has exactly one interaction in the first MVP. |
 | Interaction to source-post summary | Every interaction has exactly one learner-visible summary. |
 | Interaction to quiz prompt | Every interaction has exactly one prompt. |
@@ -56,7 +56,11 @@ The model separates generated quiz content, source-derived summaries, and authen
 - Every later interaction must correspond to an authentic reply in the selected path.
 - Interaction order must match source-post order.
 - Every selected source post must have one interaction.
-- One valid path may support different learning units with different target phrases or quiz options.
+- Stable learning-unit identity is anchored to valid learning-path identity.
+- Generated-content changes must not change the logical learning-unit identity.
+- Target phrases, quiz prompts, answer options, and correct-option wording are not identity inputs.
+- Source-post summaries, model identity, prompt versions, and validation implementations are not identity inputs.
+- A different valid path creates a different learning unit.
 
 ### Source-post summary
 
@@ -120,7 +124,8 @@ The model separates generated quiz content, source-derived summaries, and authen
 - Human approval applies to the publication criteria and material changes to those criteria.
 - The first MVP does not require human approval for each learning unit.
 - A learning unit that no longer passes the gate must become unavailable to new sessions.
-- Unavailability must preserve source-post references, source evidence, attribution, and provenance.
+- Unavailability must preserve source-post references, source evidence, and attribution.
+- Published-content retention and provenance belong to `spec:product.application.published_content` and `spec:product.pipeline`.
 
 ## Boundary
 

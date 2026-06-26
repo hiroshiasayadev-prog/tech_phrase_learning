@@ -101,9 +101,8 @@ Do not create a new top-level spec area until its semantic owner is explicit.
 - `PRODUCT-ADR-LEARNING-001`: Use technical conversation trees as the primary learning source.
 - `PRODUCT-ADR-LEARNING-005`: Generate phrase-learning units from summarized source-post paths.
 - `PRODUCT-ADR-LEARNING-006`: Use progressive quiz-to-summary cards for learner sessions.
-- `PRODUCT-ADR-PIPELINE-001`: Prefer mechanical processing before LLM augmentation.
 - `PRODUCT-ADR-PIPELINE-002`: Use an OpenAI-compatible LLM provider boundary.
-- `PRODUCT-ADR-PIPELINE-004`: Use path-based generation and automated publication gating for the first MVP.
+- `PRODUCT-ADR-PIPELINE-005`: Use staged path generation with current-only retention for the first MVP.
 - `PRODUCT-ADR-APPLICATION-001`: Separate published runtime content from pipeline internals.
 - `PRODUCT-ADR-UI-001`: Keep first-MVP learner-flow state in the PWA.
 

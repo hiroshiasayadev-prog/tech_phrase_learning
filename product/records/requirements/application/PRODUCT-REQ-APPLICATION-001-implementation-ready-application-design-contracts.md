@@ -4,7 +4,7 @@
 - **status**: accepted
 - **date**: 2026-06-26
 - **source_refs**: [PRODUCT-ADR-APPLICATION-001, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection]
-- **work_items**: [PRODUCT-WORK-APPLICATION-001]
+- **work_items**: [PRODUCT-WORK-APPLICATION-001, PRODUCT-WORK-APPLICATION-002]
 
 ## Requirement
 

@@ -1,7 +1,7 @@
 # PRODUCT-WORK-APPLICATION-001: Coordinate detailed application design
 
 - **id**: PRODUCT-WORK-APPLICATION-001
-- **status**: not_started
+- **status**: in_progress
 - **date**: 2026-06-26
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
 - **impact_refs**: [PRODUCT-ADR-APPLICATION-001, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection, spec:product.pipeline, spec:product.ui.learning_flow]

@@ -15,22 +15,21 @@ The area serves published learning content without owning pipeline generation or
 | concern | contract |
 |---|---|
 | Runtime source | Read only the published-content area. |
-| Pipeline isolation | Do not read or model pipeline intermediate artifacts. |
-| Published content | Treat the stored unit as the current complete runtime projection. |
+| Pipeline isolation | Do not read or model pipeline processing data. |
+| Published content | Treat identity, complete learning unit, availability, and opaque provenance as one current runtime projection. |
 | Availability | Keep selection availability separate from current unit content. |
 | Queue creation | Return at most 100 unique available learning-unit references. |
 | Queue scope | Use all available units for the first-MVP complete shuffle. |
 | Queue state | Do not retain queue position, queue identity, or learner progress. |
 | Unit retrieval | Recheck availability before returning one complete unit. |
 | Stale queue entry | Return an unavailable result so the PWA can skip the reference. |
-| Loaded content | Do not revoke a unit already loaded into the PWA. |
 | Provenance | Keep one opaque provenance reference with the current publication. |
 | Dependency direction | Keep adapters dependent on application ports and application dependent on domain rules. |
 
 ## Non-goals
 
 - Source ingestion, learning-unit generation, and publication judgment.
-- Pipeline artifact schemas and model or prompt version semantics.
+- Pipeline processing-data schemas and model or prompt semantics.
 - PWA queue position, learner answers, and session progression.
 - HTTP routes, JSON schemas, and status-code contracts.
 - Database tables, indexes, query language, and transaction implementation.
@@ -83,8 +82,8 @@ application use case
 - Adapters may depend on application contracts.
 - Application use cases may depend on application domain rules and learning contracts.
 - Application domain rules must not depend on adapters, frameworks, or database schemas.
-- Application code must not depend on pipeline internal artifacts.
-- UI code must not depend on pipeline internal artifacts.
+- Application code must not depend on pipeline processing data.
+- UI code must not depend on pipeline processing data.
 
 ## Related specs
 
