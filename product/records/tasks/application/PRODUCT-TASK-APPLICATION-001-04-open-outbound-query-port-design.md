@@ -17,7 +17,7 @@ The created work item must be executable without a separate conversation handoff
 
 ## Work
 
-1. Read PRODUCT-ADR-APPLICATION-001 and all current `spec:product.application` topics.
+1. Read PRODUCT-ADR-APPLICATION-003 and all current `spec:product.application` topics.
 2. Read the focused selection and retrieval work items created by T02 and T03.
 3. Create the next APPLICATION work item under PRODUCT-REQ-APPLICATION-001.
 4. Use a title equivalent to `Define application outbound query ports`.
@@ -33,11 +33,12 @@ Required child scope:
 - availability filtering obligations;
 - bounded random selection obligations;
 - complete current-publication loading obligations;
-- consistency assumptions required by atomic publication replacement;
-- handling of unavailable, missing, malformed, and infrastructure-failure outcomes;
+- reads against one committed current published state;
+- handling of available, unavailable, missing, mapping-failure, and infrastructure-failure outcomes;
 - prohibition on generic CRUD as the primary application contract;
 - test doubles and contract-test boundaries;
-- required ADR or spec updates.
+- accepted ADRs required before any normative specification update;
+- specification reflection only after the authorizing ADR is accepted.
 
 Required exclusions:
 
@@ -50,6 +51,8 @@ Required exclusions:
 
 The child work item must keep port definitions inside the application boundary.
 The child work item must keep adapter algorithms outside the domain layer.
+The child task flow must separate decision ADRs from later specification reflection.
+The child task flow must stop as blocked when a normative change lacks an accepted ADR.
 
 ## Done condition
 
@@ -65,6 +68,7 @@ The child work item must keep adapter algorithms outside the domain layer.
 - Check the child work item's path, H1, metadata, source requirement, and impact refs.
 - Check reciprocal linkage from PRODUCT-REQ-APPLICATION-001.
 - Confirm that the port direction remains `adapter -> application -> domain`.
+- Confirm that the child flow applies the ADR-first change gate from `prompt_chappy.md`.
 - Confirm that a new session can start the child work item using repository records only.
 
 ## Evidence

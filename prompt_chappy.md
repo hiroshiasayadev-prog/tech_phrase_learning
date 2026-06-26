@@ -103,13 +103,37 @@ Do not create a new top-level spec area until its semantic owner is explicit.
 - `PRODUCT-ADR-LEARNING-006`: Use progressive quiz-to-summary cards for learner sessions.
 - `PRODUCT-ADR-PIPELINE-002`: Use an OpenAI-compatible LLM provider boundary.
 - `PRODUCT-ADR-PIPELINE-005`: Use staged path generation with current-only retention for the first MVP.
-- `PRODUCT-ADR-APPLICATION-001`: Separate published runtime content from pipeline internals.
+- `PRODUCT-ADR-APPLICATION-003`: Consolidate the current published-content and retrieval boundary.
+- `PRODUCT-ADR-APPLICATION-004`: Return availability results from the published-unit retrieval port.
 - `PRODUCT-ADR-UI-001`: Keep first-MVP learner-flow state in the PWA.
 
-Read the corresponding ADR before changing its decision or the specification derived from it.
+PRODUCT-ADR-APPLICATION-001 and PRODUCT-ADR-APPLICATION-002 are superseded historical records.
 
-Do not rewrite an accepted ADR to reverse its decision.
-Create a new ADR and supersede the old ADR.
+Read the corresponding current ADR before changing its decision or the specification derived from it.
+
+Do not edit decision-bearing sections of an accepted ADR to reverse or replace its decision.
+Create a new ADR and list every replaced ADR in `supersedes`.
+Move replaced ADRs from `accepted` to `superseded` without rewriting their decision history.
+
+### ADR-first change gate
+
+Apply this gate before every task that may change normative design content:
+
+1. Identify each proposed normative change.
+2. Identify the accepted ADR that authorizes each change.
+3. Stop and report `missing ADR` when no accepted ADR authorizes a proposed change.
+4. Obtain the user decision and create or accept the required ADR.
+5. Change specifications only after the ADR is accepted.
+6. Keep decision rationale in the ADR and current contract text in the specification.
+7. Keep tasks and work items limited to execution scope, status, and evidence.
+
+Rules:
+
+- A task must not decide first and judge ADR necessity afterward.
+- A specification must not become the first source of a design decision.
+- Task or work-item evidence must not act as decision authority.
+- When task instructions conflict with this gate, correct the task before execution.
+- When repository precedent conflicts with shared authoring standards, follow the standards and report the stale precedent.
 
 ### Design record namespace and layout
 

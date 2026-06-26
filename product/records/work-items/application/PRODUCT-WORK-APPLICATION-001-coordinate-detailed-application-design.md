@@ -4,7 +4,7 @@
 - **status**: in_progress
 - **date**: 2026-06-26
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
-- **impact_refs**: [PRODUCT-ADR-APPLICATION-001, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection, spec:product.pipeline, spec:product.ui.learning_flow]
+- **impact_refs**: [PRODUCT-ADR-APPLICATION-003, PRODUCT-ADR-APPLICATION-004, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection, spec:product.pipeline, spec:product.ui.learning_flow]
 - **tasks**: [PRODUCT-TASK-APPLICATION-001-01, PRODUCT-TASK-APPLICATION-001-02, PRODUCT-TASK-APPLICATION-001-03, PRODUCT-TASK-APPLICATION-001-04, PRODUCT-TASK-APPLICATION-001-05, PRODUCT-TASK-APPLICATION-001-06]
 
 ## Goal
@@ -28,7 +28,7 @@ This work item does not own:
 - detailed design inside each focused child work item;
 - implementation tasks;
 - concrete frameworks, database schemas, SQL, HTTP routes, or deployment choices;
-- reopening decisions already accepted by PRODUCT-ADR-APPLICATION-001.
+- reopening decisions already accepted by PRODUCT-ADR-APPLICATION-003 or PRODUCT-ADR-APPLICATION-004.
 
 The hub tasks must provide enough scope for each focused work item to start without a separate conversation handoff.
 
@@ -36,7 +36,8 @@ The hub tasks must provide enough scope for each focused work item to start with
 
 | ref | impact |
 |---|---|
-| PRODUCT-ADR-APPLICATION-001 | Preserve the accepted top-level application architecture. |
+| PRODUCT-ADR-APPLICATION-003 | Preserve the accepted current published-content and retrieval boundary. |
+| PRODUCT-ADR-APPLICATION-004 | Preserve the accepted outbound retrieval-port and persistence-adapter boundary. |
 | `spec:product.application` | Expand the application topic map as detailed modules become owned. |
 | `spec:product.application.published_content` | Refine publication projection, availability, and handoff contracts. |
 | `spec:product.application.learning_unit_selection` | Refine queue creation, retrieval, and result semantics. |

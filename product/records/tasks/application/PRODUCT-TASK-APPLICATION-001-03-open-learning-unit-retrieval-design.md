@@ -1,13 +1,14 @@
 # PRODUCT-TASK-APPLICATION-001-03: Open learning-unit retrieval design
 
 - **id**: PRODUCT-TASK-APPLICATION-001-03
-- **status**: not_started
+- **status**: done
 - **date**: 2026-06-26
 - **work_item**: PRODUCT-WORK-APPLICATION-001
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
 - **estimate**: 1d
 - **depends_on**: [PRODUCT-TASK-APPLICATION-001-01]
-- **outputs**: []
+- **outputs**:
+  - PRODUCT-WORK-APPLICATION-004
 
 ## Goal
 
@@ -70,4 +71,12 @@ The child work item must not force withdrawal onto a unit already loaded by the 
 
 ## Evidence
 
-TBD
+- Created PRODUCT-WORK-APPLICATION-004 under `product/records/work-items/application/`.
+- Created PRODUCT-TASK-APPLICATION-004-01 through PRODUCT-TASK-APPLICATION-004-05 as its task graph.
+- Added PRODUCT-WORK-APPLICATION-004 to PRODUCT-REQ-APPLICATION-001 `work_items`.
+- Confirmed that unavailable results remain separate from infrastructure failures.
+- Confirmed that successful content includes source attribution while provenance remains opaque.
+- Confirmed that retrieval-time availability remains separate from queue creation.
+- Confirmed that loaded-unit immutability and unavailable-reference bypass remain UI-owned.
+- Confirmed every child task references PRODUCT-WORK-APPLICATION-004 and PRODUCT-REQ-APPLICATION-001.
+- A new session can begin with PRODUCT-TASK-APPLICATION-004-01 without a separate handoff.

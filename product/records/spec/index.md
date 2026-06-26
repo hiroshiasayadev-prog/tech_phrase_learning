@@ -19,6 +19,41 @@ It separates learning semantics, content production, runtime application behavio
 | `application/` | Runtime learning-unit selection, availability-aware retrieval, application use cases, and outbound query ports. | Content generation, publication judgment, pipeline internals, PWA state, and concrete adapters. |
 | `ui/` | PWA screen flow, transient learner-flow state, navigation, loading, and operation feedback. | Learning-content meaning, content generation, application selection policy, persistence, and provider integration. |
 
+## End-to-end system flow
+
+```mermaid
+flowchart LR
+    Sources[Authentic technical conversations]
+    Learning[learning<br/>Defines LearningUnit meaning]
+    Pipeline[pipeline<br/>Generate, validate, and publish]
+    Published[(Current published-content boundary<br/>LearningUnitRef<br/>Complete LearningUnit<br/>Availability<br/>Opaque provenance reference)]
+    Persistence[Persistence adapter<br/>Reads committed current state]
+    Application[application<br/>CreateCompleteShuffleQueue<br/>GetPublishedLearningUnit]
+    Transport[Transport adapter]
+    PWA[PWA<br/>Queue, loaded content,<br/>session, retry, navigation]
+
+    Sources --> Pipeline
+    Learning --> Pipeline
+    Pipeline -->|Validate and commit transactionally| Published
+    Published --> Persistence
+    Persistence --> Application
+    Application <--> Transport
+    Transport <--> PWA
+```
+
+The diagram shows ownership and dependency direction only.
+The outbound retrieval-port result shape is defined by PRODUCT-ADR-APPLICATION-004.
+
+| boundary | responsibility |
+|---|---|
+| `learning` | Define the meaning and required composition of one complete learner-visible learning unit. |
+| `pipeline` | Generate, validate, and commit the current published state. |
+| Published-content boundary | Hold one committed current runtime state with availability and opaque provenance. |
+| Persistence adapter | Read committed published content through application-owned outbound contracts. |
+| `application` | Select available references and retrieve one currently available complete learning unit. |
+| Transport adapter | Map transport requests and responses without defining application semantics. |
+| `ui` | Own transient queue, loaded-unit, session, loading, retry, and navigation state. |
+
 ## Topics
 
 | title | kind | ref | summary |
@@ -78,4 +113,5 @@ Classify content by the contract it defines before choosing a path.
 | PRODUCT-ADR-PIPELINE-002 | Establishes the OpenAI-compatible provider boundary. |
 | PRODUCT-ADR-PIPELINE-005 | Establishes staged path generation, publication gating, source reuse, and current-only retention. |
 | PRODUCT-ADR-UI-001 | Establishes PWA ownership of transient learner-flow state. |
-| PRODUCT-ADR-APPLICATION-001 | Establishes the published-content and runtime application boundary. |
+| PRODUCT-ADR-APPLICATION-003 | Establishes the current published-content and retrieval boundary. |
+| PRODUCT-ADR-APPLICATION-004 | Establishes the outbound retrieval-port result shape and persistence-adapter obligations. |

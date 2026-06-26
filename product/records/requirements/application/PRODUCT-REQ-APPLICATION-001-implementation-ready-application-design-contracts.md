@@ -3,11 +3,12 @@
 - **id**: PRODUCT-REQ-APPLICATION-001
 - **status**: accepted
 - **date**: 2026-06-26
-- **source_refs**: [PRODUCT-ADR-APPLICATION-001, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection]
+- **source_refs**: [PRODUCT-ADR-APPLICATION-003, PRODUCT-ADR-APPLICATION-004, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection]
 - **work_items**:
   - PRODUCT-WORK-APPLICATION-001
   - PRODUCT-WORK-APPLICATION-002
   - PRODUCT-WORK-APPLICATION-003
+  - PRODUCT-WORK-APPLICATION-004
 
 ## Requirement
 
@@ -17,7 +18,9 @@ The detailed design must separate module ownership while preserving the accepted
 
 ## Evidence
 
-PRODUCT-ADR-APPLICATION-001 establishes the runtime application boundary and dependency direction.
+PRODUCT-ADR-APPLICATION-003 establishes the current published-content and retrieval boundary.
+
+PRODUCT-ADR-APPLICATION-004 establishes the outbound retrieval-port and persistence-adapter boundary.
 
 The current application specs define the architecture slice but intentionally defer module-level contracts.
 
@@ -45,6 +48,6 @@ The deferred contracts include publication handoff, selection policy, retrieval 
 
 This requirement owns detailed application design readiness.
 
-PRODUCT-ADR-APPLICATION-001 remains the source of truth for the accepted top-level architecture.
+PRODUCT-ADR-APPLICATION-003 and PRODUCT-ADR-APPLICATION-004 remain the current decision sources for the accepted application architecture.
 
 Focused work items own each module's detailed resolution flow.

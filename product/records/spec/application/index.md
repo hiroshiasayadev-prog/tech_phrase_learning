@@ -26,6 +26,13 @@ The area serves published learning content without owning pipeline generation or
 | Provenance | Keep one opaque provenance reference with the current publication. |
 | Dependency direction | Keep adapters dependent on application ports and application dependent on domain rules. |
 
+## Definitions
+
+| term | definition |
+|---|---|
+| `application use case` | An application-owned operation that coordinates outbound port calls and returns a typed result to callers. `CreateCompleteShuffleQueue` and `GetPublishedLearningUnit` are the first-MVP application use cases. |
+| `persistence adapter` | A component that implements one or more application-owned outbound ports by reading the committed published-content boundary. The persistence adapter does not decide availability policy. |
+
 ## Non-goals
 
 - Source ingestion, learning-unit generation, and publication judgment.
@@ -50,7 +57,7 @@ The area serves published learning content without owning pipeline generation or
 
 | title | kind | ref | summary |
 |---|---|---|---|
-| Published content | Concept | `spec:product.application.published_content` | Shared-database boundary, current content, availability, provenance, and atomic replacement. |
+| Published content | Concept | `spec:product.application.published_content` | Shared-database boundary, current content, availability, provenance, and transactional current-state publication. |
 | Learning-unit selection | Concept | `spec:product.application.learning_unit_selection` | Scope, exact bounded cardinality, adapter obligations, result validation, retrieval behavior, and query ports. |
 
 ## Boundary
@@ -76,7 +83,7 @@ application use case
       +----> outbound query port
                     ^
                     |
-                DB adapter
+            Persistence adapter
 ```
 
 - Adapters may depend on application contracts.
@@ -93,4 +100,5 @@ application use case
 | `spec:product.learning` | Defines the learning content served by this area. |
 | `spec:product.pipeline` | Produces and publishes the content read by this area. |
 | `spec:product.ui` | Consumes application behavior while owning transient learner state. |
-| PRODUCT-ADR-APPLICATION-001 | Establishes the application boundary and runtime architecture. |
+| PRODUCT-ADR-APPLICATION-003 | Establishes the application boundary, runtime architecture, and retrieval contract. |
+| PRODUCT-ADR-APPLICATION-004 | Establishes the outbound retrieval-port result shape and persistence-adapter obligations. |

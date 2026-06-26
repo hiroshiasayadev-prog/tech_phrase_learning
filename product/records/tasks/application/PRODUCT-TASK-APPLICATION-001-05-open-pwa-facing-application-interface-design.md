@@ -17,7 +17,7 @@ The created work item must be executable without a separate conversation handoff
 
 ## Work
 
-1. Read PRODUCT-ADR-APPLICATION-001 and `spec:product.application.learning_unit_selection`.
+1. Read PRODUCT-ADR-APPLICATION-003 and `spec:product.application.learning_unit_selection`.
 2. Read `spec:product.ui.learning_flow` and the main and learning page specifications.
 3. Read the focused selection and retrieval work items created by T02 and T03.
 4. Create the next APPLICATION work item under PRODUCT-REQ-APPLICATION-001.
@@ -31,14 +31,15 @@ Required child scope:
 - transport-independent request and result contracts for queue creation;
 - transport-independent request and result contracts for complete-unit retrieval;
 - stable learning-unit reference representation at the interface boundary;
-- result classification for found, unavailable, invalid request, and infrastructure failure;
+- result classification for available, unavailable, invalid request, and infrastructure failure;
 - distinction between unavailable-reference skipping and retryable failure;
 - empty-queue and exhausted-queue behavior;
 - preservation of the PWA's queue and session ownership;
 - replacement only after successful unit loading;
 - attribution content required by the learner flow;
 - future mapping to HTTP without making HTTP semantics normative here;
-- required ADR or spec updates.
+- accepted ADRs required before any normative specification update;
+- specification reflection only after the authorizing ADR is accepted.
 
 Required exclusions:
 
@@ -51,6 +52,8 @@ Required exclusions:
 
 The child work item must not introduce backend session identity.
 The child work item must keep network failures distinct from unavailable content.
+The child task flow must separate decision ADRs from later specification reflection.
+The child task flow must stop as blocked when a normative change lacks an accepted ADR.
 
 ## Done condition
 
@@ -65,7 +68,8 @@ The child work item must keep network failures distinct from unavailable content
 
 - Check the child work item's path, H1, metadata, source requirement, and impact refs.
 - Check reciprocal linkage from PRODUCT-REQ-APPLICATION-001.
-- Compare result semantics against `spec:product.ui.learning_flow`.
+- Compare result semantics against PRODUCT-ADR-APPLICATION-003 and `spec:product.ui.learning_flow`.
+- Confirm that the child flow applies the ADR-first change gate from `prompt_chappy.md`.
 - Confirm that a new session can start the child work item using repository records only.
 
 ## Evidence

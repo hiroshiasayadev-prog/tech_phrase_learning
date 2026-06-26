@@ -34,7 +34,8 @@ The semantic projection remains independent from that physical layout.
 
 | concept | meaning |
 |---|---|
-| Stable learning-unit identity | Identity used to replace and retrieve the current published projection. |
+| `Current published state` | The single committed runtime record for one stable learning-unit identity. The record contains one complete learning unit, its current availability, and one opaque provenance reference. |
+| Stable learning-unit identity | Identity used to replace and retrieve the current published state. |
 | Current content | One complete learning unit that follows the learning contract. |
 | Availability | Mutable decision about inclusion in new learner flows. |
 | Provenance reference | Opaque route to current pipeline source and generation evidence. |
@@ -70,21 +71,20 @@ The semantic projection remains independent from that physical layout.
 - Withdrawal may change availability without deleting current content.
 - A later publication decision may make the same stable identity available again.
 
-### Atomic replacement
+### Transactional current-state publication
 
-The pipeline must publish replacement content as one observable state transition.
+The pipeline must commit each complete published-state change inside one transaction.
 
 | observable state | content | provenance reference | availability |
 |---|---|---|---|
-| Before switch | Previous complete content | Previous reference | Previous state |
-| After switch | New complete content | New reference | Resulting state |
-| Prohibited intermediate | Mixed or partial content | Mismatched reference | Any state |
+| Complete committed state | One complete learning unit | Matching provenance reference | Committed availability |
+| Prohibited partial state | Incomplete or mixed content | Absent or mismatched reference | Any state |
 
-- The application must observe either the complete previous publication or the complete new publication.
-- The application must not observe partially replaced content.
-- Content, provenance reference, and publication-judged availability must switch atomically for a new publication.
+- The application reads only one committed current published state.
+- The application must not observe incomplete or partially replaced content.
+- Content, provenance reference, and publication-judged availability must change together under a `PublicationHandoff`.
+- A failed transaction must not mutate the current committed state.
 - Resulting availability must come from the current publication judgment rather than implicit inheritance.
-- A withdrawal that changes only availability remains a separate valid operation.
 - An availability-only change must leave current content unchanged.
 - An availability-only change must leave the provenance reference unchanged.
 
@@ -118,4 +118,4 @@ Loaded-unit immutability and learner-flow replacement behavior are normatively o
 | `spec:product.learning.learning_unit` | Defines complete learner-visible content and attribution. |
 | `spec:product.pipeline` | Produces the current publication and owns current provenance. |
 | `spec:product.ui.learning_flow` | Treats a successfully loaded unit as immutable content. |
-| PRODUCT-ADR-APPLICATION-001 | Establishes the published-content boundary. |
+| PRODUCT-ADR-APPLICATION-003 | Establishes the current published-content and retrieval boundary. |

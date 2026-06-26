@@ -46,10 +46,10 @@ CreateCompleteShuffleQueue
 ```text
 GetPublishedLearningUnit
   input:
-    learning_unit_ref
+    learning_unit_ref: LearningUnitRef
 
   result:
-    Found(complete_learning_unit)
+    Available(complete_learning_unit)
     | Unavailable
 ```
 
@@ -58,9 +58,19 @@ GetPublishedLearningUnit
 | Published-content contract | Define current availability and the available or unavailable runtime state. |
 | Application domain | Define selection scope, queue cardinality, uniqueness, ordering semantics, and result validity. |
 | Application use case | Apply first-MVP policy, coordinate outbound queries, and reject observable invalid results. |
-| Outbound query port | Express bounded selection and current published-unit retrieval semantically. |
-| Database adapter | Apply availability and scope, then perform bounded randomized reference selection and content loading. |
+| Outbound selection operation | Express bounded randomized learning-unit reference selection. |
+| Outbound retrieval port | Retrieve one published learning unit by `LearningUnitRef` and return `Available(complete_learning_unit) \| Unavailable`. |
+| Persistence adapter | Apply availability and scope, then perform bounded randomized reference selection and content loading. |
 | PWA | Store the returned ordered reference array, keep queue position, and own learner progression. |
+
+## Definitions
+
+| term | definition |
+|---|---|
+| `LearningUnitRef` | A stable reference identifying one published learning unit within the published-content boundary. The exact format is an implementation detail. |
+| `outbound retrieval port` | An application-owned semantic boundary that declares the capability required to retrieve one published learning unit by reference. The persistence adapter implements this port. |
+| `Available` | A retrieval result indicating that the referenced learning unit exists and is currently available to a new learner flow. See `spec:product.application.published_content` for availability semantics. |
+| `Unavailable` | A retrieval result indicating that no current state exists for the reference, or that the current unit is not available to a new learner flow. `Unavailable` is not a mapping failure or infrastructure failure. |
 
 ## Rules
 
@@ -225,12 +235,34 @@ A missing or unavailable reference must produce `Unavailable`.
 The PWA owns removal and skipping of an unavailable queued reference.
 A learning unit already loaded into the PWA remains governed by the UI loaded-content contract.
 
+### Outbound retrieval port
+
+The application owns the `GetPublishedLearningUnit` outbound retrieval port.
+The port accepts one `LearningUnitRef` and returns `Available(complete_learning_unit) | Unavailable`.
+The persistence adapter implements the outbound retrieval port.
+
+The persistence adapter must:
+
+- read the committed current published state for the supplied reference;
+- read the committed availability value;
+- return `Available(complete_learning_unit)` when current content exists and is currently available;
+- return `Unavailable` when no current state exists for the reference;
+- return `Unavailable` when current content exists but is not currently available;
+- map persisted complete content into the learning-unit contract;
+- keep provenance inside the published-content boundary;
+- propagate mapping and infrastructure failures as technical failures.
+
+The persistence adapter must not decide whether a learning unit should be available.
+The pipeline owns the availability decision and stores its result during publication or availability change.
+The application use case coordinates the outbound port result.
+The application use case does not receive a published projection containing separate content, availability, and provenance fields.
+
 ### Domain and adapter separation
 
 - Application domain rules must not depend on SQL, database tables, HTTP, or framework types.
 - Application results must remain transport-independent.
 - Outbound operations must express selection and retrieval semantics rather than generic CRUD.
-- Database adapters may perform filtering, bounded sampling, ordering, and loading inside persistence.
+- Persistence adapters may perform filtering, bounded sampling, ordering, and loading inside persistence.
 - Adapter implementation details must not redefine selection invariants.
 
 ## Boundary
@@ -251,4 +283,5 @@ A learning unit already loaded into the PWA remains governed by the UI loaded-co
 | `spec:product.application.published_content` | Defines current availability and the runtime records selected and retrieved. |
 | `spec:product.learning.learning_unit` | Defines the complete content returned by retrieval. |
 | `spec:product.ui.learning_flow` | Owns the returned queue state, queue progression, and stale-reference skipping. |
-| PRODUCT-ADR-APPLICATION-001 | Establishes the use cases, layering, and bounded queue decision. |
+| PRODUCT-ADR-APPLICATION-003 | Establishes use cases, retrieval result names, and the current published-content boundary. |
+| PRODUCT-ADR-APPLICATION-004 | Establishes the outbound retrieval-port result shape and persistence-adapter obligations. |

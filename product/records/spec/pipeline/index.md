@@ -120,6 +120,10 @@ Writer obligations:
 - An availability-only change must leave the current provenance reference unchanged.
 - An availability-only change must produce one observable state transition from the prior availability.
 - Failed preconditions must not produce partial published-content mutation for either operation type.
+- Each `PublicationHandoff` must commit all fields of the complete published state in one transaction.
+- Each `AvailabilityChange` must commit the availability change in one transaction.
+- A failed transaction must leave the existing committed current published state unchanged. See `spec:product.application.published_content` for the current-state contract.
+- Transaction syntax, isolation level, and persistence technology remain implementation details.
 - The first MVP does not require historical source snapshots, intermediate generations, previous publications, exact replay, or rollback state.
 
 ## Boundary

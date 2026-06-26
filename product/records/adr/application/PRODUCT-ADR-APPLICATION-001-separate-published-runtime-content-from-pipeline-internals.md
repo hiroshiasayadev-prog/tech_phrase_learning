@@ -1,6 +1,6 @@
 # PRODUCT-ADR-APPLICATION-001: Separate published runtime content from pipeline internals
 
-- **status**: accepted
+- **status**: superseded
 - **date**: 2026-06-26
 - **depends_on**: [PRODUCT-ADR-LEARNING-005, PRODUCT-ADR-PIPELINE-005, PRODUCT-ADR-UI-001]
 - **supersedes**: []
