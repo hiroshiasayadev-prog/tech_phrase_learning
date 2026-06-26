@@ -49,6 +49,53 @@ When an authoring rule conflicts with an accepted local ADR or specification, re
 - Resolve repository facts from current files, not prior conversation memory.
 - State uncertainty when the repository does not contain enough evidence.
 
+### Brewprint task execution flow
+
+Apply this workflow to every design-record task.
+The shared Brewprint authoring standards remain canonical for artifact shape, metadata, lifecycle, and relations.
+
+Before execution:
+
+1. Read this file.
+2. Read the shared authoring-standard index, writing standard, artifact boundary, and target-kind guide.
+3. Read the target task, parent work item, source requirement, and directly relevant accepted ADRs and specifications.
+4. Confirm reciprocal workflow relations and canonical refs.
+5. Confirm that the task uses the correct artifact kind.
+6. Apply the ADR-first change gate before normative specification changes.
+7. Set the task to `in_progress` before substantive execution when applicable.
+
+During execution:
+
+- Follow the task boundary without silently broadening scope.
+- Treat accepted ADRs and current specifications as authority.
+- Keep requirements, work items, and tasks within their Brewprint responsibilities.
+- Use canonical refs in relation and output metadata.
+- Put explanations in body evidence, not inside metadata refs.
+- Stop as `blocked` when required authority, evidence, or a user decision is missing.
+- Do not repair unrelated records silently.
+
+Before `done`:
+
+1. Confirm every done condition.
+2. Confirm required sections and metadata are substantive.
+3. Confirm outputs contain canonical refs only.
+4. Confirm reciprocal workflow relations.
+5. Record changes, no-change judgments, authority, and verification in `## Evidence`.
+6. Run relevant strict validators.
+7. Run `git diff --check` and inspect `git status --short`.
+8. Separate current-scope failures from unrelated existing diagnostics.
+9. Do not claim validation success when the validator did not cover this repository or scope.
+10. Mark the task `done` only after verification succeeds or accepted limitations are explicit.
+
+Review and closure:
+
+- Use an independent reviewer when required.
+- The reviewer must not implement the reviewed changes.
+- Record findings with exact refs and severity.
+- Re-review after blocking findings are corrected.
+- Mark a work item `done` only after resolution, specification reflection, review, and substantive evidence are complete.
+- Do not close a parent hub or requirement merely because one child work item is done.
+
 ### Chat style
 
 - Match the user's input language unless the user requests another language.
