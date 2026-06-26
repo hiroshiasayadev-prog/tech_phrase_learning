@@ -1,7 +1,7 @@
 # PRODUCT-TASK-APPLICATION-005-02: Resolve remaining outbound query-port decisions
 
 - **id**: PRODUCT-TASK-APPLICATION-005-02
-- **status**: not_started
+- **status**: done
 - **date**: 2026-06-26
 - **work_item**: PRODUCT-WORK-APPLICATION-005
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
@@ -55,4 +55,51 @@ These examples are not decision authority.
 
 ## Evidence
 
-TBD
+### Result
+
+- **Verdict**: PASS.
+- PRODUCT-TASK-APPLICATION-005-01 identified no genuine unresolved architectural decision.
+- No new APPLICATION ADR was created.
+- No specification changed in this task.
+- T005-03 may proceed using the existing authority set.
+
+### Decision-gap disposition
+
+| candidate | disposition | authority basis |
+|---|---|---|
+| Selection outbound-port ownership | No new decision required. | `spec:product.application` already requires adapters to depend on application-owned contracts. `spec:product.application.learning_unit_selection` already defines the semantic selection operation used by the application and the obligations performed by the persistence adapter. Making the port explicit does not change ownership or dependency direction. |
+| Selection mapping and infrastructure failure separation | No new decision required. | The existing selection contract defines ordered `LearningUnitRef[]` as the normal result, accepts an empty array as a valid zero-candidate result, and rejects observable invalid results without normalization. Mapping and infrastructure failures therefore remain technical failures outside the normal queue result. Concrete error types remain deferred. |
+
+### Authority set for T005-03
+
+- PRODUCT-ADR-APPLICATION-003
+- PRODUCT-ADR-APPLICATION-004
+- `spec:product.application`
+- `spec:product.application.published_content`
+- `spec:product.application.learning_unit_selection`
+- `spec:product.learning.learning_unit`
+- `spec:product.pipeline`
+- PRODUCT-TASK-APPLICATION-005-01 as execution evidence only
+
+T005-03 must not use this task as canonical design authority.
+T005-03 must derive its contract map from the accepted ADRs and current specifications above.
+
+### Constraints preserved
+
+- Selection and retrieval remain separate operations.
+- Existing selection and retrieval semantics remain closed.
+- Normal empty selection results remain distinct from technical failures.
+- `Unavailable` remains a normal retrieval result.
+- Mapping and infrastructure failures remain outside normal retrieval results.
+- Persistence adapters depend on application contracts.
+- Pipeline ownership of availability decisions and published-content writes remains unchanged.
+- SQL, schema, ORM, database, algorithm, framework, source-layout, and transport choices remain deferred.
+
+### Verification
+
+- No candidate required user judgment.
+- No accepted or superseded ADR body changed.
+- No ADR was created merely to satisfy the task graph.
+- No specification changed before accepted authority existed.
+- No completed selection or retrieval decision was reopened.
+- Blockers: none.

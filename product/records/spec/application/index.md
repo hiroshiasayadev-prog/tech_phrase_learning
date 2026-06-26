@@ -8,67 +8,57 @@
 ## What this is
 
 Owner of runtime learning-unit selection, availability-aware retrieval, application use cases, and outbound query ports.
-The area serves published learning content without owning pipeline generation or PWA learner state.
+The area serves published learning content without owning pipeline generation, persistence implementation, or PWA learner state.
 
 ## Current contract
 
 | concern | contract |
 |---|---|
-| Runtime source | Read only the published-content area. |
+| Runtime source | Read only committed published content. |
+| Application use cases | Provide `CreateCompleteShuffleQueue` and `GetPublishedLearningUnit`. |
+| Selection | Create an ordered reference array for currently available learning units. |
+| Retrieval | Recheck availability before returning one complete learning unit. |
+| Outbound queries | Define application-owned read capabilities implemented by persistence adapters. |
+| Dependency direction | Keep persistence adapters dependent on application contracts. |
 | Pipeline isolation | Do not read or model pipeline processing data. |
-| Published content | Treat identity, complete learning unit, availability, and opaque provenance as one current runtime projection. |
-| Availability | Keep selection availability separate from current unit content. |
-| Queue creation | Return an ordered unique reference array with size `min(100, eligible_count)`. Do not return `eligible_count`. |
-| Queue scope | Apply `All` as first-MVP policy. `All` adds no content-based constraint and does not require a full-corpus queue. |
-| Queue state | Do not retain queue position, queue identity, queue history, or learner progress. |
-| Unit retrieval | Recheck availability before returning one complete unit. |
-| Stale queue entry | Return an unavailable result so the PWA can skip the reference. |
-| Provenance | Keep one opaque provenance reference with the current publication. |
-| Dependency direction | Keep adapters dependent on application ports and application dependent on domain rules. |
+| UI boundary | Do not own queue position, loaded content, learner answers, retry timing, or navigation. |
 
 ## Definitions
 
 | term | definition |
 |---|---|
-| `application use case` | An application-owned operation that coordinates outbound port calls and returns a typed result to callers. `CreateCompleteShuffleQueue` and `GetPublishedLearningUnit` are the first-MVP application use cases. |
-| `persistence adapter` | A component that implements one or more application-owned outbound ports by reading the committed published-content boundary. The persistence adapter does not decide availability policy. |
+| `application use case` | Application-owned operation that coordinates domain rules and outbound queries before returning a semantic result. |
+| `persistence adapter` | Adapter that implements application-owned outbound query contracts by reading committed published content. |
+| `LearningUnitRef` | Stable reference to one published learning unit inside the published-content boundary. |
 
 ## Non-goals
 
 - Source ingestion, learning-unit generation, and publication judgment.
 - Pipeline processing-data schemas and model or prompt semantics.
-- PWA queue position, learner answers, and session progression.
+- PWA queue position, learner answers, session progression, loading, and retry behavior.
 - HTTP routes, JSON schemas, and status-code contracts.
 - Database tables, indexes, query language, and transaction implementation.
 - Exact randomization and sampling algorithms.
-- Authentication, learner accounts, and durable learner history.
-
-## Topic map
-
-| concern | owner |
-|---|---|
-| Published runtime projection and availability | `spec:product.application.published_content` |
-| Queue creation and complete-unit retrieval | `spec:product.application.learning_unit_selection` |
-| Learner-visible learning-unit semantics | `spec:product.learning.learning_unit` |
-| Content generation and publication decisions | `spec:product.pipeline` |
-| Transient queue and learner session state | `spec:product.ui.learning_flow` |
+- Programming-language interfaces, classes, method names, and source layout.
 
 ## Topics
 
 | title | kind | ref | summary |
 |---|---|---|---|
-| Published content | Concept | `spec:product.application.published_content` | Shared-database boundary, current content, availability, provenance, and transactional current-state publication. |
-| Learning-unit selection | Concept | `spec:product.application.learning_unit_selection` | Scope, exact bounded cardinality, adapter obligations, result validation, retrieval behavior, and query ports. |
+| Published content | Overview | `spec:product.application.published_content` | Current runtime state, availability, provenance boundary, and pipeline handoff input. |
+| Learning-unit selection | Overview | `spec:product.application.learning_unit_selection` | Selection policy, scope, queue result, and application-side result validation. |
+| Learning-unit retrieval | Contract | `spec:product.application.learning_unit_retrieval` | Application use case for retrieving one currently available complete learning unit. |
+| Outbound queries | Overview | `spec:product.application.outbound_queries` | Shared query-port dependency, failure, adapter, and verification rules. |
 
 ## Boundary
 
 | concern | owner |
 |---|---|
-| Learning-unit meaning and composition | `spec:product.learning` |
-| Generation, validation, publication decision, and published-area writes | `spec:product.pipeline` |
-| Runtime selection and availability-aware reads | `spec:product.application` |
+| Learning-unit meaning and composition | `spec:product.learning.learning_unit` |
+| Generation, validation, publication decisions, and published-content writes | `spec:product.pipeline` |
+| Runtime selection, retrieval orchestration, and outbound read contracts | `spec:product.application` |
 | Learner-flow state and screen behavior | `spec:product.ui` |
-| Concrete transport, database, and framework adapters | Implementation. |
+| Concrete transport, database, framework, and source-layout choices | Implementation. |
 
 ## Dependency direction
 
@@ -80,10 +70,10 @@ application use case
       |
       +----> application domain rules
       |
-      +----> outbound query port
+      +----> outbound query contract
                     ^
                     |
-            Persistence adapter
+            persistence adapter
 ```
 
 - Adapters may depend on application contracts.
@@ -97,8 +87,8 @@ application use case
 | ref | relation |
 |---|---|
 | `spec:product` | PRODUCT placement router and cross-area dependency direction. |
-| `spec:product.learning` | Defines the learning content served by this area. |
+| `spec:product.learning.learning_unit` | Defines the complete learning unit served by this area. |
 | `spec:product.pipeline` | Produces and publishes the content read by this area. |
 | `spec:product.ui` | Consumes application behavior while owning transient learner state. |
-| PRODUCT-ADR-APPLICATION-003 | Establishes the application boundary, runtime architecture, and retrieval contract. |
+| PRODUCT-ADR-APPLICATION-003 | Establishes the application boundary, current published-content model, and retrieval result names. |
 | PRODUCT-ADR-APPLICATION-004 | Establishes the outbound retrieval-port result shape and persistence-adapter obligations. |

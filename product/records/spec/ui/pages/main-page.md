@@ -85,7 +85,7 @@ The page remains visible until the first learning unit loads successfully.
 |---|---|
 | Page composition | `spec:product.ui.pages.main_page` |
 | Retry count and state replacement | `spec:product.ui.learning_flow` |
-| Queue acquisition and unit loading contract | `spec:product.application.learning_unit_selection`. |
+| Queue acquisition and unit loading contract | `spec:product.application`. |
 | Exact learner-facing copy | UI implementation unless separately specified. |
 
 ## Related specs
@@ -94,5 +94,6 @@ The page remains visible until the first learning unit loads successfully.
 |---|---|
 | `spec:product.ui.pages` | Parent page overview. |
 | `spec:product.ui.learning_flow` | Defines start, loading, and retry behavior. |
-| `spec:product.application.learning_unit_selection` | Provides queue creation and complete-unit retrieval. |
+| `spec:product.application.learning_unit_selection` | Provides queue creation. |
+| `spec:product.application.learning_unit_retrieval` | Provides complete-unit retrieval. |
 | `spec:product.ui.components.operation_feedback` | Defines loading and error feedback placement. |

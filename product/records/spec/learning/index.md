@@ -51,7 +51,7 @@ The area remains valid when content-processing technology changes.
 | PWA runtime state, navigation, loading, and retry behavior | `spec:product.ui`. |
 | Ingestion, path enumeration, filtering, generation, and validation | `spec:product.pipeline`. |
 | LLM provider and model integration | `spec:product.pipeline`. |
-| Runtime learning-unit selection and retrieval | `spec:product.application.learning_unit_selection`. |
+| Runtime learning-unit selection and retrieval | `spec:product.application`. |
 
 ## Topics
 

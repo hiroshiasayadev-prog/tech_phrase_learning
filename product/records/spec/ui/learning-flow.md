@@ -171,8 +171,9 @@ initial request
 | Quiz, summary, target phrase, option, and attribution meaning | `spec:product.learning` |
 | Progressive learner-visible card semantics | `spec:product.learning.quiz_session` |
 | PWA state ownership and runtime transitions | `spec:product.ui.learning_flow` |
-| Unit availability and selection | `spec:product.application.learning_unit_selection`. |
-| Queue generation and complete-unit retrieval | `spec:product.application.learning_unit_selection`. |
+| Unit availability | `spec:product.application.published_content.availability`. |
+| Queue generation | `spec:product.application.learning_unit_selection`. |
+| Complete-unit retrieval | `spec:product.application.learning_unit_retrieval`. |
 | Content generation and publication | `spec:product.pipeline` |
 
 ## Related specs
@@ -185,5 +186,6 @@ initial request
 | `spec:product.learning.learning_unit` | Defines immutable learner-visible content consumed by the flow. |
 | `spec:product.learning.quiz_session` | Defines progressive card meaning and reveal order. |
 | `spec:product.pipeline` | Produces validated learning units before the flow starts. |
-| `spec:product.application.learning_unit_selection` | Creates queues and retrieves available complete units. |
+| `spec:product.application.learning_unit_selection` | Creates queues of available learning-unit references. |
+| `spec:product.application.learning_unit_retrieval` | Retrieves available complete units for queued references. |
 | PRODUCT-ADR-UI-001 | Establishes the state ownership and runtime boundaries in this spec. |

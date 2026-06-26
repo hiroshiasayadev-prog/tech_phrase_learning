@@ -1,7 +1,7 @@
 # PRODUCT-WORK-APPLICATION-005: Define application outbound query ports
 
 - **id**: PRODUCT-WORK-APPLICATION-005
-- **status**: not_started
+- **status**: done
 - **date**: 2026-06-26
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
 - **impact_refs**:
@@ -168,4 +168,58 @@ T005-05 Independent review and closure
 
 ## Evidence
 
-TBD
+### Final verdict
+
+- **Verdict**: PASS.
+- PRODUCT-WORK-APPLICATION-005 is complete.
+- Blocking findings: none.
+- New ADR required: no.
+
+### Completed task flow
+
+| task | status | result |
+|---|---|---|
+| PRODUCT-TASK-APPLICATION-005-01 | done | Established outbound query-port baseline and classified gaps. |
+| PRODUCT-TASK-APPLICATION-005-02 | done | Confirmed no genuine unresolved architectural decision and no new ADR required. |
+| PRODUCT-TASK-APPLICATION-005-03 | done | Defined adapter obligations, normal-result boundaries, technical-failure boundaries, and test boundaries as task evidence. |
+| PRODUCT-TASK-APPLICATION-005-04 | done | Reflected accepted contracts into focused specifications and preserved semantic refs. |
+| PRODUCT-TASK-APPLICATION-005-05 | done | Independently reviewed the completed design and recorded final PASS with all findings `none`. |
+
+### Completion evidence
+
+| completion topic | result |
+|---|---|
+| Selection/retrieval outbound query contract completion | PASS: selection and retrieval outbound query contracts are complete and separately owned by `spec:product.application.outbound_queries.select_learning_unit_refs` and `spec:product.application.outbound_queries.get_published_learning_unit`. |
+| Application and persistence-adapter responsibility separation | PASS: application use cases own semantic policy and outbound contracts; persistence adapters implement those contracts by reading committed published content. |
+| Normal result and technical failure separation | PASS: empty ordered `LearningUnitRef[]` and `Unavailable` remain normal results; mapping and infrastructure failures remain technical failures outside normal results. |
+| Application test and persistence-adapter contract test separation | PASS: application tests use outbound-query test doubles; persistence-adapter contract tests exercise the real adapter boundary. |
+| Spec decomposition completion | PASS: application, published-content, learning-unit selection, retrieval, and outbound-query responsibilities are decomposed into focused overviews and leaf specs. |
+| Semantic ref maintenance | PASS: `spec:product.application.published_content` and `spec:product.application.learning_unit_selection` remain stable after conversion to topic indexes. |
+| New ADR necessity | PASS: T005-01 and T005-02 found no genuine unresolved normative decision, so no new ADR was required. |
+
+### Authority and responsibility result
+
+- PRODUCT-ADR-APPLICATION-003 remains current authority for the current published-content boundary, application use cases, availability-shaped retrieval result names, provenance exclusion, and technical retrieval failure separation.
+- PRODUCT-ADR-APPLICATION-004 remains current authority for the result-shaped outbound retrieval port and retrieval persistence-adapter obligations.
+- Selection policy remains separate from retrieval behavior.
+- Outbound selection-query adapter guarantees remain separate from application-observable selection validation.
+- Retrieval use-case orchestration remains separate from retrieval persistence-adapter guarantees.
+- Pipeline ownership of availability decisions and published-content writes remains unchanged.
+- Concrete SQL, schema, ORM, database, framework, source-layout, transport, algorithm, and test-infrastructure choices remain deferred from product design.
+
+### Validation
+
+Strict specification validation passed:
+
+```text
+python -X utf8 C:\Users\imved\projects\brewprint\product\src\tools\validate_spec.py product/records/spec --strict --no-color
+[strict]  All 31 file(s) OK.
+```
+
+Whitespace verification passed with Git line-ending warnings only:
+
+```text
+git diff --check -- product/records/spec product/records/adr product/records/tasks/application product/records/work-items/application
+```
+
+Git reported LF-to-CRLF line-ending warnings and no whitespace errors.
