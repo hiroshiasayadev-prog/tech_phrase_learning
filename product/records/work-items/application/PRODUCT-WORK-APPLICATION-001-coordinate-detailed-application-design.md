@@ -1,10 +1,10 @@
 # PRODUCT-WORK-APPLICATION-001: Coordinate detailed application design
 
 - **id**: PRODUCT-WORK-APPLICATION-001
-- **status**: in_progress
+- **status**: done
 - **date**: 2026-06-26
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
-- **impact_refs**: [PRODUCT-ADR-APPLICATION-003, PRODUCT-ADR-APPLICATION-004, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection, spec:product.pipeline, spec:product.ui.learning_flow]
+- **impact_refs**: [PRODUCT-ADR-APPLICATION-003, PRODUCT-ADR-APPLICATION-004, spec:product.application, spec:product.application.published_content, spec:product.application.learning_unit_selection, spec:product.pipeline, spec:product.ui.learning_flow, spec:product.ui.pages, spec:product.ui.components, spec:product.ui.components.operation_feedback]
 - **tasks**: [PRODUCT-TASK-APPLICATION-001-01, PRODUCT-TASK-APPLICATION-001-02, PRODUCT-TASK-APPLICATION-001-03, PRODUCT-TASK-APPLICATION-001-04, PRODUCT-TASK-APPLICATION-001-05, PRODUCT-TASK-APPLICATION-001-06]
 
 ## Goal
@@ -43,6 +43,9 @@ The hub tasks must provide enough scope for each focused work item to start with
 | `spec:product.application.learning_unit_selection` | Refine queue creation, retrieval, and result semantics. |
 | `spec:product.pipeline` | Define the pipeline side of the published-content handoff. |
 | `spec:product.ui.learning_flow` | Align application results with PWA skip, retry, and replacement behavior. |
+| `spec:product.ui.pages` | Keep page-level terminal transitions aligned with the owning learning-flow contract. |
+| `spec:product.ui.components` | Keep component-level failure feedback aligned with application categories and UI transitions. |
+| `spec:product.ui.components.operation_feedback` | Distinguish infrastructure retry feedback from non-retryable diagnostic surfaces. |
 
 ## Task flow
 
@@ -90,4 +93,70 @@ T01 Publication boundary work item
 
 ## Evidence
 
-TBD
+### Result
+
+- **Verdict**: PASS.
+- Implementation planning readiness: ready.
+- PRODUCT-TASK-APPLICATION-001-01 through PRODUCT-TASK-APPLICATION-001-06 are complete.
+- PRODUCT-WORK-APPLICATION-002 through PRODUCT-WORK-APPLICATION-006 are complete.
+- Each focused child work item recorded a final independent `PASS`.
+- PRODUCT-TASK-APPLICATION-001-06 recorded a final independent integrated `PASS` with no remaining findings.
+- PRODUCT-REQ-APPLICATION-001 required outcomes are satisfied at the design level.
+- PRODUCT-REQ-APPLICATION-001 remains `accepted`.
+
+### Completed coordination flow
+
+| task | output or responsibility | final status |
+|---|---|---|
+| PRODUCT-TASK-APPLICATION-001-01 | Open published-content and handoff design as PRODUCT-WORK-APPLICATION-002. | done |
+| PRODUCT-TASK-APPLICATION-001-02 | Open complete-shuffle selection design as PRODUCT-WORK-APPLICATION-003. | done |
+| PRODUCT-TASK-APPLICATION-001-03 | Open published learning-unit retrieval design as PRODUCT-WORK-APPLICATION-004. | done |
+| PRODUCT-TASK-APPLICATION-001-04 | Open outbound query-port design as PRODUCT-WORK-APPLICATION-005. | done |
+| PRODUCT-TASK-APPLICATION-001-05 | Open PWA-facing application-interface design as PRODUCT-WORK-APPLICATION-006. | done |
+| PRODUCT-TASK-APPLICATION-001-06 | Integrate application, pipeline, learning, and UI contracts and complete independent review. | done |
+
+### Integrated readiness
+
+- Pipeline owns generation, validation, publication decisions, availability decisions, and published-content writes.
+- Application reads only committed current published content through application-owned outbound query contracts.
+- Persistence adapters depend on application contracts and preserve normal-result versus technical-failure separation.
+- Complete-shuffle selection remains bounded to 100 unique currently available references without backend queue or reservation state.
+- Retrieval rechecks availability and returns `Available(complete_learning_unit) | Unavailable` as the normal result.
+- Provenance remains opaque and excluded from normal learner retrieval.
+- PWA-facing failure categories, retryability, safe diagnostics, and `LearningUnitRef` semantics are explicit and transport independent.
+- UI owns queue position, loaded content, session state, retry attempts, transitions, disposal, and diagnostic-surface placement.
+- UI component and page overviews now match the category-specific failure and terminal-transition authority.
+- Concrete frameworks, database schemas, ORM, SQL, HTTP routes, JSON schemas, frontend state libraries, deployment, and source layout remain deferred.
+
+### Independent integration review
+
+- Initial verdict: `NEEDS REVISION` with no blocking finding and three major findings.
+- M1 closed: operation feedback restricts automatic and manual retry to `InfrastructureFailure` and separates non-retryable surfaces.
+- M2 closed: page overview includes retrieval `MappingFailure` and replacement `Success([])` terminal transitions.
+- M3 closed: working-tree, whitespace, strict specification, and scoped-diff validation completed successfully.
+- Final re-review verdict: `PASS`.
+- Remaining findings: none.
+- PRODUCT-ADR-UI-001 stale historical wording and stale ADR wording in child completion Evidence remain non-blocking advisories.
+
+### Validation
+
+- `git status --short` reported only the six expected integration records before closure metadata and final Evidence were added.
+- `git diff --check` reported no whitespace error.
+- Strict specification validation reported `[strict]  All 34 file(s) OK.`
+- Scoped diff inspection confirmed no accepted ADR modification.
+- The PRODUCT-REQ-APPLICATION-001 edit was an Evidence-only historical wording correction.
+- LF-to-CRLF working-copy warnings were non-blocking line-ending warnings.
+- No implementation work item was created and no implementation began.
+- No commit or staging operation was performed.
+
+### Implementation work-item candidates
+
+Detailed candidates are recorded in PRODUCT-TASK-APPLICATION-001-06 for:
+
+- application domain and use cases;
+- pipeline published-content writer;
+- persistence storage model and adapters;
+- PWA-facing transport adapter;
+- PWA integration;
+- architecture and contract tests;
+- integration and end-to-end tests.

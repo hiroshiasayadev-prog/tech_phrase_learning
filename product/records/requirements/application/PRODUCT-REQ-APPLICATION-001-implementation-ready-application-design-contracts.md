@@ -24,9 +24,9 @@ PRODUCT-ADR-APPLICATION-003 establishes the current published-content and retrie
 
 PRODUCT-ADR-APPLICATION-004 establishes the outbound retrieval-port and persistence-adapter boundary.
 
-The current application specs define the architecture slice but intentionally defer module-level contracts.
+Before focused design work, the application specifications defined the architecture slice while deferring module-level contracts.
 
-The deferred contracts include publication handoff, selection policy, retrieval results, outbound ports, and the PWA-facing interface.
+The deferred set included publication handoff, selection policy, retrieval results, outbound ports, and the PWA-facing interface.
 
 ## Required Outcome
 

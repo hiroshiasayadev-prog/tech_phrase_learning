@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.ui.pages`
 - **status**: draft
-- **date**: 2026-06-26
+- **date**: 2026-06-27
 - **parent**: `spec:product.ui`
 
 ## What this is
@@ -11,6 +11,9 @@ Visual map of the first-MVP learner-facing pages.
 The diagrams show page composition and navigation without fixing framework routes or component files.
 
 ## Current contract
+
+The following diagram shows learner-initiated navigation and successful in-flow unit replacement.
+Terminal application outcomes are listed separately.
 
 ```text
 +-------------+       Start succeeds       +----------------+
@@ -29,7 +32,14 @@ The diagrams show page composition and navigation without fixing framework route
 | page | purpose | leaves the page when |
 |---|---|---|
 | Main page | Start a complete-shuffle learning flow. | The first learning unit loads successfully. |
-| Learning page | Present one learning unit and continue through the queue. | The learner selects `Back to main`. |
+| Learning page | Present one learning unit and continue through the queue. | The learner selects `Back to main`, retrieval returns `MappingFailure`, or replacement queue creation returns `Success([])`. |
+
+### Terminal transitions
+
+| current page | outcome | destination | state rule |
+|---|---|---|---|
+| Learning page | Retrieval `MappingFailure` | Main page with safe diagnostic information. | Discard the active queue and session. Do not retain the learning page as a retry surface. |
+| Learning page | Replacement queue creation `Success([])` | Empty-queue screen. | End the current learning flow and discard the active queue and session. Do not enter retry behavior. |
 
 ## Non-goals
 
@@ -69,5 +79,7 @@ The diagrams show page composition and navigation without fixing framework route
 | ref | relation |
 |---|---|
 | `spec:product.ui` | Parent learner UI overview. |
-| `spec:product.ui.learning_flow` | Defines transient state and transition rules. |
+| `spec:product.ui.learning_flow` | Defines transient state, retry, terminal transitions, and disposal rules. |
 | `spec:product.ui.components` | Defines the visual parts assembled by these pages. |
+| `spec:product.application.pwa_interface` | Defines application outcomes consumed by page transitions. |
+| PRODUCT-ADR-UI-002 | Establishes category-specific terminal transitions and failure surfaces. |
