@@ -2,12 +2,12 @@
 
 - **id**: `spec:product.application`
 - **status**: draft
-- **date**: 2026-06-26
+- **date**: 2026-06-27
 - **parent**: `spec:product`
 
 ## What this is
 
-Owner of runtime learning-unit selection, availability-aware retrieval, application use cases, and outbound query ports.
+Owner of runtime learning-unit selection, availability-aware retrieval, application use cases, outbound query ports, and the PWA-facing transport-independent interface.
 The area serves published learning content without owning pipeline generation, persistence implementation, or PWA learner state.
 
 ## Current contract
@@ -16,10 +16,11 @@ The area serves published learning content without owning pipeline generation, p
 |---|---|
 | Runtime source | Read only committed published content. |
 | Application use cases | Provide `CreateCompleteShuffleQueue` and `GetPublishedLearningUnit`. |
+| PWA-facing interface | Expose `CreateCompleteShuffleQueue` and `GetPublishedLearningUnit` through a transport-independent boundary. |
 | Selection | Create an ordered reference array for currently available learning units. |
 | Retrieval | Recheck availability before returning one complete learning unit. |
 | Outbound queries | Define application-owned read capabilities implemented by persistence adapters. |
-| Dependency direction | Keep persistence adapters dependent on application contracts. |
+| Dependency direction | Keep persistence adapters dependent on application contracts. Transport adapters depend on the PWA-facing interface, not on use-case internals. |
 | Pipeline isolation | Do not read or model pipeline processing data. |
 | UI boundary | Do not own queue position, loaded content, learner answers, retry timing, or navigation. |
 
@@ -49,6 +50,7 @@ The area serves published learning content without owning pipeline generation, p
 | Learning-unit selection | Overview | `spec:product.application.learning_unit_selection` | Selection policy, scope, queue result, and application-side result validation. |
 | Learning-unit retrieval | Contract | `spec:product.application.learning_unit_retrieval` | Application use case for retrieving one currently available complete learning unit. |
 | Outbound queries | Overview | `spec:product.application.outbound_queries` | Shared query-port dependency, failure, adapter, and verification rules. |
+| PWA-facing interface | Overview | `spec:product.application.pwa_interface` | Transport-independent boundary exposing `CreateCompleteShuffleQueue` and `GetPublishedLearningUnit` to the PWA. |
 
 ## Boundary
 
@@ -66,6 +68,9 @@ The area serves published learning content without owning pipeline generation, p
 transport adapter
       |
       v
+pwa-facing interface (application-owned)
+      |
+      v
 application use case
       |
       +----> application domain rules
@@ -76,6 +81,7 @@ application use case
             persistence adapter
 ```
 
+- Transport adapters depend on the application-owned PWA-facing interface.
 - Adapters may depend on application contracts.
 - Application use cases may depend on application domain rules and learning contracts.
 - Application domain rules must not depend on adapters, frameworks, or database schemas.
@@ -90,5 +96,8 @@ application use case
 | `spec:product.learning.learning_unit` | Defines the complete learning unit served by this area. |
 | `spec:product.pipeline` | Produces and publishes the content read by this area. |
 | `spec:product.ui` | Consumes application behavior while owning transient learner state. |
+| `spec:product.application.pwa_interface` | PWA-facing transport-independent interface for both application operations. |
 | PRODUCT-ADR-APPLICATION-003 | Establishes the application boundary, current published-content model, and retrieval result names. |
 | PRODUCT-ADR-APPLICATION-004 | Establishes the outbound retrieval-port result shape and persistence-adapter obligations. |
+| PRODUCT-ADR-APPLICATION-005 | Establishes PWA-facing failure categories, safe diagnostics, and retryability. |
+| PRODUCT-ADR-APPLICATION-006 | Establishes `LearningUnitRef` stability, opacity, equality, and pass-through semantics. |

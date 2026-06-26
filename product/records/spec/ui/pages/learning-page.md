@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.ui.pages.learning_page`
 - **status**: draft
-- **date**: 2026-06-26
+- **date**: 2026-06-27
 - **parent**: `spec:product.ui.pages`
 
 ## What this is
@@ -122,6 +122,22 @@ The page keeps the current unit visible until replacement content loads successf
 +------------------------------------------------------------+
 ```
 
+### Replacement queue contract failure
+
+```text
++------------------------------------------------------------+
+| All shuffle · <current discussion>        [ Back to main ] |
++------------------------------------------------------------+
+|                                                            |
+| Current card remains visible.                              |
+|                                                            |
+| <safe diagnostic information>                              |
+|                                                            |
+|                                      [ Back to main ]      |
+|                                                            |
++------------------------------------------------------------+
+```
+
 ## Rules
 
 | current view | action or result | resulting view |
@@ -132,14 +148,24 @@ The page keeps the current unit visible until replacement content loads successf
 | Final answered interaction | Select `Next discussion`. | Load the next unit on the same page. |
 | Any learning view | Select `Back to main`. | Main page with queue and session discarded. |
 | Next-unit loading | Load succeeds. | New active quiz with a new session. |
-| Next-unit loading | All automatic retries fail. | Current card plus error and manual retry. |
+| Learning-unit retrieval | `InfrastructureFailure` after initial attempt and three retries. | Current card plus error and manual retry. |
+| Replacement queue creation | `InfrastructureFailure` after initial attempt and three retries. | Current card plus error and manual retry. |
+| Learning-unit retrieval | `MappingFailure` received. | Main page. Queue and session discarded. Main page shows safe diagnostic. |
+| Replacement queue creation | `MappingFailure` or `InvalidSelectionResult` received. | Current card plus safe diagnostic and `Back to main`. No retry action. |
 
 - The top bar must remain visible during the learning flow.
 - Earlier source-post summaries must remain visible.
 - Only answer details may collapse.
-- The page must not show a separate terminal state.
+- The page must not show a separate terminal state for `InfrastructureFailure`.
 - Loading must not remove the current learning unit.
 - `Back to main` must remain available during loading and error states.
+- A retrieval `MappingFailure` must end the active learning flow. The previous learning screen must not be retained as a manual retry surface.
+- A replacement queue-creation `InfrastructureFailure` must preserve the current loaded unit, exhausted queue state, and session through retry.
+- A replacement queue-creation `MappingFailure` or `InvalidSelectionResult` must preserve the current loaded unit, exhausted queue state, and session while the failure surface is visible.
+- A replacement queue-creation `MappingFailure` or `InvalidSelectionResult` must not show automatic or manual retry.
+- The replacement queue contract-failure surface must show `Back to main` after the safe diagnostic information.
+- Selecting `Back to main` from the replacement queue contract-failure surface must discard the queue and session.
+- The page must present only safe diagnostic information supplied by the application interface.
 
 ## Boundary
 
@@ -156,8 +182,10 @@ The page keeps the current unit visible until replacement content loads successf
 | ref | relation |
 |---|---|
 | `spec:product.ui.pages` | Parent page overview. |
-| `spec:product.ui.learning_flow` | Defines runtime state and transitions. |
+| `spec:product.ui.learning_flow` | Defines runtime state, category-specific failure transitions, and queue lifecycle. |
+| `spec:product.application.pwa_interface` | Provides retrieval and defines the failure categories consumed by this page. |
 | `spec:product.ui.components.top_bar` | Defines the persistent learning header. |
 | `spec:product.ui.components.quiz_card` | Defines active quiz composition. |
 | `spec:product.ui.components.answered_card` | Defines answered and final-card composition. |
 | `spec:product.ui.components.operation_feedback` | Defines loading and error feedback. |
+| PRODUCT-ADR-UI-002 | Establishes retrieval and replacement queue-creation failure transitions and diagnostic-surface assignment. |

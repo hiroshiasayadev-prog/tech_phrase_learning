@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.ui`
 - **status**: draft
-- **date**: 2026-06-26
+- **date**: 2026-06-27
 - **parent**: `spec:product`
 
 ## What this is
@@ -23,7 +23,8 @@ The area implements learning semantics without owning content generation or back
 | Skip | Leave the current discussion and begin loading the next available unit. |
 | Final interaction | Show attribution and `Next discussion` on the final answered card. |
 | Loading | Keep the current screen visible until replacement content loads successfully. |
-| Retry | Retry failed learning-unit requests three times after the initial attempt. |
+| Retry | Retry `InfrastructureFailure` requests three times after the initial attempt. |
+| Failure transitions | Handle `InfrastructureFailure`, `MappingFailure`, and `InvalidSelectionResult` through category-specific transitions. Application failure meaning and retryability belong to `spec:product.application.pwa_interface`. |
 | Main screen | Initially provide one complete-shuffle start action. |
 | Learning shell | Show shuffle context, the discussion title, and `Back to main`. |
 
@@ -79,4 +80,6 @@ The area implements learning semantics without owning content generation or back
 | `spec:product.ui.components` | Shows the reusable visual parts. |
 | `spec:product.pipeline` | Produces the published content consumed through the application boundary. |
 | `spec:product.application` | Provides runtime queue creation and learning-unit retrieval. |
+| `spec:product.application.pwa_interface` | Defines PWA-facing failure categories and retryability consumed by this area. |
 | PRODUCT-ADR-UI-001 | Establishes PWA ownership of transient learner-flow state. |
+| PRODUCT-ADR-UI-002 | Establishes category-specific failure transitions reflected in this area. |
