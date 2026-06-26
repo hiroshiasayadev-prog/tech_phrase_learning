@@ -25,15 +25,19 @@ PRODUCT-TASK-APPLICATION-006-01 identified category-specific PWA transitions as 
 
 PRODUCT-ADR-UI-001 defines generic request retry behavior and assigns transient learner-flow state to the PWA.
 
-The current UI specification does not define different transitions for infrastructure, mapping, and selection-contract failures.
+At requirement creation, the UI specification did not define different transitions for infrastructure, mapping, and selection-contract failures.
 
 ## Required Outcome
 
 - `InfrastructureFailure` retains automatic retry behavior.
 - Retrieval `MappingFailure` ends the current learning flow.
 - Retrieval `MappingFailure` discards the active queue and session before returning to main.
-- Queue-creation `MappingFailure` keeps the PWA on the main page without automatic retry.
-- Queue-creation `InvalidSelectionResult` keeps the PWA on the main page without automatic retry.
+- Initial queue-creation `MappingFailure` keeps the PWA on the main page without automatic retry.
+- Initial queue-creation `InvalidSelectionResult` keeps the PWA on the main page without automatic retry.
+- Replacement `InfrastructureFailure` preserves the current learning page and state and uses the existing retry flow.
+- Replacement `MappingFailure` and `InvalidSelectionResult` remain on the learning page without retry.
+- Replacement non-retryable failures show safe diagnostic information followed by `Back to main`.
+- Selecting `Back to main` after a replacement non-retryable failure discards the queue and session.
 - Safe diagnostic information appears at the UI surface that owns the failure.
 - `Unavailable` skips only the affected reference and does not enter technical-failure handling.
 - Queue position, loaded content, and session still change only after successful replacement loading.

@@ -1,7 +1,7 @@
 # PRODUCT-WORK-UI-001: Define failure-category-specific PWA transitions
 
 - **id**: PRODUCT-WORK-UI-001
-- **status**: in_progress
+- **status**: done
 - **date**: 2026-06-27
 - **source_requirement**: PRODUCT-REQ-UI-001
 - **impact_refs**:
@@ -100,5 +100,53 @@ T001-02 Verify reflected UI authority and close
 
 ## Evidence
 
-- PRODUCT-TASK-UI-001-01 created and accepted PRODUCT-ADR-UI-002.
-- Specification reflection and closure remain pending PRODUCT-TASK-APPLICATION-006-04 and PRODUCT-TASK-APPLICATION-006-05.
+### Resolution summary
+
+- PRODUCT-ADR-UI-002 is accepted.
+- Current UI specifications reflect PRODUCT-ADR-UI-002.
+- PRODUCT-ADR-UI-002 `migrated_to_spec` is `2026-06-27`.
+- PRODUCT-TASK-APPLICATION-006-05 returned PASS with no blocking or major findings.
+- No blocking UI-transition finding remains.
+
+### Completion-condition verification
+
+| completion condition | result | evidence |
+|---|---|---|
+| PRODUCT-ADR-UI-002 is accepted. | PASS | The ADR status is `accepted` and it remains additive to PRODUCT-ADR-UI-001. |
+| Failure-category definitions remain application-owned. | PASS | PRODUCT-ADR-APPLICATION-005 and `spec:product.application.pwa_interface` own category meaning and safe diagnostic content. |
+| Infrastructure failures use the existing UI retry flow. | PASS | Initial queue creation, replacement queue creation, and retrieval use one initial attempt and three automatic retries, followed by manual retry. |
+| Initial queue non-retryable failures stay on main. | PASS | `MappingFailure` and `InvalidSelectionResult` remain on the main page with safe diagnostics and no retry action. |
+| Replacement queue non-retryable failures stay on learning. | PASS | The current learning page and state remain visible with safe diagnostics and `Back to main`; no retry is offered. |
+| Replacement exit disposes transient state. | PASS | Selecting `Back to main` discards the queue and session. |
+| Retrieval mapping failure terminates the flow. | PASS | The PWA discards queue and session, returns to main, and does not retain the learning page as a retry surface. |
+| `Unavailable` remains outside technical-failure handling. | PASS | Only the affected pending reference is removed before continuing. |
+| Empty queue remains a normal success. | PASS | Initial empty results show the empty-queue screen; replacement empty results end the flow and show that screen. |
+| Safe diagnostics appear on owning UI surfaces. | PASS | Initial failures use main, replacement failures use learning, and terminal retrieval mapping failure uses main. |
+| Current UI specs reflect accepted authority. | PASS | `spec:product.ui`, `spec:product.ui.learning_flow`, `spec:product.ui.pages.main_page`, and `spec:product.ui.pages.learning_page` match PRODUCT-ADR-UI-002. |
+| Coordinated review has no blocking finding. | PASS | PRODUCT-TASK-APPLICATION-006-05 records PASS with no blocking or major findings. |
+| No implementation or transport decision was added. | PASS | HTTP, JSON, routes, frameworks, component layout, and exact wording remain outside the contract. |
+
+### Task completion
+
+- PRODUCT-TASK-UI-001-01: done.
+- PRODUCT-TASK-UI-001-02: done after final status transition.
+
+### Requirement alignment
+
+- PRODUCT-REQ-UI-001 remains `accepted`.
+- Initial queue wording was narrowed to initial queue creation.
+- Replacement queue behavior was added from accepted PRODUCT-ADR-UI-002 authority.
+- The Evidence statement about missing specification transitions was changed to historical wording.
+- No new UI decision was adopted.
+
+### Validation
+
+- Filesystem reread confirms reciprocal requirement, work-item, and task relations.
+- Filesystem reread confirms PRODUCT-ADR-UI-002 remains accepted with `migrated_to_spec: 2026-06-27`.
+- Design Records MCP validation calls returned diagnostics for Brewprint and other indexed records, not the Tech Phrase Learning UI records.
+- Those MCP results are not treated as PRODUCT validation authority.
+- `git diff --check` and `git status --short` were not executable through the active filesystem-only repository toolset.
+
+### Closure
+
+PRODUCT-WORK-UI-001 is complete.
