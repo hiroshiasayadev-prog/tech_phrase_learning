@@ -18,9 +18,9 @@ The area serves published learning content without owning pipeline generation or
 | Pipeline isolation | Do not read or model pipeline processing data. |
 | Published content | Treat identity, complete learning unit, availability, and opaque provenance as one current runtime projection. |
 | Availability | Keep selection availability separate from current unit content. |
-| Queue creation | Return at most 100 unique available learning-unit references. |
-| Queue scope | Use all available units for the first-MVP complete shuffle. |
-| Queue state | Do not retain queue position, queue identity, or learner progress. |
+| Queue creation | Return an ordered unique reference array with size `min(100, eligible_count)`. Do not return `eligible_count`. |
+| Queue scope | Apply `All` as first-MVP policy. `All` adds no content-based constraint and does not require a full-corpus queue. |
+| Queue state | Do not retain queue position, queue identity, queue history, or learner progress. |
 | Unit retrieval | Recheck availability before returning one complete unit. |
 | Stale queue entry | Return an unavailable result so the PWA can skip the reference. |
 | Provenance | Keep one opaque provenance reference with the current publication. |
@@ -51,7 +51,7 @@ The area serves published learning content without owning pipeline generation or
 | title | kind | ref | summary |
 |---|---|---|---|
 | Published content | Concept | `spec:product.application.published_content` | Shared-database boundary, current content, availability, provenance, and atomic replacement. |
-| Learning-unit selection | Concept | `spec:product.application.learning_unit_selection` | Application use cases, queue semantics, retrieval behavior, domain rules, and query ports. |
+| Learning-unit selection | Concept | `spec:product.application.learning_unit_selection` | Scope, exact bounded cardinality, adapter obligations, result validation, retrieval behavior, and query ports. |
 
 ## Boundary
 

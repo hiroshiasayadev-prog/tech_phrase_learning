@@ -7,31 +7,40 @@
 
 ## What this is
 
-Application model for creating bounded shuffle queues and retrieving one complete published learning unit.
-The model keeps learner queue state in the PWA and selection execution behind semantic query ports.
+Application contract for bounded learning-unit reference selection and availability-aware retrieval.
+The contract keeps transient queue state in the PWA and selection execution behind semantic query ports.
 
 ## Non-goals
 
 - Learner history, recommendation ranking, and progress-aware selection.
 - Topic, discussion, source, or difficulty controls in the first MVP.
-- Backend queue identity, queue persistence, and reservation.
+- Backend queue identity, queue persistence, reservation, and queue history.
+- Total eligible count in application or PWA results.
 - Exact randomization, sampling, and database query algorithms.
 - HTTP routes, status-code mappings, and wire schemas.
-- PWA retry timing and presentation behavior.
+- PWA queue position, retry timing, and learner progression.
 
 ## Concept model
 
 ```text
+SelectionScope =
+  All
+  | Constrained(non_empty_constraints)
+```
+
+```text
 CreateCompleteShuffleQueue
-  input:
-    scope = all
+  application policy:
+    selection_scope = All
+    maximum_count = 100
 
-  policy:
-    max_units = 100
-    unique_within_queue = true
+  selection operation:
+    input:
+      selection_scope
+      maximum_count
 
-  result:
-    ordered learning_unit_refs[]
+    output:
+      ordered learning_unit_refs[]
 ```
 
 ```text
@@ -46,11 +55,12 @@ GetPublishedLearningUnit
 
 | layer | responsibility |
 |---|---|
-| Application domain | Define selection scope, queue bounds, uniqueness, and availability rules. |
-| Application use case | Coordinate domain policy and outbound queries. |
-| Outbound query port | Express runtime selection and retrieval operations semantically. |
-| Database adapter | Execute availability filtering, bounded sampling, ordering, and content loading. |
-| PWA | Keep queue position, skip unavailable references, and own learner session progress. |
+| Published-content contract | Define current availability and the available or unavailable runtime state. |
+| Application domain | Define selection scope, queue cardinality, uniqueness, ordering semantics, and result validity. |
+| Application use case | Apply first-MVP policy, coordinate outbound queries, and reject observable invalid results. |
+| Outbound query port | Express bounded selection and current published-unit retrieval semantically. |
+| Database adapter | Apply availability and scope, then perform bounded randomized reference selection and content loading. |
+| PWA | Store the returned ordered reference array, keep queue position, and own learner progression. |
 
 ## Rules
 
@@ -62,95 +72,183 @@ The first MVP application must provide these semantic behaviors:
 - `GetPublishedLearningUnit`.
 
 `CreateCompleteShuffleQueue` must not load complete learning-unit content.
-`GetPublishedLearningUnit` must return one complete unit or an unavailable result.
+`GetPublishedLearningUnit` must return one complete unit or `Unavailable`.
 
-### Complete-shuffle queue
+The first-MVP PWA must not choose or submit a selection scope or maximum count.
+`CreateCompleteShuffleQueue` must apply `All` and `100` as application policy.
 
-- The first MVP selection scope must be all available learning units.
-- A queue must contain at most 100 learning-unit references.
-- A queue must contain no duplicate reference.
-- A queue may contain fewer than 100 references when fewer units are available.
-- Queue ordering must be randomized by the selection implementation.
-- The same learning unit may appear in a later queue.
-- Queue exhaustion must allow the PWA to request another queue.
-- Queue generation must use availability observed during that request.
-- Queue generation must not create a learner-specific reservation.
-- The application must not retain queue position or queue history.
+The PWA must receive only the accepted ordered learning-unit reference array.
+The result must not include a total eligible count, queue identity, reservation token, backend position, or queue history.
 
-The name `complete shuffle` identifies the unrestricted first-MVP selection scope.
-The name does not require one queue to contain every available unit.
+### Selection scope
 
-### Retrieval and availability
+`SelectionScope` defines content-based constraints for one selection operation.
 
-- Retrieval must recheck current availability.
-- Retrieval must return the complete current content only when the unit remains available.
-- A missing or unavailable reference must produce `Unavailable`.
-- `Unavailable` must not be treated as a transient infrastructure failure.
-- `Unavailable` must allow the PWA to bypass that reference and try another queued reference.
-- Network and server failures must remain distinct from `Unavailable`.
-- A queue containing only stale references may be exhausted and replaced.
+A candidate is eligible only when both conditions hold:
 
-### Domain and application separation
+- the candidate is currently available under `spec:product.application.published_content` during the selection operation;
+- the candidate satisfies the requested `SelectionScope`.
 
-- Domain rules must define valid scope, maximum queue size, uniqueness, and availability requirements.
-- Application use cases must coordinate ports and domain rules.
-- Domain rules must not depend on SQL, database tables, HTTP, or framework types.
+`All` adds no content-based constraint.
+The first MVP supports only `All`.
+
+`All` includes every currently available unit in the eligible candidate set.
+`All` does not require one queue to contain the complete eligible corpus.
+
+Future non-history constraints may cover source, topic, discussion, and difficulty.
+Future non-history constraints must combine by intersection.
+A constrained scope must contain at least one constraint.
+An empty constraint set must be represented as `All`.
+
+Every non-history constraint must be evaluable from the published runtime boundary.
+A scope must not contain queue position, prior queue references, learner answers, or learner progress.
+
+Learner-history selection remains excluded.
+A separate decision must establish durable learner identity, progress ownership, and history access before learner-history selection is added.
+
+### Complete-shuffle cardinality
+
+`maximum_count` is application policy.
+The first-MVP value is `100`.
+
+`eligible_count` is the number of unique candidates satisfying current availability and the requested scope during selection.
+`eligible_count` is a semantic quantity used to define adapter cardinality.
+The application and PWA must not receive `eligible_count`.
+
+```text
+queue_size = min(maximum_count, eligible_count)
+```
+
+| eligible count | required result size |
+|---|---|
+| `0` | `0`; an empty queue is valid. |
+| `1..99` | Exactly `eligible_count`. |
+| `100 or more` | Exactly `100`. |
+
+The adapter must not intentionally underfill the result while additional eligible candidates exist during the operation.
+The adapter contract does not require a separate total-count query or total-count result.
+
+### Queue invariants
+
+- One queue result must contain stable `LearningUnitRef` values only.
+- One queue result must contain no duplicate reference.
+- Uniqueness applies only within one result.
+- A later queue may repeat references from an earlier queue.
+- Returned order must be randomized by the selection implementation.
+- The application must preserve the accepted returned order.
+- Queue issuance must create no learner-specific reservation.
+- The backend must retain no queue identity, position, history, or learner progress.
+- Exact randomization algorithms and statistical distribution guarantees remain implementation details.
+
+### Semantic selection operation
+
+The application must depend on one bounded semantic selection operation.
+
+```text
+input:
+  selection_scope
+  maximum_count
+
+output:
+  ordered learning_unit_refs[]
+```
+
+The adapter must:
+
+- select only references currently available during the operation;
+- select only references satisfying `selection_scope`;
+- return exactly `min(maximum_count, eligible_count)` references;
+- return unique stable `LearningUnitRef` values;
+- return references in randomized order;
+- preserve the returned order;
+- allow bounded selection inside the database;
+- avoid loading the complete candidate set into application memory;
+- retain no learner-specific queue state.
+
+The exact sampling algorithm, query, index, query plan, transaction, isolation mechanism, and persistence technology remain implementation details.
+
+### Validation boundary
+
+The application must validate only properties observable from the returned array.
+
+| invariant | application validation | adapter contract verification |
+|---|---|---|
+| Result length does not exceed `maximum_count` | Required. | Required. |
+| References are unique within the array | Required. | Required. |
+| Every element is a valid `LearningUnitRef` | Required. | Required at persistence-to-domain mapping. |
+| References were available during selection | Not independently observable. | Required. |
+| References satisfy the requested scope | Not independently observable from reference identity alone. | Required. |
+| Result has exact cardinality | Not independently observable without candidate-total information. | Required. |
+| Ordering was randomized | Not provable from one returned array. | Required. |
+
+The application must not query or receive `eligible_count` only to revalidate adapter behavior.
+The application must not infer underfill from an array containing fewer than `maximum_count` references.
+
+Adapter contract tests must cover zero, below-limit, exact-limit, and above-limit eligible candidate sets.
+Adapter contract tests must also cover unavailable candidates and every supported constrained scope.
+Random-selection tests must verify randomized selection rather than fixed repository order.
+The contract defines no statistical distribution threshold.
+
+### Invalid returned arrays
+
+Observable invalid results must be rejected as a complete result.
+Observable invalid results must not be normalized into a queue.
+
+| returned array | handling |
+|---|---|
+| More than `maximum_count` references | Reject the complete result. |
+| Duplicate references | Reject the complete result. |
+| Malformed or invalid reference | Fail domain mapping or reject the complete result. |
+| Empty array | Accept as a valid result. |
+| Fewer than `maximum_count` references | Accept because underfill is not observable from the array alone. |
+
+The application must not:
+
+- truncate an over-limit array;
+- remove duplicate references;
+- discard malformed references and return a partial queue;
+- retry only because fewer than `maximum_count` references were returned.
+
+The rejection must be a transport-independent application failure.
+Concrete error types and transport mappings remain deferred.
+
+### Retrieval and availability timing
+
+Queue selection must use availability observed during queue creation.
+A later withdrawal must not retroactively invalidate the accepted queue result.
+
+Retrieval must independently recheck current availability.
+Retrieval must return the complete current content only when the unit remains available.
+A missing or unavailable reference must produce `Unavailable`.
+
+`Unavailable` must remain distinct from infrastructure failure.
+The PWA owns removal and skipping of an unavailable queued reference.
+A learning unit already loaded into the PWA remains governed by the UI loaded-content contract.
+
+### Domain and adapter separation
+
+- Application domain rules must not depend on SQL, database tables, HTTP, or framework types.
 - Application results must remain transport-independent.
-- Transport adapters may map `Unavailable` to a transport-specific not-found response.
-
-### Query-port semantics
-
-The application must depend on semantic outbound operations rather than generic CRUD.
-
-Examples, not exhaustive:
-
-```text
-SelectAvailableLearningUnitReferences
-  input:
-    scope
-    maximum_count
-
-  result:
-    randomized unique references
-```
-
-```text
-LoadAvailablePublishedLearningUnit
-  input:
-    learning_unit_ref
-
-  result:
-    current complete publication
-    | unavailable
-```
-
-- The selection port must allow the database adapter to perform bounded random selection.
-- The selection port must not require loading every candidate reference into the domain layer.
-- The adapter must satisfy the port contract for availability, scope, maximum count, uniqueness, and ordering.
-- The exact sampling algorithm must remain adapter-owned.
-
-### Extensibility
-
-Future selection scopes may include source, topic, discussion, difficulty, or learner history.
-Future scopes must extend the selection model without moving transient queue state into the application.
-Learner-history selection may require a separate decision about durable learner identity and progress.
+- Outbound operations must express selection and retrieval semantics rather than generic CRUD.
+- Database adapters may perform filtering, bounded sampling, ordering, and loading inside persistence.
+- Adapter implementation details must not redefine selection invariants.
 
 ## Boundary
 
 | concern | owner |
 |---|---|
-| Selection invariants and application orchestration | `spec:product.application.learning_unit_selection` |
-| Current published content and availability | `spec:product.application.published_content` |
+| Selection scope, cardinality, result validity, and application orchestration | `spec:product.application.learning_unit_selection` |
+| Current availability meaning and published runtime state | `spec:product.application.published_content` |
 | Learning-unit semantic composition | `spec:product.learning.learning_unit` |
-| PWA queue position, retry flow, and session state | `spec:product.ui.learning_flow` |
-| Database sampling and transport mapping | Implementation adapters. |
+| PWA queue storage, position, exhaustion, retry, skipping, and progression | `spec:product.ui.learning_flow` |
+| Database sampling, persistence, and transport mapping | Implementation adapters. |
 
 ## Related specs
 
 | ref | relation |
 |---|---|
 | `spec:product.application` | Parent application overview. |
-| `spec:product.application.published_content` | Defines the runtime records selected and retrieved. |
+| `spec:product.application.published_content` | Defines current availability and the runtime records selected and retrieved. |
 | `spec:product.learning.learning_unit` | Defines the complete content returned by retrieval. |
-| `spec:product.ui.learning_flow` | Owns queue position and stale-reference skipping behavior. |
+| `spec:product.ui.learning_flow` | Owns the returned queue state, queue progression, and stale-reference skipping. |
 | PRODUCT-ADR-APPLICATION-001 | Establishes the use cases, layering, and bounded queue decision. |

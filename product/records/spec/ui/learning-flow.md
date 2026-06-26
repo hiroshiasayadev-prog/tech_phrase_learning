@@ -50,9 +50,12 @@ LearningQueue
 
 - The first MVP must show one complete-shuffle start action.
 - The first MVP must not require a shuffle-mode state while no alternative mode exists.
-- Starting must keep the main screen visible until the first learning unit loads.
+- Starting must keep the main screen visible while the initial queue request is pending.
+- A successful non-empty initial queue must keep the main screen visible until the first learning unit loads.
 - The start action must remain disabled while loading.
-- Initial loading must use the retry behavior defined by this spec.
+- Initial request failures must use the retry behavior defined by this spec.
+- A successful empty initial queue must show the empty-queue screen.
+- The PWA must not request another queue after accepting a successful empty initial result.
 
 ### Learning screen shell
 
@@ -66,15 +69,29 @@ LearningQueue
 ### Learning queue
 
 - `LearningQueue` must remain separate from `Session`.
+- The PWA must initialize `LearningQueue.unit_refs` from the ordered reference array returned by `CreateCompleteShuffleQueue`.
+- The PWA must preserve the returned reference order.
 - `current_unit_index` must identify the unit currently shown by the UI.
 - The queue index must advance only after the next learning unit loads successfully.
-- Queue exhaustion must trigger acquisition of another complete-shuffle queue.
-- Queue exhaustion must not require a return to the main screen.
+- Queue exhaustion must trigger one acquisition of another complete-shuffle queue.
+- Queue exhaustion must not require an intermediate return to the main screen.
+- A non-empty replacement queue must replace the exhausted queue and preserve its returned order.
+- A successful empty replacement queue must end the current learning flow and show the empty-queue screen.
+- The PWA must not request another queue after accepting a successful empty replacement result.
 - A queued reference returned as unavailable must be removed from the pending queue candidates.
 - The UI must try the next pending reference without retrying the unavailable reference.
 - Removing an unavailable pending reference must not replace the loaded unit or active session.
-- Network and server failures must continue to use the retry behavior in this spec.
+- Request failures must continue to use the retry behavior in this spec.
 - Application queue-production policy remains outside this spec.
+
+### Empty queue screen
+
+- The empty-queue screen must represent a successful queue result containing no references.
+- The empty-queue screen must show `Quiz list was empty.`.
+- The empty-queue screen must provide a `Back to main` action.
+- The empty-queue screen must not provide automatic or manual queue retry.
+- Entering the empty-queue screen must discard any current queue and active session.
+- Request failures must not use the empty-queue screen.
 
 ### Session
 
@@ -134,7 +151,8 @@ initial request
   -> error + manual Retry
 ```
 
-- Each learning-unit request must allow one initial attempt and three automatic retries.
+- Each queue-acquisition or learning-unit request must allow one initial attempt and three automatic retries after request failure.
+- A successful empty queue result must not enter retry behavior.
 - Automatic retry must keep the current screen visible.
 - Failure after all automatic retries must show an error and manual `Retry` action.
 - Manual retry must reuse the same stable current screen.

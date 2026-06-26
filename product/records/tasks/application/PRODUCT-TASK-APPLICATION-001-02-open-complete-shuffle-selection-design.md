@@ -1,13 +1,15 @@
 # PRODUCT-TASK-APPLICATION-001-02: Open complete-shuffle selection design
 
 - **id**: PRODUCT-TASK-APPLICATION-001-02
-- **status**: not_started
+- **status**: done
 - **date**: 2026-06-26
 - **work_item**: PRODUCT-WORK-APPLICATION-001
 - **source_requirement**: PRODUCT-REQ-APPLICATION-001
 - **estimate**: 1d
-- **depends_on**: [PRODUCT-TASK-APPLICATION-001-01]
-- **outputs**: []
+- **depends_on**:
+  - PRODUCT-TASK-APPLICATION-001-01
+- **outputs**:
+  - PRODUCT-WORK-APPLICATION-003
 
 ## Goal
 
@@ -69,4 +71,11 @@ The child work item must keep selection rules independent from the database adap
 
 ## Evidence
 
-TBD
+- Created PRODUCT-WORK-APPLICATION-003 under `product/records/work-items/application/`.
+- Created PRODUCT-TASK-APPLICATION-003-01 through PRODUCT-TASK-APPLICATION-003-05 as the child work-item task graph.
+- Added PRODUCT-WORK-APPLICATION-003 to PRODUCT-REQ-APPLICATION-001 `work_items`.
+- Verified that the child work item preserves database-side bounded selection.
+- Verified that selection invariants remain independent from database adapter implementation.
+- Verified that the `all` scope defines the eligible candidate set without requiring every available reference in one queue.
+- Verified every child task references PRODUCT-WORK-APPLICATION-003 and PRODUCT-REQ-APPLICATION-001.
+- A new session can begin with PRODUCT-TASK-APPLICATION-003-01 without a separate handoff.
