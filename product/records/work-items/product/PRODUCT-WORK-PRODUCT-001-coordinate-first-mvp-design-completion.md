@@ -1,0 +1,111 @@
+# PRODUCT-WORK-PRODUCT-001: Coordinate first-MVP design completion
+
+- **id**: PRODUCT-WORK-PRODUCT-001
+- **status**: not_started
+- **date**: 2026-06-27
+- **source_requirement**: PRODUCT-REQ-PRODUCT-001
+- **impact_refs**:
+  - spec:product
+  - spec:product.learning
+  - spec:product.pipeline
+  - spec:product.application
+  - spec:product.ui
+  - PRODUCT-WORK-APPLICATION-001
+- **tasks**:
+  - PRODUCT-TASK-PRODUCT-001-01
+  - PRODUCT-TASK-PRODUCT-001-02
+  - PRODUCT-TASK-PRODUCT-001-03
+  - PRODUCT-TASK-PRODUCT-001-04
+  - PRODUCT-TASK-PRODUCT-001-05
+  - PRODUCT-TASK-PRODUCT-001-06
+
+## Goal
+
+Coordinate the remaining first-MVP design work and establish one independently reviewed implementation-planning baseline.
+
+Use completed application design as an input while opening focused work for learning, pipeline, UI, and cross-area runtime integration.
+
+## Boundary
+
+This work item owns:
+
+- current design-readiness inventory across all first-MVP areas;
+- focused child work-item creation and dependency ordering;
+- routing each normative gap to its semantic owner;
+- coordination of learning, pipeline, UI, and runtime integration design;
+- final cross-area consistency and implementation-planning review.
+
+This work item does not own:
+
+- normative learning, pipeline, application, or UI contracts;
+- design decisions without an accepted ADR;
+- implementation tasks or implementation progress;
+- concrete technology, deployment, schema, route, or source-layout choices;
+- silent reopening of completed application contracts.
+
+## Impact Scope
+
+| ref | impact |
+|---|---|
+| `spec:product` | Preserve area ownership and dependency direction during remaining design work. |
+| `spec:product.learning` | Verify learner-facing contracts are complete enough to constrain pipeline and UI design. |
+| `spec:product.pipeline` | Decompose the current overview into focused stage and publication contracts. |
+| `spec:product.application` | Treat completed application design as a fixed integration input. |
+| `spec:product.ui` | Verify whole-area flow, state, page, and feedback consistency. |
+| PRODUCT-WORK-APPLICATION-001 | Reuse the completed application integration evidence and implementation candidates. |
+
+## Task flow
+
+```text
+T01 Establish remaining-design baseline and ownership split
+  |
+  v
+T02 Open learning design-completeness work
+  |
+  +--------------------+
+  |                    |
+  v                    v
+T03 Open pipeline       T04 Open UI
+    detailed design         detailed design
+  |                    |
+  +----------+---------+
+             |
+             v
+T05 Open cross-area runtime integration design
+             |
+             v
+T06 Integrate and independently review first-MVP design
+```
+
+- T01 inventories current readiness and defines child ownership boundaries.
+- T02 opens focused learning completeness work before downstream design is finalized.
+- T03 opens detailed pipeline design using learning contracts as constraints.
+- T04 opens whole-area UI design using learning and application contracts as constraints.
+- T05 opens runtime integration design after pipeline, application, and UI boundaries are explicit.
+- T06 starts only after every focused child work item is complete or explicitly deferred without blocking readiness.
+
+## Task Candidates
+
+| task | responsibility |
+|---|---|
+| PRODUCT-TASK-PRODUCT-001-01 | Establish the current first-MVP design baseline, gap inventory, and child ownership split. |
+| PRODUCT-TASK-PRODUCT-001-02 | Create focused learning design-completeness work. |
+| PRODUCT-TASK-PRODUCT-001-03 | Create focused pipeline detailed-design work. |
+| PRODUCT-TASK-PRODUCT-001-04 | Create focused UI detailed-design work. |
+| PRODUCT-TASK-PRODUCT-001-05 | Create focused cross-area runtime integration design work. |
+| PRODUCT-TASK-PRODUCT-001-06 | Integrate results, identify implementation work, and obtain independent final review. |
+
+## Completion Condition
+
+- The current design baseline and ownership gaps are recorded.
+- Focused child work items exist for learning, pipeline, UI, and cross-area runtime integration.
+- Every child work item is complete or explicitly deferred without blocking implementation planning.
+- Normative changes trace to accepted ADRs and current owner specifications.
+- Application design remains consistent with downstream and upstream contracts.
+- No unresolved ownership, result-semantic, state-transition, publication, or integration gap blocks implementation planning.
+- Implementation candidates are recorded without starting implementation.
+- Strict validation, working-tree inspection, and independent cross-area review complete successfully.
+
+## Evidence
+
+TBD
