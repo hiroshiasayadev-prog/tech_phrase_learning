@@ -10,6 +10,8 @@
   - PRODUCT-ADR-PIPELINE-006
   - PRODUCT-ADR-PIPELINE-007
   - PRODUCT-ADR-PIPELINE-008
+  - PRODUCT-ADR-PIPELINE-009
+  - PRODUCT-ADR-PIPELINE-010
   - PRODUCT-INV-PIPELINE-001
   - PRODUCT-INV-PIPELINE-002
   - PRODUCT-WORK-LEARNING-001
@@ -74,6 +76,8 @@ A missing normative decision requires an accepted Pipeline ADR before specificat
 | PRODUCT-ADR-PIPELINE-006 | Apply source-specific adapters, complete-fetch retention, source-independent normalization, and mechanical Discussion Path derivation. |
 | PRODUCT-ADR-PIPELINE-007 | Anchor valid-path and Learning Unit identity to ordered authentic posts and replace current content atomically. |
 | PRODUCT-ADR-PIPELINE-008 | Retain opaque versioned provenance and support Adapter- or Common-Pipeline-Version withdrawal selection. |
+| PRODUCT-ADR-PIPELINE-009 | Derive one bounded candidate per maximal Discussion Path, merge exact duplicates, validate source structure, and retain edge and origin evidence. |
+| PRODUCT-ADR-PIPELINE-010 | Filter structurally valid candidates through independent semantic units with positive evidence, bounded invalid-output retry, and deterministic terminal outcomes. |
 | PRODUCT-INV-PIPELINE-001 | Use the reviewed question-and-reply fixture as evidence for source fidelity, generated-content separation, and provenance needs. |
 | PRODUCT-INV-PIPELINE-002 | Use the coarse-tree and path-filtering experiments as evidence for normalization, path enumeration, validation, and harder fixtures. |
 | PRODUCT-WORK-LEARNING-001 | Treat the independently reviewed Learning contract as fixed input. |
@@ -255,3 +259,27 @@ Strict specification validation returned `[strict]  All 34 file(s) OK.`
 
 PRODUCT-TASK-PIPELINE-001-02 is `done`.
 The Work Item remains `in_progress` for T03 through T08.
+
+### T03 accepted Pipeline authority
+
+PRODUCT-TASK-PIPELINE-001-03 materialized its user-approved decision register into two accepted ADRs:
+
+- PRODUCT-ADR-PIPELINE-009 owns bounded candidate derivation, exact duplicate merging, source-only identity, deterministic structural validation, edge evidence, origin provenance, and structural rejection reasons.
+- PRODUCT-ADR-PIPELINE-010 owns independent semantic evaluation units, minimal context, positive evidence, full evaluation coverage, bounded invalid-output retry, and deterministic terminal aggregation.
+
+The first MVP does not enumerate every intermediate prefix and does not perform semantic segmentation.
+Each maximal Discussion Path yields at most one candidate, bounded to its first six posts.
+Longer-path origins remain internal provenance after exact duplicate merging.
+
+Semantic filtering judges each candidate independently.
+It separates path coherence, opening-post suitability, and each reply-post suitability into distinct evaluation units.
+No sibling ranking or canonical-path selection is introduced.
+
+No normative specification changed during T03 ADR authoring.
+Final T03 verification completed successfully.
+`git diff --check` completed without reported output.
+Strict specification validation returned `[strict]  All 34 file(s) OK.`
+`git status --short` showed only the T03 change scope.
+
+PRODUCT-TASK-PIPELINE-001-03 is `done`.
+The Work Item remains `in_progress` for T04 through T08.
