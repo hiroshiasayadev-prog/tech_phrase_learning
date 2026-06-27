@@ -1,7 +1,7 @@
 # PRODUCT-WORK-PIPELINE-001: Define first-MVP content-pipeline contracts
 
 - **id**: PRODUCT-WORK-PIPELINE-001
-- **status**: not_started
+- **status**: in_progress
 - **date**: 2026-06-27
 - **source_requirement**: PRODUCT-REQ-PRODUCT-001
 - **impact_refs**:
@@ -168,3 +168,64 @@ The current `spec:product.pipeline` overview contains broad contracts and public
 - Pipeline writes and internal provenance remain Pipeline-owned.
 - Concrete implementation technology remains outside this design work.
 - T01 must identify every missing ADR before any new normative specification text is added.
+
+### T01 authority baseline and gap inventory
+
+PRODUCT-TASK-PIPELINE-001-01 confirmed two current Pipeline decision authorities:
+
+- PRODUCT-ADR-PIPELINE-002 owns the internal OpenAI-compatible provider boundary and provider isolation.
+- PRODUCT-ADR-PIPELINE-005 owns staged processing, retained-source reuse, path multiplicity, current-only retention, replacement, automated publication gating, and unavailability preservation.
+
+The supersession chain is explicit:
+
+```text
+PRODUCT-ADR-PIPELINE-005
+  +-- supersedes PRODUCT-ADR-PIPELINE-001
+  +-- supersedes PRODUCT-ADR-PIPELINE-004
+       +-- supersedes PRODUCT-ADR-PIPELINE-003
+```
+
+PRODUCT-INV-PIPELINE-001, PRODUCT-INV-PIPELINE-002, fixtures, experiment runs, and scripts remain evidence only.
+The completed Learning contract and Application published-content contract remain fixed semantic inputs.
+
+T01 classified all nine Pipeline design areas.
+The remaining normative gaps route to T02 through T06 under the ADR-first gate.
+Specification elaboration routes to T07 after those decisions are accepted.
+Concrete providers, prompts, schemas, algorithms, thresholds, retry timing, persistence, orchestration technology, and deployment remain implementation-only choices.
+
+T01 assigned the follow-up ownership:
+
+| task | owned gap group |
+|---|---|
+| PRODUCT-TASK-PIPELINE-001-02 | Acquisition, normalization, identity, current generated-content versioning, and provenance. |
+| PRODUCT-TASK-PIPELINE-001-03 | Enumeration, structural validation, absolute suitability filtering, duplicates, and rejection evidence. |
+| PRODUCT-TASK-PIPELINE-001-04 | Summary, phrase, prompt, quiz generation, grounding, and per-stage validation results. |
+| PRODUCT-TASK-PIPELINE-001-05 | Publication gate, unattended eligibility, handoff, withdrawal, restoration, and availability decisions. |
+| PRODUCT-TASK-PIPELINE-001-06 | Orchestration, rerun, reuse, retry, exhaustion, partial failure, batch continuation, and completion. |
+| PRODUCT-TASK-PIPELINE-001-07 | ADR-backed reflection into focused Pipeline specifications. |
+
+T01 proposed these focused child specifications for T07:
+
+- `spec:product.pipeline.source_acquisition`;
+- `spec:product.pipeline.source_normalization`;
+- `spec:product.pipeline.path_enumeration`;
+- `spec:product.pipeline.path_validation`;
+- `spec:product.pipeline.content_generation`;
+- `spec:product.pipeline.validation`;
+- `spec:product.pipeline.artifact_identity_and_provenance`;
+- `spec:product.pipeline.llm_provider`;
+- `spec:product.pipeline.publication`;
+- `spec:product.pipeline.orchestration`.
+
+`spec:product.pipeline` remains the overview router and cross-area boundary.
+T01 did not create or change any ADR or normative specification.
+
+The final post-closure verification run completed successfully:
+
+- `git diff --check` reported no whitespace error;
+- LF-to-CRLF messages were non-blocking working-copy warnings;
+- strict specification validation returned `[strict]  All 34 file(s) OK.`;
+- `git status --short` showed only T01 and this Work Item as modified.
+
+PRODUCT-TASK-PIPELINE-001-01 is `done` and its change scope is commit-ready.
+This Work Item remains `in_progress` for T02 through T08.
