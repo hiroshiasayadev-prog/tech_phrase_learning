@@ -18,6 +18,9 @@
   - PRODUCT-ADR-PIPELINE-014
   - PRODUCT-ADR-PIPELINE-015
   - PRODUCT-ADR-PIPELINE-016
+  - PRODUCT-ADR-PIPELINE-017
+  - PRODUCT-ADR-PIPELINE-018
+  - PRODUCT-ADR-PIPELINE-019
   - PRODUCT-INV-PIPELINE-001
   - PRODUCT-INV-PIPELINE-002
   - PRODUCT-WORK-LEARNING-001
@@ -90,6 +93,9 @@ A missing normative decision requires an accepted Pipeline ADR before specificat
 | PRODUCT-ADR-PIPELINE-014 | Select one evidence-grounded target phrase and generate a non-revealing Quiz prompt through separate validated stages. |
 | PRODUCT-ADR-PIPELINE-015 | Generate correct and distractor options through sequential tasks with deterministic identity and individual plus set-level validation. |
 | PRODUCT-ADR-PIPELINE-016 | Report controlled stage outcomes, block partial units, aggregate content validation without compensation, and reserve large models for improvement analysis. |
+| PRODUCT-ADR-PIPELINE-017 | Require complete non-compensating gate evidence, fail-closed contradiction handling, human-approved fixtures, and validated unattended-publication eligibility. |
+| PRODUCT-ADR-PIPELINE-018 | Define publication outcomes, current publication provenance, and the opaque Application-facing provenance boundary. |
+| PRODUCT-ADR-PIPELINE-019 | Define atomic `PublicationHandoff`, availability-only `AvailabilityChange`, preservation rules, and writer-reader ownership separation. |
 | PRODUCT-INV-PIPELINE-001 | Use the reviewed question-and-reply fixture as evidence for source fidelity, generated-content separation, and provenance needs. |
 | PRODUCT-INV-PIPELINE-002 | Use the coarse-tree and path-filtering experiments as evidence for normalization, path enumeration, validation, and harder fixtures. |
 | PRODUCT-WORK-LEARNING-001 | Treat the independently reviewed Learning contract as fixed input. |
@@ -315,3 +321,20 @@ Strict specification validation returned `[strict]  All 34 file(s) OK.`
 
 PRODUCT-TASK-PIPELINE-001-04 is `done`.
 The Work Item remains `in_progress` for T05 through T08.
+
+### T05 accepted Pipeline authority
+
+PRODUCT-TASK-PIPELINE-001-05 materialized its user-approved decision register into three accepted ADRs:
+
+- PRODUCT-ADR-PIPELINE-017 owns complete non-compensating publication-gate evidence, fail-closed contradictory-state handling, human approval, harder-fixture validation, and unattended-publication eligibility.
+- PRODUCT-ADR-PIPELINE-018 owns publication and availability outcome meanings, current publication provenance, and opaque Application-facing provenance references.
+- PRODUCT-ADR-PIPELINE-019 owns `PublicationHandoff`, `AvailabilityChange`, atomic complete-current-state replacement, availability-only preservation, and Pipeline-writer/Application-reader separation.
+
+No normative specification changed during T05 ADR authoring.
+Final T05 verification completed successfully.
+`git diff --check` completed without reported error.
+Strict specification validation returned `[strict]  All 34 file(s) OK.`
+`git status --short` showed only the T05 Task, this Work Item, and three new T05 ADRs.
+
+PRODUCT-TASK-PIPELINE-001-05 is `done`.
+The Work Item remains `in_progress` for T06 through T08.
