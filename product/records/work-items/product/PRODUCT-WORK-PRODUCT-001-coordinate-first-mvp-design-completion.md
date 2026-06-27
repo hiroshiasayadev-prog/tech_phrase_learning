@@ -8,6 +8,7 @@
   - spec:product
   - spec:product.learning
   - spec:product.pipeline
+  - PRODUCT-WORK-PIPELINE-001
   - spec:product.application
   - spec:product.ui
   - PRODUCT-WORK-APPLICATION-001
@@ -50,6 +51,7 @@ This work item does not own:
 | `spec:product` | Preserve area ownership and dependency direction during remaining design work. |
 | `spec:product.learning` | Verify learner-facing contracts are complete enough to constrain pipeline and UI design. |
 | `spec:product.pipeline` | Decompose the current overview into focused stage and publication contracts. |
+| PRODUCT-WORK-PIPELINE-001 | Track the focused Pipeline decision, specification, and review flow opened by T03. |
 | `spec:product.application` | Treat completed application design as a fixed integration input. |
 | `spec:product.ui` | Verify whole-area flow, state, page, and feedback consistency. |
 | PRODUCT-WORK-APPLICATION-001 | Reuse the completed application integration evidence and implementation candidates. |
@@ -138,3 +140,36 @@ T01 local verification completed:
 
 PRODUCT-TASK-PRODUCT-001-01 is complete.
 PRODUCT-WORK-PRODUCT-001 remains `in_progress` for T02 through T06.
+
+### T03 Pipeline work opening
+
+PRODUCT-TASK-PRODUCT-001-03 created PRODUCT-WORK-PIPELINE-001.
+
+The focused Pipeline Work Item contains PRODUCT-TASK-PIPELINE-001-01 through PRODUCT-TASK-PIPELINE-001-08.
+The task graph covers authority baseline, source and normalization decisions, path contracts, generation, publication, orchestration, specification reflection, and independent review.
+
+The Work Item consumes the completed PRODUCT-WORK-LEARNING-001 contract without reopening Learning meaning.
+The Work Item preserves the Application published-content read boundary.
+Pipeline ownership remains limited to generation, validation, publication decisions, writes, and internal provenance.
+
+PRODUCT-ADR-PIPELINE-002 and PRODUCT-ADR-PIPELINE-005 are current Pipeline decision inputs.
+Superseded Pipeline ADRs remain historical records.
+PRODUCT-INV-PIPELINE-001 and PRODUCT-INV-PIPELINE-002 remain evidence only.
+
+PRODUCT-REQ-PRODUCT-001 lists PRODUCT-WORK-PIPELINE-001.
+PRODUCT-WORK-PIPELINE-001 lists all eight child tasks.
+Every child task references PRODUCT-WORK-PIPELINE-001 and PRODUCT-REQ-PRODUCT-001.
+
+T03 changed no normative ADR or specification.
+T04 through T06 remain unstarted.
+
+Filesystem reread verified record identity, parent relations, task dependencies, required sections, and reciprocal links.
+
+The user supplied repository-root CLI results after T03 record creation:
+
+- `git diff --check` reported no whitespace errors;
+- strict specification validation returned `[strict]  All 34 file(s) OK.`;
+- `git status --short` showed the expected three modified PRODUCT coordination records and the new Pipeline Work Item and Task directories;
+- LF-to-CRLF messages were non-blocking working-copy conversion warnings.
+
+The T03 opening scope is commit-ready.

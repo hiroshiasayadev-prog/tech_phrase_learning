@@ -13,6 +13,7 @@
 - **work_items**:
   - PRODUCT-WORK-PRODUCT-001
   - PRODUCT-WORK-LEARNING-001
+  - PRODUCT-WORK-PIPELINE-001
 
 ## Requirement
 
