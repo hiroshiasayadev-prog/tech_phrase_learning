@@ -30,6 +30,7 @@ The area remains valid when content-processing technology changes.
 | Correct option | Reference exactly one option by semantic identity. |
 | Source representation | Reveal a validated English source-post summary after the learner answers. |
 | Attribution | Retain complete unit-specific source, author, license, adaptation, and no-endorsement information. |
+| Global legal notices | Disclose the accepted corpus and source platform, license and license reference, adaptation, noncommercial restriction, share-alike condition, and no-endorsement meaning. |
 | Attribution access | Keep current-unit attribution accessible during the session and global legal notices accessible from the main-page experience. |
 | Session composition | Present two to six ordered interactions from exactly one available learning unit. |
 | Session progression | Present the opening question first, then ordered reply interactions through progressive quiz-to-summary cards. |

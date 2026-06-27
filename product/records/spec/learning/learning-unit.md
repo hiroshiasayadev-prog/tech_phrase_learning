@@ -160,6 +160,12 @@ The model separates generated quiz content, source-derived summaries, and authen
 - The attribution record must disclose that learner-visible material was generated, summarized, or adapted from the linked discussion.
 - The attribution record must state that attribution does not imply endorsement by source authors, the Python Software Foundation, or the source platform.
 - The first MVP does not require a separate direct URL for every selected post.
+- Global legal notices must identify the accepted `discuss.python.org` corpus and `Discussions on Python.org` source platform.
+- Global legal notices must identify `CC BY-NC-SA 3.0` and provide a license link.
+- Global legal notices must disclose that learner-visible material is generated, summarized, or adapted from source discussions.
+- Global legal notices must disclose the noncommercial first-MVP source-use boundary.
+- Global legal notices must disclose that the source license includes a share-alike condition.
+- Global legal notices must state that attribution does not imply endorsement by source authors, the Python Software Foundation, or the source platform.
 - Attribution presentation and interaction mechanisms belong to `spec:product.ui`.
 
 ### Publication readiness
