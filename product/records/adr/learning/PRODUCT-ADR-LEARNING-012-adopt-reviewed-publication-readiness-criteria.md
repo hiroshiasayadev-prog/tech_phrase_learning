@@ -4,7 +4,7 @@
 - **date**: 2026-06-27
 - **depends_on**: [PRODUCT-ADR-LEARNING-005, PRODUCT-ADR-LEARNING-007, PRODUCT-ADR-LEARNING-008, PRODUCT-ADR-LEARNING-009, PRODUCT-ADR-LEARNING-010, PRODUCT-ADR-LEARNING-011]
 - **supersedes**: []
-- **migrated_to_spec**: null
+- **migrated_to_spec**: 2026-06-27
 
 ## Context
 

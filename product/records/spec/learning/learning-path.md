@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.learning.learning_path`
 - **status**: draft
-- **date**: 2026-06-26
+- **date**: 2026-06-27
 - **parent**: `spec:product.learning`
 
 ## What this is
@@ -26,6 +26,7 @@ The model defines learning suitability without defining pipeline algorithms or s
 | Source discussion | One authentic technical conversation that owns the referenced source posts. |
 | Source-post reference | A source-independent reference to one authentic post. |
 | Learning path | An ordered sequence of connected source-post references from one source discussion. |
+| Source-grounded adjacency | A source-observed reply relation or a genuine topic-level response projected to the opening post. |
 | Valid path | A learning path that satisfies the learning suitability rules in this spec. |
 | Learning unit | Learner-facing content generated from one valid path. |
 
@@ -40,16 +41,31 @@ The model defines learning suitability without defining pipeline algorithms or s
 
 ## Rules
 
+### Path adjacency
+
+- Every adjacent pair must have source-grounded adjacency.
+- An explicit source reply may follow its referenced preceding path post.
+- A genuine topic-level response may follow the opening post through opening-post projection.
+- An unavailable explicit reply target is not a genuine topic-level response.
+- An unavailable target must not satisfy adjacency through opening-post fallback alone.
+- Content-only analysis must not create a first-MVP path edge.
+- Quote relations, textual references, and semantic similarity do not independently establish adjacency.
+
 ### Path composition
 
 - A valid path must reference posts from one source discussion.
 - A valid path must begin with the discussion opening post.
 - A valid path must include at least one authentic reply.
-- Adjacent path posts must follow the accepted conversation projection.
 - Path order must preserve source conversation order.
-- A valid path must remain understandable as one coherent exchange.
-- Every selected post must support one useful phrase-learning quiz in the first MVP.
-- Summarization may reduce technical burden without changing the conversational movement.
+
+### Learning suitability
+
+- A valid path must remain understandable as one connected technical exchange.
+- Ordered summaries and interactions must preserve the exchange's conversational movement.
+- Every selected post must support one useful phrase-learning interaction.
+- The opening post must support one question-formulation interaction.
+- Every later selected post must support one reply-formulation interaction.
+- Summarization may reduce technical burden without changing the source author's position or conversational response.
 
 ### Multiple valid paths
 
@@ -96,3 +112,6 @@ The model defines learning suitability without defining pipeline algorithms or s
 | `spec:product.pipeline` | Implements candidate generation and filtering for this contract. |
 | `spec:product.application.learning_unit_selection` | Selects available learning units rather than raw learning paths. |
 | PRODUCT-ADR-LEARNING-005 | Establishes multiple valid paths and learning-unit generation from summarized source-post paths. |
+| PRODUCT-ADR-LEARNING-007 | Establishes the two-to-six first-MVP path cardinality. |
+| PRODUCT-ADR-LEARNING-008 | Establishes source-grounded adjacency and unavailable-target distinctions. |
+| PRODUCT-ADR-LEARNING-012 | Establishes path coherence and per-post quiz suitability as publication criteria. |

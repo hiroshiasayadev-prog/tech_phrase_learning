@@ -4,7 +4,7 @@
 - **date**: 2026-06-27
 - **depends_on**: [PRODUCT-ADR-LEARNING-005]
 - **supersedes**: []
-- **migrated_to_spec**: null
+- **migrated_to_spec**: 2026-06-27
 
 ## Context
 

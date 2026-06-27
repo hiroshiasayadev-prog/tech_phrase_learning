@@ -2,7 +2,7 @@
 
 - **id**: `spec:product.learning`
 - **status**: draft
-- **date**: 2026-06-26
+- **date**: 2026-06-27
 - **parent**: `spec:product`
 
 ## What this is
@@ -17,18 +17,24 @@ The area remains valid when content-processing technology changes.
 | Initial audience | Engineers who can already read technical English. |
 | Primary learning gap | Limited exposure to natural conversational phrasing in familiar technical situations. |
 | Primary source | Real technical conversation trees. |
-| Learning path | Use an ordered source-post sequence that begins with an opening post and continues through replies. |
+| Learning path | Use an ordered source-post sequence that begins with an opening post and continues through source-grounded replies. |
+| Path cardinality | Use two to six selected source posts for one first-MVP path. |
+| Path adjacency | Accept explicit replies and genuine topic-level responses projected to the opening post. |
 | Path multiplicity | One discussion may provide zero or more independently valid paths. |
 | Learning-unit cardinality | Each valid path defines exactly one learning unit. |
+| Discussion title | Use the original source discussion title for the learning unit. |
 | Interaction types | Use question-formulation and reply-formulation interactions. |
 | Quiz abstraction | Use one concise intent prompt and three natural English candidate responses per selected post. |
 | Target phrase | Use one technically abstracted reusable expression per interaction. |
-| Correct option | Use or directly realize the target phrase in the one response that fits the prompt. |
+| Option identity | Give each option an interaction-local semantic identity. |
+| Correct option | Reference exactly one option by semantic identity. |
 | Source representation | Reveal a validated English source-post summary after the learner answers. |
+| Attribution | Retain complete unit-specific source, author, license, adaptation, and no-endorsement information. |
 | Session composition | Require every MVP session to contain at least one question interaction and one reply interaction. |
 | Session progression | Replace each active quiz card with an answered summary card before showing the next quiz. |
 | Language | Use English for all learner-facing content. |
-| Publication gate | Use automated publication gating under human-approved criteria. |
+| Publication readiness | Require structural readiness and every non-compensating semantic quality dimension. |
+| Publication gate | Use automated per-unit gating under human-approved criteria and fixtures. |
 
 ## Non-goals
 
@@ -73,3 +79,9 @@ The area remains valid when content-processing technology changes.
 | PRODUCT-ADR-LEARNING-001 | Establishes technical conversation trees as the primary learning source. |
 | PRODUCT-ADR-LEARNING-005 | Establishes summarized source-post paths, learning-unit generation, and publication gating. |
 | PRODUCT-ADR-LEARNING-006 | Establishes progressive quiz-to-summary cards. |
+| PRODUCT-ADR-LEARNING-007 | Establishes the two-to-six first-MVP path cardinality. |
+| PRODUCT-ADR-LEARNING-008 | Establishes source-grounded path adjacency. |
+| PRODUCT-ADR-LEARNING-009 | Establishes the source discussion title as the unit title. |
+| PRODUCT-ADR-LEARNING-010 | Establishes semantic option identity and correct-option references. |
+| PRODUCT-ADR-LEARNING-011 | Establishes noncommercial source use and unit-specific attribution. |
+| PRODUCT-ADR-LEARNING-012 | Establishes publication-readiness criteria and approval boundaries. |
