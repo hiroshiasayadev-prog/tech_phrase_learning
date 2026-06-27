@@ -30,8 +30,13 @@ The area remains valid when content-processing technology changes.
 | Correct option | Reference exactly one option by semantic identity. |
 | Source representation | Reveal a validated English source-post summary after the learner answers. |
 | Attribution | Retain complete unit-specific source, author, license, adaptation, and no-endorsement information. |
-| Session composition | Require every MVP session to contain at least one question interaction and one reply interaction. |
-| Session progression | Replace each active quiz card with an answered summary card before showing the next quiz. |
+| Attribution access | Keep current-unit attribution accessible during the session and global legal notices accessible from the main-page experience. |
+| Session composition | Present two to six ordered interactions from exactly one available learning unit. |
+| Session progression | Present the opening question first, then ordered reply interactions through progressive quiz-to-summary cards. |
+| Option presentation | Shuffle each interaction on first activation and keep its permutation stable for the current unit session. |
+| Answer identity | Retain the selected semantic option identity and derive correctness from the correct-option reference. |
+| Skip | End the current discussion without revealing or completing unanswered interactions. |
+| Generated-source distinction | Keep generated or adapted wording distinguishable from authentic source-authored wording. |
 | Language | Use English for all learner-facing content. |
 | Publication readiness | Require structural readiness and every non-compensating semantic quality dimension. |
 | Publication gate | Use automated per-unit gating under human-approved criteria and fixtures. |
@@ -53,7 +58,7 @@ The area remains valid when content-processing technology changes.
 | Target learner, learning gap, and source-context model | `spec:product.learning.learning_model`. |
 | Meaning and suitability of a learning path | `spec:product.learning.learning_path`. |
 | Learner-visible learning-unit semantics | `spec:product.learning.learning_unit`. |
-| Session card progression and reveal behavior | `spec:product.learning.quiz_session`. |
+| Session order, progression, reveal, shuffled-presentation, and access outcomes | `spec:product.learning.quiz_session`. |
 | PWA runtime state, navigation, loading, and retry behavior | `spec:product.ui`. |
 | Ingestion, path enumeration, filtering, generation, and validation | `spec:product.pipeline`. |
 | LLM provider and model integration | `spec:product.pipeline`. |
