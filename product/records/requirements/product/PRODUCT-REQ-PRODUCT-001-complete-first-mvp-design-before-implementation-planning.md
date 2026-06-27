@@ -12,6 +12,7 @@
   - PRODUCT-WORK-APPLICATION-001
 - **work_items**:
   - PRODUCT-WORK-PRODUCT-001
+  - PRODUCT-WORK-LEARNING-001
 
 ## Requirement
 
@@ -27,12 +28,12 @@ PRODUCT-WORK-APPLICATION-001 completed detailed application design and recorded 
 
 `spec:product.pipeline` still owns all pipeline contracts in one overview and states that no child pipeline specifications exist.
 
-Learning specifications define learner-facing semantics but have no requirement or work item that verifies design completeness for implementation planning.
+At capture time, learning specifications defined learner-facing semantics without a focused work item for implementation-planning completeness.
 
 UI specifications define the first-MVP learner flow, pages, and component responsibilities.
 The only completed UI work item addresses failure-category transitions rather than whole-area readiness.
 
-No current requirement or work item coordinates remaining first-MVP design across all areas.
+Before this requirement was opened, no requirement or work item coordinated remaining first-MVP design across all areas.
 
 ## Required Outcome
 

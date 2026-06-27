@@ -1,7 +1,7 @@
 # PRODUCT-WORK-PRODUCT-001: Coordinate first-MVP design completion
 
 - **id**: PRODUCT-WORK-PRODUCT-001
-- **status**: not_started
+- **status**: in_progress
 - **date**: 2026-06-27
 - **source_requirement**: PRODUCT-REQ-PRODUCT-001
 - **impact_refs**:
@@ -108,4 +108,33 @@ T06 Integrate and independently review first-MVP design
 
 ## Evidence
 
-TBD
+### T01 baseline
+
+PRODUCT-TASK-PRODUCT-001-01 records the coordination inventory used by this work item.
+
+| area | current judgment | child route |
+|---|---|---|
+| Learning | Core semantics exist, but whole-area implementation-planning completeness is unreviewed. | T02 opens focused Learning work. |
+| Pipeline | Broad current contracts exist in one overview. Detailed stage, artifact, validation, identity, provenance, publication, and orchestration contracts are incomplete. | T03 opens focused Pipeline work. |
+| Application | Detailed design is complete with independent integrated `PASS`. | Reuse PRODUCT-WORK-APPLICATION-001 as a fixed input. |
+| UI | Normal and failure-transition contracts exist. Whole-area empty-state, recovery, accessibility, and consistency review remains. | T04 opens focused UI work. |
+| Runtime integration | Owner contracts exist, but writer, persistence, transport, PWA, and test obligations lack one coordinated boundary. | T05 opens focused PRODUCT integration work. |
+
+The dependency order remains T02, then parallel T03 and T04, then T05, then T06.
+
+No ownerless normative gap blocks child work-item creation.
+Normative corrections must remain in owner ADRs and specifications.
+Persistence and transport remain adapter concerns rather than new semantic specification areas.
+
+The active Design Records MCP index does not cover this repository and is not used as validation authority.
+
+T01 local verification completed:
+
+- strict specification validation passed all 34 specification files;
+- `git diff --check` reported no whitespace error;
+- `git status --short` reported only the expected T01 task and parent work-item changes;
+- scoped diff inspection showed coordination status and Evidence changes only;
+- LF-to-CRLF warnings were non-blocking.
+
+PRODUCT-TASK-PRODUCT-001-01 is complete.
+PRODUCT-WORK-PRODUCT-001 remains `in_progress` for T02 through T06.
