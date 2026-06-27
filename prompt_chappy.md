@@ -150,6 +150,9 @@ Do not create a new top-level spec area until its semantic owner is explicit.
 - `PRODUCT-ADR-LEARNING-006`: Use progressive quiz-to-summary cards for learner sessions.
 - `PRODUCT-ADR-PIPELINE-002`: Use an OpenAI-compatible LLM provider boundary.
 - `PRODUCT-ADR-PIPELINE-005`: Use staged path generation with current-only retention for the first MVP.
+- `PRODUCT-ADR-PIPELINE-006`: Normalize retained source through source-specific adapters.
+- `PRODUCT-ADR-PIPELINE-007`: Anchor learning-unit identity to ordered authentic-post paths.
+- `PRODUCT-ADR-PIPELINE-008`: Retain versioned Pipeline provenance for current Learning Units.
 - `PRODUCT-ADR-APPLICATION-003`: Consolidate the current published-content and retrieval boundary.
 - `PRODUCT-ADR-APPLICATION-004`: Return availability results from the published-unit retrieval port.
 - `PRODUCT-ADR-UI-001`: Keep first-MVP learner-flow state in the PWA.

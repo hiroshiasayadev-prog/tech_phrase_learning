@@ -7,6 +7,9 @@
 - **impact_refs**:
   - PRODUCT-ADR-PIPELINE-002
   - PRODUCT-ADR-PIPELINE-005
+  - PRODUCT-ADR-PIPELINE-006
+  - PRODUCT-ADR-PIPELINE-007
+  - PRODUCT-ADR-PIPELINE-008
   - PRODUCT-INV-PIPELINE-001
   - PRODUCT-INV-PIPELINE-002
   - PRODUCT-WORK-LEARNING-001
@@ -68,6 +71,9 @@ A missing normative decision requires an accepted Pipeline ADR before specificat
 |---|---|
 | PRODUCT-ADR-PIPELINE-002 | Preserve the OpenAI-compatible provider boundary and provider isolation. |
 | PRODUCT-ADR-PIPELINE-005 | Preserve staged deterministic and model processing, source reuse, current-only retention, path multiplicity, and automated publication gating. |
+| PRODUCT-ADR-PIPELINE-006 | Apply source-specific adapters, complete-fetch retention, source-independent normalization, and mechanical Discussion Path derivation. |
+| PRODUCT-ADR-PIPELINE-007 | Anchor valid-path and Learning Unit identity to ordered authentic posts and replace current content atomically. |
+| PRODUCT-ADR-PIPELINE-008 | Retain opaque versioned provenance and support Adapter- or Common-Pipeline-Version withdrawal selection. |
 | PRODUCT-INV-PIPELINE-001 | Use the reviewed question-and-reply fixture as evidence for source fidelity, generated-content separation, and provenance needs. |
 | PRODUCT-INV-PIPELINE-002 | Use the coarse-tree and path-filtering experiments as evidence for normalization, path enumeration, validation, and harder fixtures. |
 | PRODUCT-WORK-LEARNING-001 | Treat the independently reviewed Learning contract as fixed input. |
@@ -229,3 +235,23 @@ The final post-closure verification run completed successfully:
 
 PRODUCT-TASK-PIPELINE-001-01 is `done` and its change scope is commit-ready.
 This Work Item remains `in_progress` for T02 through T08.
+
+### T02 accepted Pipeline authority
+
+PRODUCT-TASK-PIPELINE-001-02 materialized its user-approved decision register into three accepted ADRs:
+
+- PRODUCT-ADR-PIPELINE-006 owns acquisition, retained-source reuse, source-specific Adapter normalization, authentic-post identity, Discussion Paths, and normalization outcomes.
+- PRODUCT-ADR-PIPELINE-007 owns valid-path identity inputs, stable Learning Unit identity, current-only generated content, and atomic replacement.
+- PRODUCT-ADR-PIPELINE-008 owns Pipeline-internal opaque provenance, Source Adapter Version, Common Pipeline Version, publication outcome, and version-targeted withdrawal selection.
+
+No normative specification changed during T02 ADR authoring.
+The initial independent review found two minor Task Evidence wording defects.
+Both defects were corrected, and the focused re-review returned `PASS` with no regression finding.
+
+Final T02 verification completed successfully.
+`git diff --check` completed without reported output.
+Strict specification validation returned `[strict]  All 34 file(s) OK.`
+`git status --short` showed only the T02 change scope.
+
+PRODUCT-TASK-PIPELINE-001-02 is `done`.
+The Work Item remains `in_progress` for T03 through T08.
