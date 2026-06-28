@@ -8,7 +8,7 @@
   - PRODUCT-ADR-PIPELINE-017
   - PRODUCT-ADR-PIPELINE-019
   - PRODUCT-ADR-PIPELINE-020
-  - PRODUCT-ADR-PIPELINE-021
+  - PRODUCT-ADR-PIPELINE-024
 - **supersedes**:
 - **migrated_to_spec**: 2026-06-28
 
@@ -60,7 +60,7 @@ Retry will rerun only the failed operation by default.
 Accepted upstream artifacts remain reusable while their inputs and relevant behavior references remain current.
 
 Before retry, orchestration will confirm that required inputs and behavior references are still current.
-Changed input or behavior converts the action into a rerun under PRODUCT-ADR-PIPELINE-021.
+Changed input or behavior converts the action into a rerun under PRODUCT-ADR-PIPELINE-024.
 
 A retry blocks only the dependent suffix for the affected path or mutation.
 Independent sibling paths and discussions may continue.
@@ -219,5 +219,5 @@ Current-run diagnostics provide operational accountability without requiring per
 - PRODUCT-ADR-PIPELINE-017 requires fail-closed publication on incomplete or contradictory evidence.
 - PRODUCT-ADR-PIPELINE-019 requires failed preconditions and writes to leave committed state unchanged.
 - PRODUCT-ADR-PIPELINE-020 permits independent sibling-path and discussion continuation.
-- PRODUCT-ADR-PIPELINE-021 permits accepted current artifact reuse and earliest-affected-stage rerun.
+- PRODUCT-ADR-PIPELINE-024 permits accepted current artifact reuse and earliest-affected-stage rerun.
 - The user selected operation-local retry, finite implementation-owned retry limits, distinct rejection, incompleteness and contradiction, whole-unit blocking, and current-run diagnostics.

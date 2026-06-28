@@ -1,7 +1,7 @@
 # PRODUCT-WORK-PIPELINE-001: Define first-MVP content-pipeline contracts
 
 - **id**: PRODUCT-WORK-PIPELINE-001
-- **status**: in_progress
+- **status**: done
 - **date**: 2026-06-27
 - **source_requirement**: PRODUCT-REQ-PRODUCT-001
 - **impact_refs**:
@@ -467,4 +467,29 @@ The remaining review loop concerned only whether this completed verification was
 No further independent re-review was required for that self-referential Evidence update.
 
 T07 is `done`.
-T08 has not started.
+
+### T08 independent integrated review
+
+The independent integrated review covered every impact ref and all 18 completion conditions.
+The review returned `PASS` with no Blocking or Major finding.
+
+F-MIN-01 identified stale current-authority references in PRODUCT-ADR-PIPELINE-022.
+The metadata, Decision, and Evidence references were corrected from superseded PRODUCT-ADR-PIPELINE-021 to current PRODUCT-ADR-PIPELINE-024 without changing retry semantics.
+The current Pipeline specifications already reflected PRODUCT-ADR-PIPELINE-024, so the correction did not change the implementation contract.
+
+Pipeline and runtime-integration implementation planning may rely on the current contract.
+
+The supplied post-correction verification found no whitespace error, returned `[strict]  All 44 file(s) OK.`, and showed only the expected three T08 records as modified.
+LF-to-CRLF messages were non-blocking working-copy warnings.
+
+Final pre-closure verification after the residual Evidence-reference correction reported:
+
+- `git diff --check` completed without reported output;
+- strict specification validation returned `[strict]  All 44 file(s) OK.`;
+- `git status --short` showed only PRODUCT-ADR-PIPELINE-022, PRODUCT-TASK-PIPELINE-001-08, and this Work Item as modified.
+
+F-MIN-01 is closed.
+The independent integrated verdict remains `PASS` with no Blocking, Major, or remaining Minor finding.
+All completion conditions are satisfied.
+Pipeline and runtime-integration implementation planning may proceed without reconstructing missing Pipeline semantics.
+The closure update changes only workflow status and Evidence wording.

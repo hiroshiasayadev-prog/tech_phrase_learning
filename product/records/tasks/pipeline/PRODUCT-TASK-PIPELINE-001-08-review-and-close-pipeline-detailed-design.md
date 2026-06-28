@@ -1,7 +1,7 @@
 # PRODUCT-TASK-PIPELINE-001-08: Review and close Pipeline detailed design
 
 - **id**: PRODUCT-TASK-PIPELINE-001-08
-- **status**: not_started
+- **status**: done
 - **date**: 2026-06-27
 - **work_item**: PRODUCT-WORK-PIPELINE-001
 - **source_requirement**: PRODUCT-REQ-PRODUCT-001
@@ -9,6 +9,7 @@
 - **depends_on**:
   - PRODUCT-TASK-PIPELINE-001-07
 - **outputs**:
+  - PRODUCT-ADR-PIPELINE-022
   - PRODUCT-WORK-PIPELINE-001
 
 ## Goal
@@ -59,4 +60,28 @@ Independently verify that first-MVP Pipeline contracts are authoritative, comple
 
 ## Evidence
 
-TBD
+Independent integrated review: `PASS`.
+
+No Blocking or Major finding remains.
+
+F-MIN-01 identified stale rerun-authority references in PRODUCT-ADR-PIPELINE-022.
+The metadata, Decision, and Evidence references were corrected from PRODUCT-ADR-PIPELINE-021 to PRODUCT-ADR-PIPELINE-024 without changing retry semantics.
+
+Pipeline and runtime-integration implementation planning may rely on the current contract.
+
+The supplied post-correction verification reported:
+
+- `git diff --check` found no whitespace error;
+- LF-to-CRLF messages were non-blocking working-copy warnings;
+- strict specification validation returned `[strict]  All 44 file(s) OK.`;
+- `git status --short` showed only PRODUCT-ADR-PIPELINE-022, this Task, and PRODUCT-WORK-PIPELINE-001 as modified.
+
+Final pre-closure verification after the residual Evidence-reference correction reported:
+
+- `git diff --check` completed without reported output;
+- strict specification validation returned `[strict]  All 44 file(s) OK.`;
+- `git status --short` showed only PRODUCT-ADR-PIPELINE-022, this Task, and PRODUCT-WORK-PIPELINE-001 as modified.
+
+F-MIN-01 is closed.
+No Blocking, Major, or remaining Minor finding prevents closure.
+The closure update changes only workflow status and Evidence wording.
