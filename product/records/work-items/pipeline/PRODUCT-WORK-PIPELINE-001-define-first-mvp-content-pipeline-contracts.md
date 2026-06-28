@@ -11,7 +11,7 @@
   - PRODUCT-ADR-PIPELINE-007
   - PRODUCT-ADR-PIPELINE-008
   - PRODUCT-ADR-PIPELINE-009
-  - PRODUCT-ADR-PIPELINE-010
+  - PRODUCT-ADR-PIPELINE-023
   - PRODUCT-ADR-PIPELINE-011
   - PRODUCT-ADR-PIPELINE-012
   - PRODUCT-ADR-PIPELINE-013
@@ -21,6 +21,9 @@
   - PRODUCT-ADR-PIPELINE-017
   - PRODUCT-ADR-PIPELINE-018
   - PRODUCT-ADR-PIPELINE-019
+  - PRODUCT-ADR-PIPELINE-020
+  - PRODUCT-ADR-PIPELINE-024
+  - PRODUCT-ADR-PIPELINE-022
   - PRODUCT-INV-PIPELINE-001
   - PRODUCT-INV-PIPELINE-002
   - PRODUCT-WORK-LEARNING-001
@@ -86,7 +89,7 @@ A missing normative decision requires an accepted Pipeline ADR before specificat
 | PRODUCT-ADR-PIPELINE-007 | Anchor valid-path and Learning Unit identity to ordered authentic posts and replace current content atomically. |
 | PRODUCT-ADR-PIPELINE-008 | Retain opaque versioned provenance and support Adapter- or Common-Pipeline-Version withdrawal selection. |
 | PRODUCT-ADR-PIPELINE-009 | Derive one bounded candidate per maximal Discussion Path, merge exact duplicates, validate source structure, and retain edge and origin evidence. |
-| PRODUCT-ADR-PIPELINE-010 | Filter structurally valid candidates through independent semantic units with positive evidence, bounded invalid-output retry, and deterministic terminal outcomes. |
+| PRODUCT-ADR-PIPELINE-023 | Filter structurally valid candidates through independent semantic units with positive evidence, implementation-configured bounded invalid-output retry, and deterministic terminal outcomes. |
 | PRODUCT-ADR-PIPELINE-011 | Generate reusable summaries from complete authored text and ordered ancestor summaries, then validate four independent fidelity dimensions. |
 | PRODUCT-ADR-PIPELINE-012 | Extract zero to three exact same-post phrase candidates and validate conversational function and phrase usefulness independently. |
 | PRODUCT-ADR-PIPELINE-013 | Revise accepted summaries in path order for continuity while independently preserving source meaning. |
@@ -96,6 +99,9 @@ A missing normative decision requires an accepted Pipeline ADR before specificat
 | PRODUCT-ADR-PIPELINE-017 | Require complete non-compensating gate evidence, fail-closed contradiction handling, human-approved fixtures, and validated unattended-publication eligibility. |
 | PRODUCT-ADR-PIPELINE-018 | Define publication outcomes, current publication provenance, and the opaque Application-facing provenance boundary. |
 | PRODUCT-ADR-PIPELINE-019 | Define atomic `PublicationHandoff`, availability-only `AvailabilityChange`, preservation rules, and writer-reader ownership separation. |
+| PRODUCT-ADR-PIPELINE-020 | Define Adapter-led discovery, canonical-URL deduplication, retained-source fetch-versus-reuse ownership, independent progression, batch continuation, and aggregate completion. |
+| PRODUCT-ADR-PIPELINE-024 | Define current artifact reuse, execution-behavior evidence, source-stage-aware conservative rerun fallback, material-change rerun boundaries, and stable identity preservation. |
+| PRODUCT-ADR-PIPELINE-022 | Define retry classification, operation-local finite retry, exhaustion, terminal outcomes, complete-unit blocking, and current-run diagnostics. |
 | PRODUCT-INV-PIPELINE-001 | Use the reviewed question-and-reply fixture as evidence for source fidelity, generated-content separation, and provenance needs. |
 | PRODUCT-INV-PIPELINE-002 | Use the coarse-tree and path-filtering experiments as evidence for normalization, path enumeration, validation, and harder fixtures. |
 | PRODUCT-WORK-LEARNING-001 | Treat the independently reviewed Learning contract as fixed input. |
@@ -338,3 +344,34 @@ Strict specification validation returned `[strict]  All 34 file(s) OK.`
 
 PRODUCT-TASK-PIPELINE-001-05 is `done`.
 The Work Item remains `in_progress` for T06 through T08.
+
+### T06 accepted Pipeline authority
+
+PRODUCT-TASK-PIPELINE-001-06 materialized its user-approved decision register into four accepted ADRs:
+
+- PRODUCT-ADR-PIPELINE-020 owns the outer orchestration boundary, Adapter-led discovery, canonical-URL deduplication, retained-source fetch-versus-reuse ownership, independent progression, batch continuation, and aggregate completion.
+- PRODUCT-ADR-PIPELINE-024 owns current artifact retention and reuse, orchestration and component behavior evidence, source-stage-aware conservative rerun fallback, material-change rerun boundaries, and stable identity preservation; it supersedes PRODUCT-ADR-PIPELINE-021.
+- PRODUCT-ADR-PIPELINE-022 owns retry classification, operation-local retry, finite implementation-configured retry bounds, exhaustion, unpublished terminal outcomes, whole-unit blocking, and current-run diagnostics.
+- PRODUCT-ADR-PIPELINE-023 owns independent semantic evaluation with implementation-configured bounded invalid-output retry and supersedes PRODUCT-ADR-PIPELINE-010.
+
+PRODUCT-ADR-PIPELINE-010 is superseded history because its fixed three-attempt rule crossed into implementation responsibility.
+The independent semantic evaluation units, positive evidence, deterministic coverage, and aggregation contracts remain current through PRODUCT-ADR-PIPELINE-023.
+
+The first T06 independent review returned `NEEDS REVISION` with one Major and two Minor findings.
+PRODUCT-ADR-PIPELINE-024 closes the Major Source Adapter rerun-boundary finding and the evaluator-provider classification finding.
+PRODUCT-ADR-PIPELINE-020 now clarifies separate publication and availability-only paths.
+PRODUCT-ADR-PIPELINE-021 is superseded history.
+
+No normative specification changed during T06 ADR authoring or review correction.
+
+The focused re-review returned `PASS`.
+F-MAJ-01, F-MIN-01, and F-MIN-02 are closed with no regression finding.
+
+Final post-closure verification completed successfully:
+
+- `git diff --check` completed without reported output;
+- strict specification validation returned `[strict]  All 34 file(s) OK.`;
+- `git status --short` showed only the T06 change scope.
+
+PRODUCT-TASK-PIPELINE-001-06 is `done`.
+The Work Item remains `in_progress` for T07 and T08.

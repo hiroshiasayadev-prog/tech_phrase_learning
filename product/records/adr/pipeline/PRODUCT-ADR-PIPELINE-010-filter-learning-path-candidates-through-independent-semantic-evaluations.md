@@ -1,6 +1,6 @@
 # PRODUCT-ADR-PIPELINE-010: Filter Learning Path candidates through independent semantic evaluations
 
-- **status**: accepted
+- **status**: superseded
 - **date**: 2026-06-28
 - **depends_on**:
   - PRODUCT-ADR-PIPELINE-002
