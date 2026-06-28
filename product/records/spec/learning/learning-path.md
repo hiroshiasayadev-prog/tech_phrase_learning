@@ -98,7 +98,8 @@ The model defines learning suitability without defining pipeline algorithms or s
 | Meaning and suitability of a learning path | `spec:product.learning.learning_path` |
 | Learner-visible content generated from a path | `spec:product.learning.learning_unit` |
 | Session progression over one learning unit | `spec:product.learning.quiz_session` |
-| Path enumeration, validation, filtering, and provenance materialization | `spec:product.pipeline` |
+| Path enumeration and candidate provenance | `spec:product.pipeline.path_enumeration` |
+| Structural validation and semantic filtering | `spec:product.pipeline.path_validation` |
 | Runtime learning-unit selection | `spec:product.application.learning_unit_selection`. |
 
 ## Related specs
@@ -109,7 +110,8 @@ The model defines learning suitability without defining pipeline algorithms or s
 | `spec:product.learning.learning_model` | Defines the source-context and phrase-exposure goals. |
 | `spec:product.learning.learning_unit` | Defines content generated from one valid path. |
 | `spec:product.learning.quiz_session` | Defines progressive presentation of one selected learning unit. |
-| `spec:product.pipeline` | Implements candidate generation and filtering for this contract. |
+| `spec:product.pipeline.path_enumeration` | Derives bounded candidates without redefining Learning Path meaning. |
+| `spec:product.pipeline.path_validation` | Validates structure and filters candidates against this contract. |
 | `spec:product.application.learning_unit_selection` | Selects available learning units rather than raw learning paths. |
 | PRODUCT-ADR-LEARNING-005 | Establishes multiple valid paths and learning-unit generation from summarized source-post paths. |
 | PRODUCT-ADR-LEARNING-007 | Establishes the two-to-six first-MVP path cardinality. |

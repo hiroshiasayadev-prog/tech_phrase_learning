@@ -11,7 +11,7 @@
   - PRODUCT-ADR-LEARNING-012
 - **supersedes**:
   - PRODUCT-ADR-PIPELINE-010
-- **migrated_to_spec**:
+- **migrated_to_spec**: 2026-06-28
 
 ## Context
 

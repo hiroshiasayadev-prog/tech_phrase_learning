@@ -44,7 +44,8 @@ The topic separates current application reads from pipeline processing internals
 | concern | owner |
 |---|---|
 | Learning-unit field meaning | `spec:product.learning.learning_unit` |
-| Generation, publication decision, and current provenance evidence | `spec:product.pipeline` |
+| Generation and validation | `spec:product.pipeline.content_generation` and `spec:product.pipeline.validation` |
+| Publication decision and current provenance evidence | `spec:product.pipeline.publication` and `spec:product.pipeline.artifact_identity_and_provenance` |
 | Runtime projection and availability-aware reads | `spec:product.application.published_content` |
 | Loaded-unit immutability and learner state | `spec:product.ui.learning_flow` |
 | Physical schema and transaction implementation | Implementation. |
@@ -58,5 +59,6 @@ The topic separates current application reads from pipeline processing internals
 | `spec:product.application.learning_unit_retrieval` | Retrieves one current published unit through application orchestration. |
 | `spec:product.application.outbound_queries.get_published_learning_unit` | Defines the persistence-adapter read contract for one published unit. |
 | `spec:product.learning.learning_unit` | Defines complete learner-visible content and attribution. |
-| `spec:product.pipeline` | Produces the current publication and owns current provenance. |
+| `spec:product.pipeline.publication` | Owns publication decisions and current-state writes. |
+| `spec:product.pipeline.artifact_identity_and_provenance` | Owns current Pipeline provenance and the opaque reference. |
 | PRODUCT-ADR-APPLICATION-003 | Establishes the current published-content and retrieval boundary. |

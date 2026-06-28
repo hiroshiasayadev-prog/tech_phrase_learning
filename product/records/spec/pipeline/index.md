@@ -2,157 +2,78 @@
 
 - **id**: `spec:product.pipeline`
 - **status**: draft
-- **date**: 2026-06-26
+- **date**: 2026-06-28
 - **parent**: `spec:product`
 
 ## What this is
 
-Owner of implementation contracts for producing validated learning content from technical conversations.
-The area implements learning-domain needs without owning their pedagogical meaning.
+Owner of source processing, generated-content validation, publication decisions, and published-content writes.
+The Pipeline implements Learning contracts while keeping processing internals outside Application runtime reads.
 
 ## Current contract
 
 | concern | contract |
 |---|---|
-| Source structure | Preserve authentic posts and conversation relationships during ingestion and normalization. |
-| Source reuse | Reuse retained source data for a previously fetched source URL. Periodic refetch and freshness guarantees are not required. |
-| Deterministic processing | Use explicit rules for parsing, cleanup, path enumeration, validation, deduplication, and stable artifact identity. |
-| LLM augmentation | Limit models to bounded tasks that require semantic interpretation. |
-| Context size | Provide each model task with the smallest sufficient context. |
-| Output trust | Treat model output as untrusted input and validate structured results. |
-| Working artifacts | Keep only current or transient stage data needed for processing. Historical intermediate generations are not required. |
-| Provider boundary | Use an internal boundary with an OpenAI-compatible chat-completion baseline. |
-| Provider isolation | Keep vendor-specific SDKs, credentials, model names, and error translation inside adapters. |
-| Compatibility meaning | Treat API compatibility as transport compatibility, not behavioral equivalence. |
-| Initial corpus | Use public `discuss.python.org` Packaging topics for the first MVP. |
-| Path production | Retain zero or more independently valid source-post paths per discussion. |
-| Learning-unit production | Treat each valid path as exactly one logical learning unit. |
-| Summary production | Create reusable source-post summaries and grounded path-specific revisions when required. |
-| Quiz production | Select one target phrase before generating one three-option quiz for each selected post. |
-| Publication gate | Use automated publication gating under human-approved criteria. |
-| Human review | Use human review for golden fixtures, policy development, evaluation, and selected exceptional cases. |
-| Availability | Make passing units available and preserve current publication data when a unit becomes unavailable. |
+| Source boundary | Source Adapters discover, fetch, and normalize source-specific discussions before source-independent Common Pipeline processing. |
+| Processing boundary | Deterministic stages own mechanically observable checks; bounded model stages own semantic interpretation and generation. |
+| Accepted progression | A downstream stage consumes only declared accepted upstream results. |
+| Artifact model | The first MVP retains current reusable and publication-relevant artifacts without requiring historical generations or exact replay. |
+| Learning boundary | Pipeline produces complete Learning Units under Learning-owned path, content, attribution, and readiness semantics. |
+| Publication boundary | Pipeline owns gate decisions and atomic writes to the Application-owned current published-content boundary. |
+| Runtime opacity | Application and UI must not inspect Pipeline validation, retry, component, version, or provenance internals. |
 
 ## Non-goals
 
-- Target learner definition.
-- Learning outcome and pedagogical rationale.
-- Learner-visible phrase, summary, and card meaning.
-- Runtime learning-unit selection and availability-aware retrieval.
-- Selection of a permanent concrete model or provider.
-- Complete cross-vendor support for every optional LLM feature.
-- Source freshness, periodic synchronization, and historical source reconstruction.
-- Historical intermediate generations, exact replay, and rollback.
+- Learner, Learning Path, Learning Unit, phrase, option, session, or publication-readiness meaning.
+- Runtime queue selection, availability-aware retrieval, or `LearningUnitRef` semantics.
+- PWA state, navigation, retry presentation, or learner-flow behavior.
+- Programming language, framework, workflow engine, queue, scheduler, worker topology, or concurrency model.
+- Database, ORM, SQL, transport, route, serialization, deployment, or persistence technology.
+- Concrete model, provider deployment, prompt text, retry count, timing, or backoff algorithm.
+
+## Topics
+
+| title | kind | ref | summary |
+|---|---|---|---|
+| Source acquisition | Concept | `spec:product.pipeline.source_acquisition` | Adapter-led discovery, canonical URL handling, retained lookup, fetch-or-reuse, and acquisition outcomes. |
+| Source normalization | Concept | `spec:product.pipeline.source_normalization` | Source-independent authentic conversations, authored-text separation, relationship evidence, and Discussion Paths. |
+| Path enumeration | Concept | `spec:product.pipeline.path_enumeration` | Bounded candidate derivation, source-grounded identity, deterministic order, duplicate merging, and origin evidence. |
+| Path validation | Concept | `spec:product.pipeline.path_validation` | Structural checks, independent semantic suitability units, coverage, rejection, and retained valid paths. |
+| Content generation | Concept | `spec:product.pipeline.content_generation` | Reusable summaries, phrase evidence, path-specific summaries, target phrases, prompts, and options. |
+| Validation | Concept | `spec:product.pipeline.validation` | Deterministic checks, semantic evaluations, controlled outcomes, interaction completion, and content-validation completion. |
+| Artifact identity and provenance | Concept | `spec:product.pipeline.artifact_identity_and_provenance` | Source-grounded identity, current-only artifacts, reusable scopes, behavior evidence, and opaque provenance. |
+| LLM provider boundary | Concept | `spec:product.pipeline.llm_provider` | Provider-neutral invocation, OpenAI-compatible baseline, adapter isolation, capabilities, and untrusted output. |
+| Publication | Concept | `spec:product.pipeline.publication` | Gate authorization, unattended eligibility, outcomes, atomic handoff, and availability-only mutation. |
+| Orchestration | Concept | `spec:product.pipeline.orchestration` | Stage progression, retry, rerun, reuse, continuation, terminal outcomes, and current-run diagnostics. |
 
 ## Rules
 
-- Deterministic stages handle every task that does not require semantic judgment.
-- LLM stages use explicit input and output contracts.
-- Invalid model output is retried or rejected according to pipeline policy.
-- Learning-domain logic must not call vendor SDKs directly.
-- Logical model roles must remain separate from provider-specific model names.
-- Provider capability differences require explicit handling.
-- Source-specific fields must not become the source-independent domain model.
-- A successful source fetch may establish retained source data for its source URL.
-- The pipeline may reuse retained source data for the same URL without another network request.
-- Intermediate stage data may be transient or overwritten after downstream use.
-- The first MVP does not require historical source or intermediate generations.
-- The pipeline must not select one canonical path during ingestion.
-- A path must be judged against learning suitability criteria without sibling ranking.
-- Prefix-overlapping valid paths may coexist.
-- Regeneration must replace current generated content for the same logical learning unit.
-- Phrase selection and quiz generation must use separate bounded tasks.
-- A learning unit must pass the automated publication gate before session availability.
-- Routine publication must not require individual human approval.
-- Humans must approve publication criteria and material changes to those criteria.
-- Manual fixture review must not become a routine publication queue.
-- Unavailability must preserve current content, source references, attribution, and current publication provenance.
-- Publication availability must not change valid-path to learning-unit cardinality.
-
-## Publication handoff
-
-```text
-PublicationHandoff
-  +-- stable learning-unit identity
-  +-- complete learning unit
-  +-- opaque provenance reference
-  +-- resulting availability
-```
-
-```text
-AvailabilityChange
-  +-- stable learning-unit identity
-  +-- resulting availability
-```
-
-- Both operations are semantic and do not define a command, event, request body, or storage schema.
-- `PublicationHandoff` introduces or replaces content and provenance under one stable learning-unit identity.
-- `AvailabilityChange` changes only the availability of an existing published projection.
-- Stable learning-unit identity must remain anchored to one valid learning path.
-- The complete learning unit in a `PublicationHandoff` must satisfy `spec:product.learning.learning_unit`.
-- Learner-visible attribution remains inside the complete learning unit.
-- The opaque provenance reference in a `PublicationHandoff` must identify current pipeline-owned source and generation evidence.
-- Resulting availability must be the explicit outcome of a pipeline-owned decision for both operation types.
-
-Before initial publication or content replacement (`PublicationHandoff`):
-
-- the learning unit must be complete and structurally valid;
-- required source references and attribution must be present;
-- required mechanical validation must be complete;
-- required model-based quality judgment must be complete;
-- current provenance must be established;
-- one publication judgment must determine resulting availability.
-
-Before an availability-only change (`AvailabilityChange`):
-
-- one current published projection must exist for the stable learning-unit identity;
-- a pipeline-owned decision must determine the resulting availability.
-
-Writer obligations:
-
-- The pipeline is the only semantic owner of published-content writes.
-- Initial publication must write one complete projection.
-- Replacement under one stable identity must switch content, matching provenance, and publication-judged availability together.
-- Replacement must not create another current projection or sibling learning unit.
-- Republication that introduces new or changed content must use `PublicationHandoff` and satisfy its preconditions.
-- Republication that restores availability without changing content must use `AvailabilityChange` and must not alter the current content or current provenance reference.
-- An availability-only change must leave current content unchanged.
-- An availability-only change must leave the current provenance reference unchanged.
-- An availability-only change must produce one observable state transition from the prior availability.
-- Failed preconditions must not produce partial published-content mutation for either operation type.
-- Each `PublicationHandoff` must commit all fields of the complete published state in one transaction.
-- Each `AvailabilityChange` must commit the availability change in one transaction.
-- A failed transaction must leave the existing committed current published state unchanged. See `spec:product.application.published_content` for the current-state contract.
-- Transaction syntax, isolation level, and persistence technology remain implementation details.
-- The first MVP does not require historical source snapshots, intermediate generations, previous publications, exact replay, or rollback state.
+- Pipeline specifications must reference Learning-owned meanings instead of redefining them.
+- Pipeline specifications must reference Application published-content semantics instead of redefining runtime reads.
+- Source-specific listing, URL, API, HTML, and reply-field representation must remain outside Common Pipeline semantics.
+- Model output must remain untrusted until deterministic and required semantic validation complete.
+- A valid rejection must remain distinct from provider failure, invalid output, incomplete processing, and contradiction.
+- Generated-content changes must not create a sibling Learning Unit when source-grounded identity remains unchanged.
+- Pipeline writes must preserve one complete committed current state for Application readers.
 
 ## Boundary
 
-| content | owner |
+| concern | owner |
 |---|---|
-| Learning goals and learner-visible semantics | `spec:product.learning`. |
-| Learning-path meaning and suitability | `spec:product.learning.learning_path`. |
-| Learning-unit field meaning | `spec:product.learning.learning_unit`. |
-| Source ingestion and conversation normalization | `spec:product.pipeline`. |
-| Path enumeration, validation, and filtering | `spec:product.pipeline`. |
-| Summary, phrase, and quiz generation mechanics | `spec:product.pipeline`. |
-| Publication-gate implementation | `spec:product.pipeline`. |
-| Concrete provider adaptation | `spec:product.pipeline`. |
-| Runtime learning-unit selection and availability-aware retrieval | `spec:product.application`. |
-
-## Topic map
-
-No child pipeline specifications are established yet.
-This overview owns the current pipeline-domain contract.
+| Learning Path validity and learner-visible content meaning | `spec:product.learning`. |
+| Source acquisition, normalization, generation, validation, publication, and orchestration | `spec:product.pipeline`. |
+| Committed current state, availability-aware selection, and retrieval | `spec:product.application`. |
+| Learner-facing runtime state and presentation | `spec:product.ui`. |
+| Concrete implementation technology | Implementation. |
 
 ## Related specs
 
 | ref | relation |
 |---|---|
 | `spec:product` | PRODUCT placement router and dependency direction. |
-| `spec:product.learning` | Learning contract implemented by the pipeline. |
-| `spec:product.learning.learning_path` | Defines valid source-post path semantics. |
-| `spec:product.learning.learning_unit` | Defines the learner-visible unit produced by the pipeline. |
-| `spec:product.application.published_content` | Defines the runtime projection written after publication decisions. |
-| PRODUCT-ADR-PIPELINE-002 | Establishes the OpenAI-compatible provider boundary. |
-| PRODUCT-ADR-PIPELINE-005 | Establishes staged path generation, automated publication gating, source reuse, and current-only retention. |
+| `spec:product.learning.learning_path` | Defines Learning Path meaning and suitability. |
+| `spec:product.learning.learning_unit` | Defines complete learner-visible content and publication readiness. |
+| `spec:product.learning.quiz_session` | Defines ordered interaction materialization obligations. |
+| `spec:product.application.published_content` | Defines committed current state read by Application. |
+| PRODUCT-ADR-PIPELINE-002 | Establishes the internal OpenAI-compatible provider boundary. |
+| PRODUCT-ADR-PIPELINE-005 | Establishes staged processing and current-only retention. |

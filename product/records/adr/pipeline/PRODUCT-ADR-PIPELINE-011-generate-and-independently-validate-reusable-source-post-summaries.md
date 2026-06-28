@@ -11,7 +11,7 @@
   - PRODUCT-ADR-LEARNING-005
   - PRODUCT-ADR-LEARNING-012
 - **supersedes**:
-- **migrated_to_spec**:
+- **migrated_to_spec**: 2026-06-28
 
 ## Context
 

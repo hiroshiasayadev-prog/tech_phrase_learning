@@ -153,7 +153,9 @@ The session progressively replaces each active quiz card with an answered summar
 | Session scope, order, progressive reveal, shuffled-presentation outcome, and access outcomes | `spec:product.learning.quiz_session` |
 | Runtime learning-unit selection, retrieval, and availability behavior | `spec:product.application` |
 | PWA queue, session state, loading, retry, navigation, and presentation mechanisms | `spec:product.ui` |
-| Generation, materialization, validation, and publication-gate implementation | `spec:product.pipeline` |
+| Learning-content generation and materialization | `spec:product.pipeline.content_generation` |
+| Content validation and completion | `spec:product.pipeline.validation` |
+| Publication-gate implementation and writes | `spec:product.pipeline.publication` |
 | Transport, persistence, serialization, and concrete styling | Implementation. |
 
 ## Related specs
@@ -163,7 +165,9 @@ The session progressively replaces each active quiz card with an answered summar
 | `spec:product.learning` | Parent learning overview. |
 | `spec:product.learning.learning_path` | Defines the source-post path presented by the session. |
 | `spec:product.learning.learning_unit` | Defines immutable content and attribution consumed by the session. |
-| `spec:product.pipeline` | Produces and validates the complete ordered content consumed by the session. |
+| `spec:product.pipeline.content_generation` | Produces the complete ordered interaction content. |
+| `spec:product.pipeline.validation` | Validates complete ordered content before publication. |
+| `spec:product.pipeline.publication` | Authorizes and writes session-available current content. |
 | `spec:product.application.published_content` | Holds the complete current learning unit read by runtime use cases. |
 | `spec:product.application.learning_unit_selection` | Selects available learning-unit references used by the session. |
 | `spec:product.application.learning_unit_retrieval` | Retrieves the available complete unit used by the session. |

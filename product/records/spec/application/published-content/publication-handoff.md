@@ -34,8 +34,8 @@ This reference does not define pipeline validation procedure, writer implementat
 | concern | owner |
 |---|---|
 | Handoff input meaning visible to application reads | `spec:product.application.published_content.publication_handoff` |
-| Validation procedure and publication judgment | `spec:product.pipeline` |
-| Writer implementation and mutation preconditions | `spec:product.pipeline` |
+| Validation procedure and publication judgment | `spec:product.pipeline.validation` and `spec:product.pipeline.publication` |
+| Writer semantics and mutation preconditions | `spec:product.pipeline.publication` |
 | Transaction execution and persistence technology | Implementation. |
 
 ## Related specs
@@ -45,5 +45,5 @@ This reference does not define pipeline validation procedure, writer implementat
 | `spec:product.application.published_content` | Parent published-content overview. |
 | `spec:product.application.published_content.current_state` | Defines the committed state affected by handoffs. |
 | `spec:product.application.published_content.availability` | Defines availability changed by handoffs. |
-| `spec:product.pipeline` | Owns publication decisions and published-content writes. |
+| `spec:product.pipeline.publication` | Owns publication decisions, preconditions, and published-content writes. |
 | PRODUCT-ADR-APPLICATION-003 | Establishes transactional current-state publication. |

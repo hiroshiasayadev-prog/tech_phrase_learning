@@ -53,7 +53,7 @@ CurrentPublishedState
 | concern | owner |
 |---|---|
 | Complete learning-unit semantics | `spec:product.learning.learning_unit` |
-| Current publication evidence | `spec:product.pipeline` |
+| Current publication evidence | `spec:product.pipeline.artifact_identity_and_provenance` and `spec:product.pipeline.publication` |
 | Committed runtime state visible to application reads | `spec:product.application.published_content.current_state` |
 | Physical storage and transaction mechanics | Implementation. |
 
@@ -65,5 +65,6 @@ CurrentPublishedState
 | `spec:product.application.published_content.availability` | Defines the availability value in current state. |
 | `spec:product.application.published_content.publication_handoff` | Defines the application-side handoff meaning for replacing current state. |
 | `spec:product.learning.learning_unit` | Defines complete learner-visible content. |
-| `spec:product.pipeline` | Owns current provenance evidence and publication decisions. |
+| `spec:product.pipeline.artifact_identity_and_provenance` | Owns current Pipeline provenance and opaque-reference meaning. |
+| `spec:product.pipeline.publication` | Owns publication decisions and current-state mutation. |
 | PRODUCT-ADR-APPLICATION-003 | Establishes the current published-content boundary. |

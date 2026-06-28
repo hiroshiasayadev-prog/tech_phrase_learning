@@ -83,7 +83,7 @@ The model separates generated quiz content, source-derived summaries, and authen
 - A path-specific summary may revise the reusable summary for conversational continuity.
 - One learning-unit interaction may use the reusable summary or a grounded path-specific revision.
 - Both summary forms must remain grounded in the same authentic source post.
-- Summary generation order and revision mechanics belong to `spec:product.pipeline`.
+- Summary generation order and revision mechanics belong to `spec:product.pipeline.content_generation`.
 - The learner-visible summary must be English.
 - The learner-visible summary must preserve the technical meaning needed to understand the source post.
 - The learner-visible summary may omit code, links, examples, and technical detail that do not support phrase learning.
@@ -212,7 +212,7 @@ A learning unit is publication-ready only when structural readiness and semantic
 - Humans must approve material changes to the criteria or their intended meaning.
 - Humans must resolve borderline policy judgments not covered by accepted criteria.
 - The first MVP does not require human approval for every learning unit.
-- Concrete models, prompts, thresholds, retries, schemas, and gate algorithms belong to `spec:product.pipeline`.
+- Focused Pipeline specifications own generation, validation, retry, and gate mechanics.
 - A unit that no longer passes the approved gate must become unavailable to new sessions.
 - Unavailability must preserve source-post references, source evidence, and attribution.
 
@@ -225,8 +225,10 @@ A learning unit is publication-ready only when structural readiness and semantic
 | Card order, progressive behavior, and shuffled-presentation constraints | `spec:product.learning.quiz_session` |
 | Option-permutation generation, storage, and restoration | `spec:product.ui` |
 | Attribution presentation and interaction behavior | `spec:product.ui` |
-| Generation, validation, and publication-gate implementation | `spec:product.pipeline` |
-| Published-content retention and runtime availability | `spec:product.application.published_content` and `spec:product.pipeline` |
+| Learning-content generation | `spec:product.pipeline.content_generation` |
+| Content validation and completion | `spec:product.pipeline.validation` |
+| Publication-gate implementation and writes | `spec:product.pipeline.publication` |
+| Published-content retention and runtime availability | `spec:product.application.published_content` and `spec:product.pipeline.publication` |
 | Serialized learning-unit package | Future pipeline contract. |
 | Concrete UI styling | Implementation. |
 
@@ -237,7 +239,9 @@ A learning unit is publication-ready only when structural readiness and semantic
 | `spec:product.learning` | Parent learning overview. |
 | `spec:product.learning.learning_path` | Defines the source-post path used by one learning unit. |
 | `spec:product.learning.quiz_session` | Defines progressive presentation of unit interactions. |
-| `spec:product.pipeline` | Produces and validates learning units for this contract. |
+| `spec:product.pipeline.content_generation` | Produces learner-visible content under this contract. |
+| `spec:product.pipeline.validation` | Validates complete interactions and unit candidates. |
+| `spec:product.pipeline.publication` | Applies the approved gate and current-state writes. |
 | PRODUCT-ADR-LEARNING-001 | Establishes technical conversation trees as the primary source. |
 | PRODUCT-ADR-LEARNING-005 | Establishes summarized source-post paths, abstracted quiz phrases, and automated publication gating. |
 | PRODUCT-ADR-LEARNING-006 | Establishes progressive quiz-to-summary cards. |

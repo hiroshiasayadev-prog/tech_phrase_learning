@@ -28,10 +28,23 @@
   - PRODUCT-INV-PIPELINE-002
   - PRODUCT-WORK-LEARNING-001
   - spec:product.pipeline
+  - spec:product.pipeline.source_acquisition
+  - spec:product.pipeline.source_normalization
+  - spec:product.pipeline.path_enumeration
+  - spec:product.pipeline.path_validation
+  - spec:product.pipeline.content_generation
+  - spec:product.pipeline.validation
+  - spec:product.pipeline.artifact_identity_and_provenance
+  - spec:product.pipeline.llm_provider
+  - spec:product.pipeline.publication
+  - spec:product.pipeline.orchestration
   - spec:product.learning.learning_path
   - spec:product.learning.learning_unit
   - spec:product.learning.quiz_session
   - spec:product.application.published_content
+  - spec:product.application.published_content.current_state
+  - spec:product.application.published_content.availability
+  - spec:product.application.published_content.publication_handoff
 - **tasks**:
   - PRODUCT-TASK-PIPELINE-001-01
   - PRODUCT-TASK-PIPELINE-001-02
@@ -105,11 +118,24 @@ A missing normative decision requires an accepted Pipeline ADR before specificat
 | PRODUCT-INV-PIPELINE-001 | Use the reviewed question-and-reply fixture as evidence for source fidelity, generated-content separation, and provenance needs. |
 | PRODUCT-INV-PIPELINE-002 | Use the coarse-tree and path-filtering experiments as evidence for normalization, path enumeration, validation, and harder fixtures. |
 | PRODUCT-WORK-LEARNING-001 | Treat the independently reviewed Learning contract as fixed input. |
-| `spec:product.pipeline` | Decompose the overview into focused current contracts. |
+| `spec:product.pipeline` | Keep the Pipeline overview as the authoritative router and cross-area boundary. |
+| `spec:product.pipeline.source_acquisition` | Own discovery, canonicalization, retained lookup, fetch-or-reuse, and acquisition outcomes. |
+| `spec:product.pipeline.source_normalization` | Own source-independent authentic conversations and mechanical Discussion Paths. |
+| `spec:product.pipeline.path_enumeration` | Own bounded candidate derivation, identity, duplicate merging, and origin evidence. |
+| `spec:product.pipeline.path_validation` | Own structural validation and independent semantic suitability filtering. |
+| `spec:product.pipeline.content_generation` | Own summary, phrase, prompt, and option generation stages. |
+| `spec:product.pipeline.validation` | Own common validation outcomes and content-validation completion. |
+| `spec:product.pipeline.artifact_identity_and_provenance` | Own current artifact identity, reuse scope, behavior evidence, and opaque provenance. |
+| `spec:product.pipeline.llm_provider` | Own the internal provider boundary and adapter isolation. |
+| `spec:product.pipeline.publication` | Own gate authorization, outcomes, handoff, availability change, and atomic writes. |
+| `spec:product.pipeline.orchestration` | Own accepted progression, retry, rerun, reuse, continuation, completion, and diagnostics. |
 | `spec:product.learning.learning_path` | Consume path cardinality, adjacency, coherence, suitability, and path-to-unit meaning. |
 | `spec:product.learning.learning_unit` | Produce complete units that satisfy content, identity, grounding, attribution, and publication-readiness semantics. |
 | `spec:product.learning.quiz_session` | Materialize every immutable learner-visible input required by a session. |
-| `spec:product.application.published_content` | Produce atomic current-state writes without changing Application read semantics. |
+| `spec:product.application.published_content` | Preserve the parent committed-current-state boundary while linking focused Pipeline owners. |
+| `spec:product.application.published_content.current_state` | Preserve complete committed current state and opaque current-provenance references. |
+| `spec:product.application.published_content.availability` | Preserve Application-owned `available` and `unavailable` interpretation while linking Pipeline publication decisions. |
+| `spec:product.application.published_content.publication_handoff` | Preserve Application-visible handoff effects while linking Pipeline validation, preconditions, and writer semantics. |
 
 ## Task flow
 
@@ -375,3 +401,70 @@ Final post-closure verification completed successfully:
 
 PRODUCT-TASK-PIPELINE-001-06 is `done`.
 The Work Item remains `in_progress` for T07 and T08.
+
+### T07 focused specification reflection
+
+PRODUCT-TASK-PIPELINE-001-07 mapped every current Pipeline ADR authority to focused specifications before editing.
+No missing ADR authority was found during the initial mapping.
+
+`spec:product.pipeline` now routes to ten focused child specifications covering source acquisition, normalization, path enumeration, path validation, content generation, validation, artifact identity and provenance, LLM providers, publication, and orchestration.
+
+Learning specifications now reference focused Pipeline owners without changing Learning-owned meaning.
+Application published-content specifications now reference focused publication and provenance owners without changing runtime read semantics.
+
+Complete current ADR authority has `migrated_to_spec` state.
+PRODUCT-ADR-PIPELINE-010 and PRODUCT-ADR-PIPELINE-021 remain superseded history and were not presented as current specification authority.
+
+T07 repository verification completed successfully:
+
+- `git diff --check` reported no whitespace error;
+- strict specification validation returned `[strict]  All 44 file(s) OK.`;
+- `git status --short` showed only the T07 reflection scope;
+- LF-to-CRLF messages were working-copy warnings rather than validation failures.
+
+The T07 independent review returned `NEEDS REVISION` with three Major findings and one Minor finding.
+
+The correction pass:
+
+- restored repeated first-MVP listing discovery without selecting cadence or scheduler technology;
+- restored summary-revision reasons, target-phrase transformation explanations, and option-stage semantic context boundaries;
+- made path enumeration the sole owner of candidate identity and duplicate handling;
+- added the three modified Application child specs to Work Item machine-readable and prose impact scope.
+
+No ADR meaning changed, and the same-day `migrated_to_spec` dates remain applicable.
+
+Post-correction repository verification completed successfully before the focused re-review:
+
+- `git diff --check` reported no whitespace error;
+- strict specification validation returned `[strict]  All 44 file(s) OK.`;
+- `git status --short` showed only the T07 reflection scope;
+- LF-to-CRLF messages were working-copy warnings rather than validation failures.
+
+The focused independent re-review closed F-MAJ-01, F-MAJ-02, F-MAJ-03, and F-MIN-01 with no Blocking or Major regression.
+It reported F-MIN-02 because Task and Work Item still described post-correction verification as pending.
+
+The first F-MIN-02 correction synchronized the supplied post-correction verification evidence into Task and Work Item.
+
+The first evidence-consistency re-review returned `NEEDS REVISION` and marked F-MIN-02 `PARTIALLY CLOSED`.
+It found that the synchronized Evidence incorrectly implied that strict specification validation and `git status --short` had been rerun after synchronization.
+
+The timing correction limited the post-synchronization current-file verification claim to the command actually rerun:
+
+- `git diff --check` reported no whitespace error.
+
+The strict specification validation and `git status --short` results above remain the supplied post-correction verification evidence from before the Evidence synchronization.
+After that timing-wording correction, another current-file `git diff --check` reported no whitespace error.
+
+The second evidence-consistency re-review returned `NEEDS REVISION` and kept F-MIN-02 `PARTIALLY CLOSED` because this intermediate review and timing-correction history was not yet recorded.
+This correction records that history without changing specification or ADR authority.
+
+Final current-file whitespace verification completed successfully after this history synchronization:
+
+- `git diff --check` reported no whitespace error.
+
+F-MIN-02 is closed by the synchronized history and the final current-file whitespace verification.
+The remaining review loop concerned only whether this completed verification was itself recorded as completed; it did not concern specification content, ADR authority, or workflow correctness.
+No further independent re-review was required for that self-referential Evidence update.
+
+T07 is `done`.
+T08 has not started.

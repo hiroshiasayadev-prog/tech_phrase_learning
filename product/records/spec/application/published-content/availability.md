@@ -33,7 +33,7 @@ Availability expresses eligibility for new learner flows without deleting curren
 
 | concern | owner |
 |---|---|
-| Availability decision | `spec:product.pipeline` |
+| Availability decision | `spec:product.pipeline.publication` |
 | Availability value read by application use cases | `spec:product.application.published_content.availability` |
 | Selection eligibility | `spec:product.application.learning_unit_selection` |
 | Retrieval result mapping | `spec:product.application.learning_unit_retrieval` |
@@ -46,6 +46,6 @@ Availability expresses eligibility for new learner flows without deleting curren
 | `spec:product.application.learning_unit_selection` | Uses availability for queue eligibility. |
 | `spec:product.application.learning_unit_retrieval` | Uses availability for `Available` and `Unavailable` results. |
 | `spec:product.application.outbound_queries.get_published_learning_unit` | Reads committed availability through the persistence adapter. |
-| `spec:product.pipeline` | Owns availability decisions and writes. |
+| `spec:product.pipeline.publication` | Owns availability decisions and writes. |
 | PRODUCT-ADR-APPLICATION-003 | Establishes current availability and retrieval result names. |
 | PRODUCT-ADR-APPLICATION-004 | Establishes result-shaped retrieval-port mapping. |

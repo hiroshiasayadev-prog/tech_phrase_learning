@@ -13,7 +13,7 @@
   - PRODUCT-ADR-PIPELINE-020
 - **supersedes**:
   - PRODUCT-ADR-PIPELINE-021
-- **migrated_to_spec**:
+- **migrated_to_spec**: 2026-06-28
 
 ## Context
 
